@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 20:05:03 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/20 17:38:18 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/20 17:59:21 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,8 @@ int	set_info(t_info *info, int ac, char **av)
 	if (ac == 6)
 		info->number_of_times_each_philosopher_must_eat = ft_atoi(av[5]);
 	info->time_meal_start = get_cur_time(0);
-	if (sem_init(&(info->fork_semaphore), 0, info->number_of_philosophers) != 0)
-		perror("error: ");
-	if (sem_init(&(info->time_semaphore), 0, 1) != 0)
-		perror("error: ");
-	if (sem_init(&(info->print_semaphore), 0, 1) != 0)
-		perror("error: ");
+	// 세마포어 초기화
+	// info->fork_semaphore = sem_open("fork", O_CREAT, 0644);
 	return (0);
 }
 
