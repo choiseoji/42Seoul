@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:25:55 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/18 20:05:26 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/20 16:40:11 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int	meal_start(t_info *info, t_philo *philo)
 int	start_simulation(t_info *info, t_philo *philo)
 {
 	int	id;
+	int	status;
 
 	id = 1;
 	while (id <= info->number_of_philosophers)
@@ -42,11 +43,15 @@ int	start_simulation(t_info *info, t_philo *philo)
 		id++;
 	}
 	// 부모 프로세스에서 자식 프로세스 기다려주기
-	id = 1;
-	while (id <= info->number_of_philosophers)
+	waitpid(0, &status, 0);
+	if (WIFEXITED(status) == 0)
 	{
-		waidpid(philo[id].pid, 0, 0);
-		id++;
+		id = 1;
+		while (id <= info->number_of_philosophers)
+		{
+			kill(philo[id].pid, SIGKILL);
+			id++;
+		}
 	}
 	return (0);
 }

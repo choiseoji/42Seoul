@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 20:07:18 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/18 20:09:02 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/20 14:59:37 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,10 +54,27 @@ int	get_cur_time(int start_time)
 	return (cur_time - start_time);
 }
 
-int	check_is_dead(t_info *info)
+int	check_is_dead(t_info *info, t_philo *philo)
 {
-	if (info->is_dead == 1)
+	int	life;
+
+	sem_wait(&(info->time_semaphore));
+	life = philo->start_eat_time;
+	sem_post(&(info->time_semaphore));
+	if (life + info->time_to_die <= get_cur_time(info->time_meal_start))
 	{
-		
+		// 죽은 경우
+		exit(1);
 	}
+	return (0);
+}
+
+int	spend_time(t_info *info, t_philo *philo, int base_time, int passing_time)
+{
+	while (base_time + passing_time > get_cur_time(info->time_meal_start))
+	{
+		check_is_dead(info, philo);
+		usleep(100);
+	}
+	return (0);
 }
