@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 13:57:38 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/18 17:49:42 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/20 21:15:31 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,8 +122,8 @@ int	main(void)
 	sphere1->center = vec(-2, 0, -5);
 	sphere1->r = 2;
 	sphere1->albedo = vec(0.5, 0, 0);  // 빨강
-	sphere2->center = vec(0, -1001, 0);
-	sphere2->r = 1;  // 999
+	sphere2->center = vec(0, -1000, 0);
+	sphere2->r = 995;  // 999
 	sphere2->albedo = vec(1, 1, 1);  // 검정
 	sphere2->next = NULL;
 	sphere1->next = sphere2;

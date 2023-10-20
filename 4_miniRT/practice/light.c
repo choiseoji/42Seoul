@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 16:17:59 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/18 17:33:56 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/20 21:30:27 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,28 @@ t_vec   phong_lighting(t_vec ambient, t_sphere *sp, t_hit_record rec, t_ray ray)
     t_vec   light_color;  // 광원 색상 설정
     double  brightness;
 
+    // shadow
+    double  light_len;
+    t_ray   light_ray;
+    t_vec   light_dir;
+
     light_color = vec(0, 0, 0);  // 빛이 없는 경우로 초기화
-    // 조명 정보가 하나 있다고 가정 (나는 아직 공부 중이니깐~)
+    // shadow
+    light_dir = vec_sub(sp->center, rec.p);
+    light_len = vec_length(light_dir);
+    light_ray.dir = light_dir;
+    light_ray.origin = vec_add(rec.p, vec_mul(rec.normal, EPSILON));
+    t_sphere *l;
+    l = (t_sphere *)malloc(sizeof(t_sphere));
+    double t_min = 0;
+    double t_max = light_len;
+    l->center = vec(0, 20, 0);
+    l->r = 0.5;
+    l->albedo = vec(0,0, 0);
+    if (hit(l, light_ray, &rec, t_min, t_max))
+        return (light_color);
+
+    // 조명 정보가 하나 있다고 가정
     light_color = vec_add(light_color, get_diffuse(rec));
     light_color = vec_add(light_color, get_specular(rec, ray));
     brightness =  0.5 * 3;  // 밝기 비율 * 밝기 강도 

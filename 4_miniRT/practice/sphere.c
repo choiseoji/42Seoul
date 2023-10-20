@@ -6,11 +6,32 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/13 16:17:59 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/16 22:12:05 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/20 21:24:37 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minirt.h"
+
+// // ray가 구와 만나냐를 판별하는 함수
+// // return : 구와 만나는 지점
+// double	hit_sphere(t_vec center, double radius, t_ray ray)
+// {
+// 	double a;
+// 	double b;
+// 	double c;
+// 	double	discriminant;
+// 	t_vec	oc;
+	
+// 	oc = vec_sub(ray.origin, center);
+// 	a = vec_dot(ray.dir, ray.dir);  // 방향 벡터 내적
+// 	b = 2.0 * vec_dot(oc, ray.dir);  // 방향 벡터와 (원점 - 센터 벡터) 내적
+// 	c = vec_dot(oc, oc) - radius * radius;  // (원점 - 센터 벡터) 내적 - 반지름 제곱
+// 	discriminant = b * b - 4 * a * c;
+// 	if (discriminant < 0)
+// 		return (-1);
+// 	else
+// 		return ((-b - sqrt(discriminant)) / (2.0 * a));
+// }
 
 t_sphere *sphere_init(t_vec	center, t_vec albedo, double r)
 {
