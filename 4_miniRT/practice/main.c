@@ -36,6 +36,7 @@ int	ray_color(t_ray ray, t_sphere *sphere)
 	double t_max = 100;
 	ambient = vec_mul(vec(1, 1, 1), 0.1);  // 주광원 색상 * 주광원 강도
 
+	t_sphere *sp_list = sphere;
 	for(int i = 0; i < 3; i++)
 	{
 		is_sphere = hit(sphere, ray, &rec, t_min, t_max);
@@ -46,7 +47,7 @@ int	ray_color(t_ray ray, t_sphere *sphere)
 			// tmp = ray_at(ray, rec.t);   // 구와 ray가 만나는 지점
 			// N = vec_unit(vec(tmp.x - sphere->center.x, tmp.y - sphere->center.y, tmp.z - sphere->center.z)); // tmp에서의 법선벡터 (구와 만나는 지점과 구의 원점 (0, 0, -1)의 벡터이니깐 법선 벡터가 됨)
 			// color = vec_mul(vec(N.x + 1, N.y + 1, N.z + 1), 0.5);
-			color = phong_lighting(ambient, sphere, rec, ray);
+			color = phong_lighting(ambient, sphere, rec, ray, sp_list);
 			t_max = rec.t;
 		}
 		sphere = sphere->next;

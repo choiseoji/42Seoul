@@ -64,7 +64,7 @@ t_vec   get_specular(t_hit_record rec, t_ray ray)
 // diffuse + specular을 다 해주고 마지막에 ambient 더해줌
 // 다 더한 값에 (빛의 총량) * (오브젝트 반사율) 해주면 색을 결정할 수 있음.
 // 만약 vec(1, 1, 1)을 넘긴다면 vec(1, 1, 1) 반환
-t_vec   phong_lighting(t_vec ambient, t_sphere *sp, t_hit_record rec, t_ray ray)
+t_vec   phong_lighting(t_vec ambient, t_sphere *sp, t_hit_record rec, t_ray ray, t_sphere *sp_list)
 {
     t_vec   light_color;  // 광원 색상 설정
     double  brightness;
@@ -76,19 +76,22 @@ t_vec   phong_lighting(t_vec ambient, t_sphere *sp, t_hit_record rec, t_ray ray)
 
     light_color = vec(0, 0, 0);  // 빛이 없는 경우로 초기화
     // shadow
-    light_dir = vec_sub(sp->center, rec.p);
+    light_dir = vec_sub(vec(0, 10, 0), rec.p);
     light_len = vec_length(light_dir);
     light_ray.dir = light_dir;
     light_ray.origin = vec_add(rec.p, vec_mul(rec.normal, EPSILON));
-    t_sphere *l;
-    l = (t_sphere *)malloc(sizeof(t_sphere));
     double t_min = 0;
     double t_max = light_len;
-    l->center = vec(0, 20, 0);
-    l->r = 0.5;
-    l->albedo = vec(0,0, 0);
-    if (hit(l, light_ray, &rec, t_min, t_max))
-        return (light_color);
+    for(int i = 0; i < 3; i++)
+    {
+        if (!(sp->center.x == sp_list->center.x && sp->center.y == sp_list->center.y
+        && sp->center.z == sp_list->center.z))
+        {
+            if (hit(sp_list, light_ray, &rec, t_min, t_max))
+                return (light_color);
+        }
+        sp_list = sp_list->next;
+    }
 
     // 조명 정보가 하나 있다고 가정
     light_color = vec_add(light_color, get_diffuse(rec));
