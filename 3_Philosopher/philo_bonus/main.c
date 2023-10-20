@@ -6,11 +6,11 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:25:55 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/20 16:40:11 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/20 17:28:01 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philosophers_bonus.h>
+#include "philosophers_bonus.h"
 
 int	meal_start(t_info *info, t_philo *philo)
 {

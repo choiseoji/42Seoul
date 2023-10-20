@@ -6,11 +6,11 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 20:05:46 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/20 14:53:43 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/20 17:28:14 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philosophers_bonus.h>
+#include "philosophers_bonus.h"
 
 int	get_first_fork(t_info *info, t_philo *philo)
 {
@@ -45,8 +45,8 @@ int	eating(t_info *info, t_philo *philo)
 {
 	if (get_first_fork(info, philo) < 0)
 		return (-1);
-	if (info->number_of_philosophers == 1)
-		return (eat_alone(info));
+	// if (info->number_of_philosophers == 1)
+	// 	return (eat_alone(info));
 	if (get_second_fork(info, philo) < 0)
 		return (-1);
 	if (print_is_eating(info, philo) < 0)

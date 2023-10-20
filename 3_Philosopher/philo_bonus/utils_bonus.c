@@ -6,11 +6,11 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 20:07:18 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/20 14:59:37 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/20 16:41:52 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philosophers_bonus.h>
+#include "philosophers_bonus.h"
 
 int	input_error(void)
 {

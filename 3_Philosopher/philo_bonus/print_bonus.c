@@ -6,11 +6,11 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 14:36:41 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/20 14:53:54 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/20 17:26:10 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <philosophers_bonus.h>
+#include "philosophers_bonus.h"
 
 int	print_taken_a_fork(t_info *info, t_philo *philo)
 {
