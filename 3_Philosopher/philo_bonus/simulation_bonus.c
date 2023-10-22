@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 20:05:46 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/20 17:28:14 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/22 16:17:55 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 int	get_first_fork(t_info *info, t_philo *philo)
 {
-	sem_wait(&(info->fork_semaphore));  // 세마포어 하나 감소
+	sem_wait(info->fork_semaphore);  // 세마포어 하나 감소
 	if (print_taken_a_fork(info, philo) < 0)
 	{
-		sem_post(&(info->fork_semaphore));  // 세마포어 하나 증가
+		sem_post(info->fork_semaphore);  // 세마포어 하나 증가
 		return (-1);
 	}
 	return (0);
@@ -25,11 +25,11 @@ int	get_first_fork(t_info *info, t_philo *philo)
 
 int	get_second_fork(t_info *info, t_philo *philo)
 {
-	sem_wait(&(info->fork_semaphore));
+	sem_wait(info->fork_semaphore);
 	if (print_taken_a_fork(info, philo) < 0)
 	{
-		sem_post(&(info->fork_semaphore));
-		sem_post(&(info->fork_semaphore));
+		sem_post(info->fork_semaphore);
+		sem_post(info->fork_semaphore);
 		return (-1);
 	}
 	return (0);
@@ -37,8 +37,9 @@ int	get_second_fork(t_info *info, t_philo *philo)
 
 int	drop_fork(t_info *info)
 {
-	sem_post(&(info->fork_semaphore));
-	sem_post(&(info->fork_semaphore));
+	sem_post(info->fork_semaphore);
+	sem_post(info->fork_semaphore);
+	return (0);
 }
 
 int	eating(t_info *info, t_philo *philo)

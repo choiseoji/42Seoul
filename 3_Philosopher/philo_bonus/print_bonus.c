@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 14:36:41 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/20 17:26:10 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/22 16:15:55 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ int	print_taken_a_fork(t_info *info, t_philo *philo)
 	int	cur_time;
 	
 	check_is_dead(info, philo);
-	sem_wait(&(info->print_semaphore));
+	sem_wait(info->print_semaphore);
 	cur_time = get_cur_time(info->time_meal_start);
 	printf("%d %d has taken a fork\n", cur_time, philo->id);
-	sem_post(&(info->print_semaphore));
+	sem_post(info->print_semaphore);
 	return (0);
 }
 
@@ -29,14 +29,14 @@ int	print_is_eating(t_info *info, t_philo *philo)
 	int	cur_time;
 
 	check_is_dead(info, philo);
-	sem_wait(&(info->print_semaphore));
+	sem_wait(info->print_semaphore);
 	cur_time = get_cur_time(info->time_meal_start);
 	printf("%d %d is eating\n", cur_time, philo->id);
-	sem_post(&(info->print_semaphore));
-	sem_wait(&(info->time_semaphore));
+	sem_post(info->print_semaphore);
+	sem_wait(info->time_semaphore);
 	philo->start_eat_time = cur_time;
 	philo->cnt_eat++;
-	sem_post(&(info->time_semaphore));
+	sem_post(info->time_semaphore);
 	return (0);
 }
 
@@ -45,13 +45,13 @@ int	print_is_sleeping(t_info *info, t_philo *philo)
 	int	cur_time;
 
 	check_is_dead(info, philo);
-	sem_wait(&(info->print_semaphore));
+	sem_wait(info->print_semaphore);
 	cur_time = get_cur_time(info->time_meal_start);
 	printf("%d %d is sleeping\n", cur_time, philo->id);
-	sem_post(&(info->print_semaphore));
-	sem_wait(&(info->time_semaphore));
+	sem_post(info->print_semaphore);
+	sem_wait(info->time_semaphore);
 	philo->start_sleep_time = cur_time;
-	sem_post(&(info->time_semaphore));
+	sem_post(info->time_semaphore);
 	return (0);
 }
 
@@ -60,9 +60,9 @@ int	print_is_thinking(t_info *info, t_philo *philo)
 	int	cur_time;
 
 	check_is_dead(info, philo);
-	sem_wait(&(info->print_semaphore));
+	sem_wait(info->print_semaphore);
 	cur_time = get_cur_time(info->time_meal_start);
 	printf("%d %d is thinking\n", cur_time, philo->id);
-	sem_post(&(info->print_semaphore));
+	sem_post(info->print_semaphore);
 	return (0);
 }
