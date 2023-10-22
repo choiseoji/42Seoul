@@ -90,10 +90,11 @@ t_vec	vec_unit(t_vec v);
 t_vec	ray_at(t_ray ray, double t);
 
 // lighting.c
-t_vec   phong_lighting(t_vec ambient, t_sphere *sp, t_hit_record rec, t_ray ray);
+// t_vec   phong_lighting(t_vec ambient, t_sphere *sp, t_hit_record rec, t_ray ray);
+t_vec   phong_lighting(t_vec ambient, t_sphere *sp, t_hit_record rec, t_ray ray, t_sphere *sp_list);
 
 // sphere.c
 int		hit(t_sphere *sphere, t_ray ray, t_hit_record *rec, double t_min, double t_max);
-double	hit_sphere(t_vec center, double radius, t_ray ray);
+// double	hit_sphere(t_vec center, double radius, t_ray ray);
 
 #endif
