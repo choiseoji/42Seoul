@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:25:55 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/22 20:11:45 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/22 20:17:10 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	start_simulation(t_info *info, t_philo *philo)
 	while (id <= info->number_of_philosophers)
 	{
 		philo[id].pid = fork();
-		if (philo[id].pid == 0)  // 자식 프로세스만 meal_start 함수로..
+		if (philo[id].pid == 0)
 		{
 			meal_start(info, &philo[id]);
 			break ;
@@ -54,6 +54,7 @@ int	start_simulation(t_info *info, t_philo *philo)
 	sem_close(info->fork_semaphore);
 	sem_close(info->time_semaphore);
 	sem_close(info->print_semaphore);
+	sem_close(info->dead_semaphore);
 	return (0);
 }
 
