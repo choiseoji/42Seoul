@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:29:38 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/20 17:56:23 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/22 19:45:51 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int	print_taken_a_fork(t_info *info, t_philo *philo);
 int	print_is_eating(t_info *info, t_philo *philo);
 int	print_is_sleeping(t_info *info, t_philo *philo);
 int	print_is_thinking(t_info *info, t_philo *philo);
+int	print_is_died(t_info *info, t_philo *philo);
 
 // setting_bonus
 int	check_input(int ac, char **av);
