@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:25:55 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/23 15:23:53 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/23 15:39:59 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,28 @@ int	meal_start(t_info *info, t_philo *philo)
 	return (0);
 }
 
+int	before_start(t_info *info)
+{
+	int	cnt;
+
+	sem_wait(info->dead_semaphore);  // 일단 dead 세마포어 가져오기
+	if (info->number_of_times_each_philosopher_must_eat > 0)
+	{
+		cnt = info->number_of_philosophers;
+		while (cnt--)
+		{
+			sem_wait(info->cnt_semaphore);  // cnt 세마포어 다 가져오기
+		}
+	}
+	return (0);
+}
+
 int	start_simulation(t_info *info, t_philo *philo)
 {
 	int	id;
+	int cnt = 0;
 
-	sem_wait(info->dead_semaphore);
+	before_start(info);
 	id = 1;
 	while (id <= info->number_of_philosophers)
 	{
@@ -44,6 +61,21 @@ int	start_simulation(t_info *info, t_philo *philo)
 		}
 		id++;
 	}
+	if (info->number_of_times_each_philosopher_must_eat > 0)
+	{
+		while (cnt != info->number_of_philosophers)
+		{
+			sem_wait(info->cnt_semaphore);
+			cnt++;
+		}
+		id = 1;
+		while (id <= info->number_of_philosophers)
+		{
+			kill(philo[id].pid, SIGTERM);
+			id++;
+		}
+		return (0);
+	}
 	sem_wait(info->dead_semaphore);
 	id = 1;
 	while (id <= info->number_of_philosophers)
@@ -51,6 +83,11 @@ int	start_simulation(t_info *info, t_philo *philo)
 		kill(philo[id].pid, SIGTERM);
 		id++;
 	}
+	return (0);
+}
+
+void	sem_close_n_unlink(t_info *info)
+{
 	sem_close(info->fork_semaphore);
 	sem_close(info->time_semaphore);
 	sem_close(info->print_semaphore);
@@ -61,7 +98,6 @@ int	start_simulation(t_info *info, t_philo *philo)
 	sem_unlink((const char *)"print");
 	sem_unlink((const char *)"dead");
 	sem_unlink((const char *)"cnt");
-	return (0);
 }
 
 int	main(int ac, char **av)
@@ -77,5 +113,6 @@ int	main(int ac, char **av)
 		return (0);
 	if (start_simulation(&info, philo) < 0)
 		return (0);
+	sem_close_n_unlink(&info);
 	return (0);
 }
