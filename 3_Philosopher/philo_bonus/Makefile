@@ -2,7 +2,7 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror 
 SRC = main.c print_bonus.c setting_bonus.c simulation_bonus.c utils_bonus.c
 OBJ = $(SRC:.c=.o)
-NAME = philo
+NAME = philo_bonus
 
 .phony: all clean fclean re
 
