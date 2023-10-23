@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:29:38 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/22 20:02:33 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/23 15:22:05 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_info
 	sem_t	*time_semaphore;
 	sem_t	*print_semaphore;
 	sem_t	*dead_semaphore;
+	sem_t	*cnt_semaphore;
 }	t_info;
 
 // 철학자 1명의 정보를 담고 있을 philo 구조체

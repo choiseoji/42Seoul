@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 14:36:41 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/23 15:03:40 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/23 15:21:42 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ int	print_is_eating(t_info *info, t_philo *philo)
 	sem_wait(info->time_semaphore);
 	philo->start_eat_time = cur_time;
 	sem_post(info->time_semaphore);
+	// philo->cnt_eat++;
+	// if (philo->cnt_eat == info->number_of_times_each_philosopher_must_eat)
+	// {
+
+	// }
 	return (0);
 }
 
