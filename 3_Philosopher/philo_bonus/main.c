@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:25:55 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/23 15:39:59 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/23 15:54:23 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,45 @@ int	before_start(t_info *info)
 	return (0);
 }
 
+int	check_must_eat_cnt(t_info *info, t_philo *philo)
+{
+	int	cnt;
+	int	id;
+
+	cnt = 0;
+	if (info->number_of_times_each_philosopher_must_eat == 0)
+		return (0);
+	while (cnt != info->number_of_philosophers)
+	{
+		sem_wait(info->cnt_semaphore);
+		cnt++;
+	}
+	id = 1;
+	while (id <= info->number_of_philosophers)
+	{
+		kill(philo[id].pid, SIGTERM);
+		id++;
+	}
+	return (1);
+}
+
+int	simulation_stop(t_info *info, t_philo *philo)
+{
+	int	id;
+
+	sem_wait(info->dead_semaphore);
+	id = 1;
+	while (id <= info->number_of_philosophers)
+	{
+		kill(philo[id].pid, SIGTERM);
+		id++;
+	}
+	return (1);
+}
+
 int	start_simulation(t_info *info, t_philo *philo)
 {
 	int	id;
-	int cnt = 0;
 
 	before_start(info);
 	id = 1;
@@ -61,28 +96,10 @@ int	start_simulation(t_info *info, t_philo *philo)
 		}
 		id++;
 	}
-	if (info->number_of_times_each_philosopher_must_eat > 0)
-	{
-		while (cnt != info->number_of_philosophers)
-		{
-			sem_wait(info->cnt_semaphore);
-			cnt++;
-		}
-		id = 1;
-		while (id <= info->number_of_philosophers)
-		{
-			kill(philo[id].pid, SIGTERM);
-			id++;
-		}
+	if (check_must_eat_cnt(info, philo))
 		return (0);
-	}
-	sem_wait(info->dead_semaphore);
-	id = 1;
-	while (id <= info->number_of_philosophers)
-	{
-		kill(philo[id].pid, SIGTERM);
-		id++;
-	}
+	if (simulation_stop(info, philo))
+		return (0);
 	return (0);
 }
 

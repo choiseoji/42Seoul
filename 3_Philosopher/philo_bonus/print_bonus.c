@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/20 14:36:41 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/23 15:27:49 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/23 15:55:37 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,6 @@ int	print_is_died(t_info *info, t_philo *philo)
 	sem_wait(info->print_semaphore);
 	cur_time = get_cur_time(info->time_meal_start);
 	printf("%d %d is died\n", cur_time, philo->id);
-	sem_post(info->print_semaphore);
+	// sem_post(info->print_semaphore);
 	return (0);
 }
