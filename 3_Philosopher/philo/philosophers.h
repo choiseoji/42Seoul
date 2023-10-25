@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 14:20:30 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/10 20:09:59 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:34:52 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <sys/time.h>
-# define true 1
-# define false 0
 
 // 정보를 담고 있을 info 구조체
 typedef struct s_info

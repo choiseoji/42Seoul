@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 14:30:43 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/18 17:27:40 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/25 16:34:59 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	set_info(t_info *info, int ac, char **av)
 	if (ac == 6)
 		info->number_of_times_each_philosopher_must_eat = ft_atoi(av[5]);
 	info->time_meal_start = get_cur_time(0);
-	info->is_dead = false;
+	info->is_dead = 0;
 	return (0);
 }
 
