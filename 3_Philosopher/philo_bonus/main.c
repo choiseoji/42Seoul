@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:25:55 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/23 15:54:23 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/26 16:28:28 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,9 @@ int	meal_start(t_info *info, t_philo *philo)
 		usleep(1000);
 	while (1)
 	{
-		if (eating(info, philo) < 0)
-			return (0);
-		if (sleeping(info, philo) < 0)
-			return (0);
-		if (thinking(info, philo) < 0)
-			return (0);
+		eating(info, philo);
+		sleeping(info, philo);
+		thinking(info, philo);
 	}
 	return (0);
 }
@@ -103,18 +100,13 @@ int	start_simulation(t_info *info, t_philo *philo)
 	return (0);
 }
 
-void	sem_close_n_unlink(t_info *info)
+void	sem_close(t_info *info)
 {
 	sem_close(info->fork_semaphore);
 	sem_close(info->time_semaphore);
 	sem_close(info->print_semaphore);
 	sem_close(info->dead_semaphore);
 	sem_close(info->cnt_semaphore);
-	sem_unlink((const char *)"fork");
-	sem_unlink((const char *)"time");
-	sem_unlink((const char *)"print");
-	sem_unlink((const char *)"dead");
-	sem_unlink((const char *)"cnt");
 }
 
 int	main(int ac, char **av)
@@ -130,6 +122,6 @@ int	main(int ac, char **av)
 		return (0);
 	if (start_simulation(&info, philo) < 0)
 		return (0);
-	sem_close_n_unlink(&info);
+	sem_close(&info);
 	return (0);
 }
