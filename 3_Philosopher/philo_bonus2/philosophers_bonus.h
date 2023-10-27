@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:29:38 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/27 15:01:37 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/27 15:19:31 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_philo
 int		check_input(int ac, char **av);
 int		set_info(t_info *info, int ac, char **av);
 int		set_philo(t_info *info, t_philo **philo);
+void	close_semaphore(t_info *info, t_philo *philo);
 
 // utils_bonus
 int		input_error(void);

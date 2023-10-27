@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:34:38 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/27 15:02:00 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/27 15:23:57 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,6 @@ int	main(int ac, char **av)
 	if (set_philo(&info, &philo) < 0)
 		return (0);
 	start_simulation(&info, philo);
-	close_semaphore(&info);
+	close_semaphore(&info, philo);
 	return (0);
 }
