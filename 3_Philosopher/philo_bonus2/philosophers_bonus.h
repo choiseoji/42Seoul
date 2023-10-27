@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:29:38 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/27 14:49:50 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/27 14:52:18 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,19 @@ typedef struct s_philo
 }	t_philo;
 
 // setting_bonus
-int	check_input(int ac, char **av);
-int	set_info(t_info *info, int ac, char **av);
-int	set_philo(t_info *info, t_philo **philo);
+int		check_input(int ac, char **av);
+int		set_info(t_info *info, int ac, char **av);
+int		set_philo(t_info *info, t_philo **philo);
 
 // utils_bonus
-int	input_error(void);
-int	ft_atoi(char *str);
-int	get_cur_time(int start_time);
+int		input_error(void);
+int		ft_atoi(char *str);
+int		get_cur_time(int start_time);
 void	check_is_dead(t_info *info, t_philo *philo);
 void	check_is_full(t_info *info);
 
 // simulation_bonus
-void get_fork(t_info *info, t_philo *philo);
+void 	get_fork(t_info *info, t_philo *philo);
 void	drop_fork(t_info* info);
 void	eating(t_info *info, t_philo *philo);
 void	sleeping(t_info *info, t_philo *philo);

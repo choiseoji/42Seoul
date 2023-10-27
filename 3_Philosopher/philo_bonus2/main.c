@@ -6,14 +6,26 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:34:38 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/26 20:31:15 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/27 14:54:57 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
 
+void	eat_alone(t_info *info, t_philo *philo)
+{
+	sem_wait(info->fork_semaphore);
+	print_taken_a_fork(info, philo);
+	while (1)
+	{
+		check_is_dead(info, philo);
+	}
+}
+
 void	meal_start(t_info *info, t_philo *philo)
 {
+	if (info->number_of_philosophers == 1)
+		eat_alone(info, philo);
 	while (1)
 	{
 		eating(info, philo);
