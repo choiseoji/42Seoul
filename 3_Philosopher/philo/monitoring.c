@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/10 17:05:37 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/10 20:11:07 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/27 15:31:24 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,4 +90,6 @@ void	wait_n_destroy(t_philo *philo, t_info *info)
 	pthread_mutex_destroy(&(info->print_mutex));
 	pthread_mutex_destroy(&(info->dead_mutex));
 	pthread_mutex_destroy(&(info->time_mutex));
+	free(info->fork_mutex);
+	free(philo);
 }
