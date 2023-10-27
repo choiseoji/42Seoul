@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:35:52 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/27 14:51:03 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/27 15:03:23 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,13 @@ int	set_philo(t_info *info, t_philo **philo)
 		i++;
 	}
 	return (0);
+}
+
+void	close_semaphore(t_info *info)
+{
+	sem_close(info->fork_semaphore);
+	sem_close(info->fork_box_semaphore);
+	sem_close(info->print_semaphore);
+	sem_close(info->end_semaphore);
+	sem_close(info->cnt_semaphore);
 }

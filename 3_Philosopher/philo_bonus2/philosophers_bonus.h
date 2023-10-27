@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:29:38 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/27 14:52:18 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/27 15:01:37 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ void	check_is_full(t_info *info);
 // simulation_bonus
 void 	get_fork(t_info *info, t_philo *philo);
 void	drop_fork(t_info* info);
+void	eat_alone(t_info *info, t_philo *philo);
 void	eating(t_info *info, t_philo *philo);
 void	sleeping(t_info *info, t_philo *philo);
 
