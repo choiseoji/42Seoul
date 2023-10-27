@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:35:52 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/26 20:30:32 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/27 14:51:03 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,13 +43,11 @@ int	set_info(t_info *info, int ac, char **av)
 	// 세마포어 초기화
 	sem_unlink((const char *)"fork");
 	sem_unlink((const char *)"fork_box");
-	sem_unlink((const char *)"time");
 	sem_unlink((const char *)"print");
 	sem_unlink((const char *)"end");
 	sem_unlink((const char *)"cnt");
 	info->fork_semaphore = sem_open("fork", O_CREAT, 0644, info->number_of_philosophers);
 	info->fork_box_semaphore = sem_open("fork_box", O_CREAT, 0644, info->number_of_philosophers / 2);
-	info->time_semaphore = sem_open("time", O_CREAT, 0644, 1);
 	info->print_semaphore = sem_open("print", O_CREAT, 0644, 1);
 	info->end_semaphore = sem_open("end", O_CREAT, 0644, 1);
 	info->cnt_semaphore = sem_open("cnt", O_CREAT, 0644, info->number_of_philosophers);

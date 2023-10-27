@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:29:38 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/26 20:28:47 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/27 14:49:50 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ typedef struct s_info
 	// 세마포어
 	sem_t	*fork_semaphore;
 	sem_t	*fork_box_semaphore;
-	sem_t	*time_semaphore;
 	sem_t	*print_semaphore;
 	sem_t	*cnt_semaphore;
 	sem_t	*end_semaphore;

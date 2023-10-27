@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/26 16:35:34 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/26 20:02:29 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/27 14:50:45 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,7 @@ void	check_is_dead(t_info *info, t_philo *philo)
 {
 	int	life;
 
-	sem_wait(info->time_semaphore);
 	life = philo->start_eat_time;
-	sem_post(info->time_semaphore);
 	if (life + info->time_to_die <= get_cur_time(info->time_meal_start))
 	{
 		print_is_died(info, philo);
