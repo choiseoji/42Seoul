@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/18 20:07:18 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/23 15:03:29 by seojchoi         ###   ########.fr       */
+/*   Created: 2023/10/26 16:35:34 by seojchoi          #+#    #+#             */
+/*   Updated: 2023/10/27 14:50:45 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,28 +54,30 @@ int	get_cur_time(int start_time)
 	return (cur_time - start_time);
 }
 
-int	check_is_dead(t_info *info, t_philo *philo)
+void	check_is_dead(t_info *info, t_philo *philo)
 {
 	int	life;
 
-	sem_wait(info->time_semaphore);
 	life = philo->start_eat_time;
-	sem_post(info->time_semaphore);
 	if (life + info->time_to_die <= get_cur_time(info->time_meal_start))
 	{
 		print_is_died(info, philo);
-		sem_post(info->dead_semaphore);
-		exit(1);
+		sem_post(info->end_semaphore);
+		exit(0);
 	}
-	return (0);
+	// 철학자가 죽었으면 죽었다고 출력하고 프로세스 exit
 }
 
-int	spend_time(t_info *info, t_philo *philo, int base_time, int passing_time)
+void	check_is_full(t_info *info)
 {
-	while (base_time + passing_time > get_cur_time(info->time_meal_start))
+	int	i;
+
+	i = 1;
+	while (i <= info->number_of_philosophers)
 	{
-		check_is_dead(info, philo);
-		usleep(100);
+		sem_wait(info->cnt_semaphore);
+		i++;
 	}
-	return (0);
+	sem_post(info->end_semaphore);
+	exit(0);
 }

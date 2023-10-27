@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/18 19:29:38 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/23 15:22:05 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/10/27 15:19:31 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ typedef struct s_info
 	
 	// 세마포어
 	sem_t	*fork_semaphore;
-	sem_t	*time_semaphore;
+	sem_t	*fork_box_semaphore;
 	sem_t	*print_semaphore;
-	sem_t	*dead_semaphore;
 	sem_t	*cnt_semaphore;
+	sem_t	*end_semaphore;
 }	t_info;
 
 // 철학자 1명의 정보를 담고 있을 philo 구조체
@@ -48,31 +48,31 @@ typedef struct s_philo
 	t_info		*info;
 }	t_philo;
 
-// simulation_bonus
-int	get_first_fork(t_info *info, t_philo *philo);
-int	get_second_fork(t_info *info, t_philo *philo);
-int	drop_fork(t_info *info);
-int	eating(t_info *info, t_philo *philo);
-int sleeping(t_info *info, t_philo *philo);
-int	thinking(t_info *info, t_philo *philo);
-
-// print_bonus
-int	print_taken_a_fork(t_info *info, t_philo *philo);
-int	print_is_eating(t_info *info, t_philo *philo);
-int	print_is_sleeping(t_info *info, t_philo *philo);
-int	print_is_thinking(t_info *info, t_philo *philo);
-int	print_is_died(t_info *info, t_philo *philo);
-
 // setting_bonus
-int	check_input(int ac, char **av);
-int	set_info(t_info *info, int ac, char **av);
-int	set_philo(t_info *info, t_philo **philo);
+int		check_input(int ac, char **av);
+int		set_info(t_info *info, int ac, char **av);
+int		set_philo(t_info *info, t_philo **philo);
+void	close_semaphore(t_info *info, t_philo *philo);
 
 // utils_bonus
-int	input_error(void);
-int	ft_atoi(char *str);
-int	get_cur_time(int start_time);
-int	check_is_dead(t_info *info, t_philo *philo);
-int	spend_time(t_info *info, t_philo *philo, int base_time, int passing_time);
+int		input_error(void);
+int		ft_atoi(char *str);
+int		get_cur_time(int start_time);
+void	check_is_dead(t_info *info, t_philo *philo);
+void	check_is_full(t_info *info);
+
+// simulation_bonus
+void 	get_fork(t_info *info, t_philo *philo);
+void	drop_fork(t_info* info);
+void	eat_alone(t_info *info, t_philo *philo);
+void	eating(t_info *info, t_philo *philo);
+void	sleeping(t_info *info, t_philo *philo);
+
+// print_bonus
+void	print_taken_a_fork(t_info *info, t_philo *philo);
+void	print_is_eating(t_info *info, t_philo *philo);
+void	print_is_sleeping(t_info *info, t_philo *philo);
+void	print_is_thinking(t_info *info, t_philo *philo);
+void	print_is_died(t_info *info, t_philo *philo);
 
 #endif

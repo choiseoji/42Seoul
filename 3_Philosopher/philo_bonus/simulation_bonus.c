@@ -5,90 +5,71 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/18 20:05:46 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/26 16:30:35 by seojchoi         ###   ########.fr       */
+/*   Created: 2023/10/26 16:44:09 by seojchoi          #+#    #+#             */
+/*   Updated: 2023/10/27 15:01:26 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philosophers_bonus.h"
 
-int	eat_alone(t_info *info, t_philo *philo)
+void get_fork(t_info *info, t_philo *philo)
 {
-	while (1)
+	int	i;
+	
+	i = 0;
+	while (i < 2)
 	{
-		if (check_is_dead(info, philo))
-		{
-			sem_post(info->fork_semaphore);  // 세마포어 하나 증가
-			return (-1);
-		}
+		sem_wait(info->fork_semaphore);
+		print_taken_a_fork(info, philo);
+		i++;
 	}
-	return (-1);
 }
 
-int	get_first_fork(t_info *info, t_philo *philo)
+void	drop_fork(t_info* info)
 {
-	sem_wait(info->fork_semaphore);  // 세마포어 하나 감소
-	if (print_taken_a_fork(info, philo) < 0)
+	int	i;
+
+	i = 0;
+	while (i < 2)
 	{
-		sem_post(info->fork_semaphore);  // 세마포어 하나 증가
-		return (-1);
+		sem_post(info->fork_semaphore);
+		i++;
 	}
-	return (0);
 }
 
-int	get_second_fork(t_info *info, t_philo *philo)
+void	eat_alone(t_info *info, t_philo *philo)
 {
 	sem_wait(info->fork_semaphore);
-	if (print_taken_a_fork(info, philo) < 0)
+	print_taken_a_fork(info, philo);
+	while (1)
 	{
-		sem_post(info->fork_semaphore);
-		sem_post(info->fork_semaphore);
-		return (-1);
+		check_is_dead(info, philo);
 	}
-	return (0);
 }
 
-int	drop_fork(t_info *info)
+void	eating(t_info *info, t_philo *philo)
 {
-	sem_post(info->fork_semaphore);
-	sem_post(info->fork_semaphore);
-	return (0);
-}
-
-int	eating(t_info *info, t_philo *philo)
-{
-	if (get_first_fork(info, philo) < 0)
-		return (-1);
-	if (info->number_of_philosophers == 1)
-		return (eat_alone(info, philo));
-	if (get_second_fork(info, philo) < 0)
-		return (-1);
-	if (print_is_eating(info, philo) < 0)
+	// 포크 두개 가져오기
+	sem_wait(info->fork_box_semaphore);
+	get_fork(info, philo);
+	// 밥 먹기
+	print_is_eating(info, philo);
+	while (philo->start_eat_time + info->time_to_eat > get_cur_time(info->time_meal_start))
 	{
-		drop_fork(info);
-		return (-1);
+		check_is_dead(info, philo);
+		usleep(100);
 	}
-	if (spend_time(info, philo, philo->start_eat_time, info->time_to_eat) < 0)
-	{
-		drop_fork(info);
-		return (-1);
-	}
+	// 포크 내려놓기
 	drop_fork(info);
-	return (0);
+	sem_post(info->fork_box_semaphore);
 }
 
-int sleeping(t_info *info, t_philo *philo)
+void	sleeping(t_info *info, t_philo *philo)
 {
-	if (print_is_sleeping(info, philo) < 0)
-		return (-1);
-	if (spend_time(info, philo, philo->start_sleep_time, info->time_to_sleep) < 0)
-		return (-1);
-	return (0);
-}
-
-int	thinking(t_info *info, t_philo *philo)
-{
-	if (print_is_thinking(info, philo) < 0)
-		return (-1);
-	return (0);
+	print_is_sleeping(info, philo);
+	while (philo->start_sleep_time + info->time_to_sleep > get_cur_time(info->time_meal_start))
+	{
+		check_is_dead(info, philo);
+		usleep(100);
+	}
 }

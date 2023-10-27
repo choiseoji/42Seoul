@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/18 20:05:03 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/10/23 15:34:52 by seojchoi         ###   ########.fr       */
+/*   Created: 2023/10/26 16:35:52 by seojchoi          #+#    #+#             */
+/*   Updated: 2023/10/27 15:23:56 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ int	set_info(t_info *info, int ac, char **av)
 	info->time_meal_start = get_cur_time(0);
 	// 세마포어 초기화
 	sem_unlink((const char *)"fork");
-	sem_unlink((const char *)"time");
+	sem_unlink((const char *)"fork_box");
 	sem_unlink((const char *)"print");
-	sem_unlink((const char *)"dead");
+	sem_unlink((const char *)"end");
 	sem_unlink((const char *)"cnt");
 	info->fork_semaphore = sem_open("fork", O_CREAT, 0644, info->number_of_philosophers);
-	info->time_semaphore = sem_open("time", O_CREAT, 0644, 1);
+	info->fork_box_semaphore = sem_open("fork_box", O_CREAT, 0644, info->number_of_philosophers / 2);
 	info->print_semaphore = sem_open("print", O_CREAT, 0644, 1);
-	info->dead_semaphore = sem_open("dead", O_CREAT, 0644, 1);
+	info->end_semaphore = sem_open("end", O_CREAT, 0644, 1);
 	info->cnt_semaphore = sem_open("cnt", O_CREAT, 0644, info->number_of_philosophers);
 	return (0);
 }
@@ -71,4 +71,14 @@ int	set_philo(t_info *info, t_philo **philo)
 		i++;
 	}
 	return (0);
+}
+
+void	close_semaphore(t_info *info, t_philo *philo)
+{
+	sem_close(info->fork_semaphore);
+	sem_close(info->fork_box_semaphore);
+	sem_close(info->print_semaphore);
+	sem_close(info->end_semaphore);
+	sem_close(info->cnt_semaphore);
+	free(philo);
 }
