@@ -12,9 +12,16 @@
 
 #include "philosophers.h"
 
-int	input_error(void)
+int	input_error(int flag)
 {
-	write(1, "input_error\n", 12);
+	if (flag == 1)
+	{
+		printf("you must have 4 or 5 inputs\n");
+	}
+	else if (flag == 2)
+	{
+		printf("input must be an integer greater than 0\n");
+	}
 	return (-1);
 }
 
