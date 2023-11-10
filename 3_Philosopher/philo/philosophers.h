@@ -57,7 +57,7 @@ int		init_mutex(t_info *info);
 int		set_philo(t_info *info, t_philo **philo);
 
 // utils.c
-int		input_error(void);
+int		input_error(int flag);
 int		ft_atoi(char *str);
 int		get_cur_time(int start_time);
 int		check_is_dead(t_info *info);

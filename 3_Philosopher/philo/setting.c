@@ -18,13 +18,13 @@ int	check_input(int ac, char **av)
 	int num;
 
 	if (ac != 5 && ac != 6)
-		return (input_error());
+		return (input_error(1));
 	i = 1;
 	while (i < ac)
 	{
 		num = ft_atoi(av[i]);
 		if (num <= 0)
-			return (input_error());
+			return (input_error(2));
 		i++;
 	}
 	return (0);
