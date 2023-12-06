@@ -20,7 +20,7 @@ void	check_is_empty(int ac)
 	}
 }
 
-int main(int ac, std::string *av)
+int main(int ac, char **av)
 {
 	int	cnt;
 	int	idx;
