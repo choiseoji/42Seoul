@@ -13,11 +13,17 @@
 #include <iostream>
 #include "Account.hpp"
 
+int Account::_nbAccounts = 0;
+int Account::_totalAmount = 0;
+int Account::_totalNbDeposits = 0;
+int Account::_totalNbWithdrawals = 0;
+
 // 생성자
 Account::Account(int initial_deposit)
 {
     // 초기화
-    this->_accountIndex = _accountIndex++;
+    this->_accountIndex = _accountIndex;
+    _accountIndex++;
     this->_amount = initial_deposit;
     this->_nbDeposits = 0;
     this->_nbWithdrawals = 0;
@@ -32,6 +38,8 @@ Account::Account(int initial_deposit)
     std::cout << "amount:"<< this->_amount << ";";
     std::cout << "created\n";
 }
+
+Account::Account(void) { }
 
 // 소멸자
 Account::~Account(void)
