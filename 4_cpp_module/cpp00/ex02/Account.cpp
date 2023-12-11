@@ -119,10 +119,10 @@ bool    Account::makeWithdrawal(int withdrawal)
     return (true);
 }
 
-// int     Account::checkAmount(void) const
-// {
-
-// }
+int     Account::checkAmount(void) const
+{
+    return (this->_amount);
+}
 
 void    Account::displayStatus(void) const
 {
