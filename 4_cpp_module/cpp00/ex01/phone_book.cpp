@@ -12,19 +12,6 @@
 
 #include "phone_book.hpp"
 
-class Contact
-{
-	public:
-		Contact();
-		Contact(std::string first_name, std::string last_name, std::string nick_name, std::string phone_number, std::string darkest_secret);
-
-		std::string	first_name;
-		std::string	last_name;
-		std::string	nick_name;
-		std::string	phone_number;
-		std::string darkest_secret;
-};
-
 Contact::Contact(void) {}
 
 Contact::Contact(std::string first_name, std::string last_name, std::string nick_name, std::string phone_number, std::string darkest_secret)
@@ -36,19 +23,7 @@ Contact::Contact(std::string first_name, std::string last_name, std::string nick
 	this->darkest_secret = darkest_secret;
 }
 
-// PhoneBook은 8개의 contact를 저장할 수 있다
-// 9번째 contact는 첫번째 contact 자리를 대체한다
-class PhoneBook
-{
-	public:
-		PhoneBook();   // 생성자
-		int		cur_idx;
-		Contact arr[8];
-
-		void	Add(Contact &);
-};
-
-PhoneBook::PhoneBook() {
+PhoneBook::PhoneBook(void) {
 	this->cur_idx = 0;
 }
 
@@ -67,7 +42,7 @@ int main(void)
 	std::string		phone_number;
 	std::string 	darkest_secret;
 
-	PhoneBook 	phone_book;   // 객체 생성
+	PhoneBook 	phone_book;
 	while (1)
 	{
 		getline(std::cin, cmd);
@@ -105,7 +80,6 @@ int main(void)
 			std::cout.width(10);
 			std::cout << std::right << "nick name";
 			std::cout << "\n";
-			std::cout << "===========================================\n";
 
 			for(int i = 0; i < 8; i++)
 			{

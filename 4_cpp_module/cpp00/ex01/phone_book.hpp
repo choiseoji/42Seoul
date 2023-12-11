@@ -16,4 +16,30 @@
 #include <iostream>
 #include <cstring>
 
+class Contact
+{
+	public:
+		Contact();
+		Contact(std::string first_name, std::string last_name, std::string nick_name, std::string phone_number, std::string darkest_secret);
+        ~Contact();
+
+		std::string	first_name;
+		std::string	last_name;
+		std::string	nick_name;
+		std::string	phone_number;
+		std::string darkest_secret;
+};
+
+class PhoneBook
+{
+	public:
+		PhoneBook();
+        ~PhoneBook();
+
+        int     cur_idx;
+		Contact arr[8];
+
+		void	Add(Contact &);
+};
+
 #endif
