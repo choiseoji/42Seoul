@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 16:30:26 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/12/12 14:35:15 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/12/12 14:38:03 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,6 @@ void    Account::displayStatus(void) const
 
 void    Account::_displayTimestamp(void)
 {
-    // std::cout << "[19920104_091532] ";
     time_t  rawTime;
     struct tm *pTimeInfo;
 
@@ -150,5 +149,5 @@ void    Account::_displayTimestamp(void)
     int min = pTimeInfo->tm_min;
     int sec = pTimeInfo->tm_sec;
 
-    std::cout << "[" << year << month << day << "_" << hour << min << sec << "]\n";
+    std::cout << "[" << year << month << day << "_" << hour << min << sec << "]";
 }
