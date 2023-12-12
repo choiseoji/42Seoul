@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 16:30:26 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/12/12 14:38:03 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/12/12 14:39:20 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,5 +149,5 @@ void    Account::_displayTimestamp(void)
     int min = pTimeInfo->tm_min;
     int sec = pTimeInfo->tm_sec;
 
-    std::cout << "[" << year << month << day << "_" << hour << min << sec << "]";
+    std::cout << "[" << year << month << day << "_" << hour << min << sec << "] ";
 }
