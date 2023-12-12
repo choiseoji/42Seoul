@@ -6,11 +6,12 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/10 16:30:26 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/12/11 16:45:46 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/12/12 14:35:15 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
+#include <time.h>
 #include "Account.hpp"
 
 int Account::_nbAccounts = 0;
@@ -101,7 +102,7 @@ bool    Account::makeWithdrawal(int withdrawal)
     Account::_displayTimestamp();
     std::cout << "index:" << this->_accountIndex << ";";
     std::cout << "p_amount:" << this->_amount << ";";
-    if (this->_amount - withdrawal <= 0)       // 뭔가 여기에 checkAmount 함수 사용하는거 같은데..
+    if (this->_amount - withdrawal <= 0)
     {
         std::cout << "withdrawal:" << "refused\n";
         return (false);
@@ -135,5 +136,19 @@ void    Account::displayStatus(void) const
 
 void    Account::_displayTimestamp(void)
 {
-    std::cout << "[19920104_091532] ";
+    // std::cout << "[19920104_091532] ";
+    time_t  rawTime;
+    struct tm *pTimeInfo;
+
+    rawTime = time(NULL);
+    pTimeInfo = localtime(&rawTime);
+
+    int year = pTimeInfo->tm_year + 1900;
+    int month = pTimeInfo->tm_mon + 1;
+    int day = pTimeInfo->tm_mday;
+    int hour = pTimeInfo->tm_hour;
+    int min = pTimeInfo->tm_min;
+    int sec = pTimeInfo->tm_sec;
+
+    std::cout << "[" << year << month << day << "_" << hour << min << sec << "]\n";
 }
