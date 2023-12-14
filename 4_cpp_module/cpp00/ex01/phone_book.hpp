@@ -18,7 +18,7 @@ class PhoneBook
 {
 	private:
 		int		cur_idx;
-		Contact	arr[8];
+		Contact	contact[8];
 	public:
 		PhoneBook();
         ~PhoneBook();

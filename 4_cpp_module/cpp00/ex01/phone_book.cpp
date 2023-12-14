@@ -25,11 +25,11 @@ int		PhoneBook::get_cur_idx(void)
 
 Contact	PhoneBook::get_contact(int idx)
 {
-	return (arr[idx]);
+	return (contact[idx]);
 }
 
 void	PhoneBook::Add(Contact &new_contact)
 {
-	arr[cur_idx % 8] = new_contact;
+	contact[cur_idx % 8] = new_contact;
 	cur_idx++;
 }
