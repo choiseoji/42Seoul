@@ -21,13 +21,11 @@ int main(void)
 	PhoneBook	phone_book;
 	while (1)
 	{
+		std::cin.clear();
+		clearerr(stdin);
 		getline(std::cin, cmd);
 		if (!std::cin)
-		{
-			std::cin.clear();
-			clearerr(stdin);
 			continue;
-		}
 		if (cmd == "ADD")
 			phone_book.save_contact();
 		else if (cmd == "SEARCH")

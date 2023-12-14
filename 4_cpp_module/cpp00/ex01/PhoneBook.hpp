@@ -25,6 +25,7 @@ class PhoneBook
 		~PhoneBook();
 
 		std::string	get_info(std::string str);
+		int			check_info(std::string str);
 		void		save_contact();
 		Contact		get_contact(int idx);
 		void		print_contact_list();

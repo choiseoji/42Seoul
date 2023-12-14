@@ -20,12 +20,38 @@ PhoneBook::PhoneBook(void)
 
 PhoneBook::~PhoneBook(void) {}
 
+int	PhoneBook::check_info(std::string info)
+{
+	int	i;
+	int	is_not_blank;
+
+	i = 0;
+	is_not_blank = 0;
+	while (info[i])
+	{
+		if (info[i] != ' ' && info[i] != '\t')
+			is_not_blank = 1;
+		i++;
+	}
+	return (is_not_blank);
+}
+
 std::string	PhoneBook::get_info(std::string str)
 {
 	std::string info;
 
-	std::cout << str << " > ";
-	getline(std::cin, info);
+	while (1)
+	{
+		std::cout << str << " > ";
+		std::cin.clear();
+		clearerr(stdin);
+		getline(std::cin, info);
+		if (!std::cin)
+			std::cout << "\n";
+		else if (check_info(info) == 1)
+			break ;
+		std::cout << "you have to write something\n";
+	}
 	return (info);
 }
 
