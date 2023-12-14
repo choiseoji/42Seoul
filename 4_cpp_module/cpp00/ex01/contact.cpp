@@ -1,41 +1,68 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   contact.cpp                                        :+:      :+:    :+:   */
+/*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/12 15:08:21 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/12/12 15:08:39 by seojchoi         ###   ########.fr       */
+/*   Created: 2023/12/14 20:00:01 by seojchoi          #+#    #+#             */
+/*   Updated: 2023/12/14 20:24:47 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "contact.hpp"
+#include "Contact.hpp"
 
 Contact::Contact(void) {}
 
-Contact::Contact(std::string first_name, std::string last_name, std::string nick_name, std::string phone_number, std::string darkest_secret)
+Contact::Contact(std::string fn, std::string ln, std::string nn, std::string pn, std::string ds)
 {
-	this->first_name = first_name;
-	this->last_name = last_name;
-	this->nick_name = nick_name;
-	this->phone_number = phone_number;
-	this->darkest_secret = darkest_secret;
+	first_name = fn;
+	last_name = ln;
+	nick_name = nn;
+	phone_number = pn;
+	darkest_secret = ds;
 }
 
 Contact::~Contact(void) {}
 
-std::string	Contact::get_first_name(void)
+void	Contact::print_first_name(void)
 {
-	return (first_name);
+	if (first_name.size() > 10)
+	{
+		std::cout << first_name.substr(0, 9) << "." << "|";
+	}
+	else
+	{
+		std::cout.width(10);
+		std::cout << std::right << first_name;
+		std::cout << "|";
+	}
 }
 
-std::string	Contact::get_last_name(void)
+void	Contact::print_last_name(void)
 {
-	return (last_name);
+	if (last_name.size() > 10)
+	{
+		std::cout << last_name.substr(0, 9) << "." << "|";
+	}
+	else
+	{
+		std::cout.width(10);
+		std::cout << std::right << last_name;
+		std::cout << "|";
+	}
 }
 
-std::string	Contact::get_nick_name(void)
+void	Contact::print_nick_name(void)
 {
-	return (nick_name);
+	if (nick_name.size() > 10)
+	{
+		std::cout << nick_name.substr(0, 9) << "." << "\n";
+	}
+	else
+	{
+		std::cout.width(10);
+		std::cout << std::right << nick_name;
+		std::cout << "\n";
+	}
 }

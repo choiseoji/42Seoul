@@ -1,7 +1,7 @@
 CPP = c++
 CFLAGS = -Wall -Wextra -Werror
-SRC = phone_book.cpp contact.cpp main.cpp
-OBJ = phone_book.o contact.o main.o
+SRC = PhoneBook.cpp Contact.cpp main.cpp
+OBJ = PhoneBook.o Contact.o main.o
 MAIN = phonebook
 
 .PHONY: all clean fclean re
