@@ -65,6 +65,10 @@
 		"clocale": "cpp",
 		"variant": "cpp",
 		"compare": "cpp",
-		"concepts": "cpp"
+		"concepts": "cpp",
+		"deque": "cpp",
+		"fstream": "cpp",
+		"iomanip": "cpp",
+		"stack": "cpp"
 	}
 }
