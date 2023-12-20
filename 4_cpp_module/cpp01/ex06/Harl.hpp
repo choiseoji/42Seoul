@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.cpp                                           :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 21:28:53 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/12/20 16:03:40 by seojchoi         ###   ########.fr       */
+/*   Created: 2023/12/20 15:50:35 by seojchoi          #+#    #+#             */
+/*   Updated: 2023/12/20 16:54:59 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Harl.hpp"
+#ifndef HARL_HPP
+# define HARL_HPP
+# include <iostream>
 
-void	input_error(void)
+class Harl
 {
-	std::cout << "invalid input\n";
-}
+private:
+	void	debug();
+	void	info();
+	void	warning();
+	void	error();
+	void	insignificant();
 
-int main(int ac, char **av)
-{
-	if (ac != 2)
-	{
-		input_error();
-		return (0);
-	}
+public:
+	Harl();
+	~Harl();
+	void	complain(std::string level);
+};
 
-	Harl	h;
-	h.complain(av[1]);
-
-	return (0);
-}
+#endif

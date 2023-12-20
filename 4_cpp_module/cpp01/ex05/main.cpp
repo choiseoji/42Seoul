@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 20:12:28 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/12/19 21:08:57 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/12/20 15:49:52 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ int	main(void)
 {
 	Harl h;
 
-	h.complain("debug");
-	h.complain("info");
-	h.complain("warning");
-	h.complain("error");
+	h.complain("DEBUG");
+	h.complain("INFO");
+	h.complain("WARNING");
+	h.complain("ERROR");
 
 	return (0);
 }
