@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 15:50:35 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/12/20 16:54:59 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/12/20 17:17:04 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,7 @@ public:
 	~Harl();
 	void	complain(std::string level);
 };
+
+int getIdx(std::string str);
 
 #endif

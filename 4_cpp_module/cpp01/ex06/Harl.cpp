@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 20:18:36 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/12/20 17:13:36 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/12/20 17:17:34 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@ void	Harl:: insignificant(void)
 	std::cout << std::endl;
 }
 
-// 멤버함수의 util 함수도 이렇게 써도 되는가???
 int	getIdx(std::string level)
 {
 	std::string l[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
