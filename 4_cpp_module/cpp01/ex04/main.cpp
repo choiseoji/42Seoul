@@ -12,15 +12,16 @@
 
 #include "Replace.hpp"
 
-void	inputError(void)
+int	inputError(void)
 {
-	std::cout << "input error\n";
+	std::cout << "input must be in [filename, string to change(s1), changed string(s2)] format" << std::endl;
+	return (0);
 }
 
 int main(int ac, char **av)
 {
 	if (ac != 4)
-		inputError();
+		return (inputError());
 	Replace r(av[1], av[2], av[3]);
 	r.input();
 	r.output();

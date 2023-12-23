@@ -28,14 +28,21 @@ Replace::~Replace() { };
 
 void	Replace::input(void)
 {
+	std::string 	line;
 	std::ifstream	f(infile);
-	while (f)
-	{
-		std::string	line;
 
-		getline(f, line);
-		line += '\n';
-		Replace::ft_replace(line);
+	if (f.is_open())
+	{
+		while (getline(f, line))
+		{
+			line += '\n';
+			Replace::ft_replace(line);
+		}
+		f.close();
+	}
+	else
+	{
+		std::cout << "unable to open file" << std::endl;
 	}
 }
 
@@ -57,5 +64,13 @@ void	Replace::ft_replace(std::string line)
 void	Replace::output(void)
 {
 	std::ofstream	out(outfile);
-	out << outstr;
+	if (out.is_open())
+	{
+		out << outstr;
+		out.close();
+	}
+	else
+	{
+		std::cout << "unable to open file" << std::endl;
+	}
 }
