@@ -6,30 +6,45 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:40:05 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/12/23 19:59:07 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/12/23 20:45:53 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.h"
 #include "Zombie.hpp"
+
+int	inputNum(void)
+{
+	int	N;
+
+	std::cout << "N : ";
+	std::cin >> N;
+	return (N);
+}
+
+std::string	inputName(void)
+{
+	std::string name;
+
+	std::cout << "Name: ";
+	std::cin >> name;
+	return (name);
+}
 
 int main(void)
 {
 	int	N;
 	std::string name;
 
-	std::cin >> N;
-	std::cin >> name;
+	N = inputNum();
+	name = inputName();
 
 	Zombie	*p;
-	p =	zombieHorde(N, name);  // 좀비 무리의 첫 주소를 가져옴
+	p =	zombieHorde(N, name);
 
-	// 좀비가 한명씩 자기 소개..
 	for(int i = 0; i < N; i++)
 	{
 		p[i].announce();
 	}
-	// p 배열 소멸자
 	delete []p;
 	return (0);
 }
