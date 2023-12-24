@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 16:10:30 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/12/23 20:00:21 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/12/24 14:04:42 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ private:
 
 public:
 	void announce(void);
-	void set_name(std::string name);
+	void setName(std::string name);
 	Zombie();
 	~Zombie();
 };
