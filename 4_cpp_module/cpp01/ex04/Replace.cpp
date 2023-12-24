@@ -33,8 +33,9 @@ void	Replace::input(void)
 
 	if (f.is_open())
 	{
-		while (getline(f, line))
+		while (f)
 		{
+			getline(f, line);
 			line += '\n';
 			Replace::ft_replace(line);
 		}
