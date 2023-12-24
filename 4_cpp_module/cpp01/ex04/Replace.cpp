@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 14:07:03 by seojchoi          #+#    #+#             */
-/*   Updated: 2023/12/22 20:30:55 by seojchoi         ###   ########.fr       */
+/*   Updated: 2023/12/24 14:13:20 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	Replace::input(void)
 	else
 	{
 		std::cout << "unable to open file" << std::endl;
+		exit(1);
 	}
 }
 
@@ -72,5 +73,6 @@ void	Replace::output(void)
 	else
 	{
 		std::cout << "unable to open file" << std::endl;
+		exit(1);
 	}
 }
