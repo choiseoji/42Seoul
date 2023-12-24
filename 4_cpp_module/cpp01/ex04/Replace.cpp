@@ -71,9 +71,4 @@ void	Replace::output(void)
 		out << outstr;
 		out.close();
 	}
-	else
-	{
-		std::cout << "unable to open file" << std::endl;
-		exit(1);
-	}
 }
