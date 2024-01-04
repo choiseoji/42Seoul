@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/03 16:58:14 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/04 17:14:04 by seojchoi         ###   ########.fr       */
+/*   Created: 2024/01/04 14:49:19 by seojchoi          #+#    #+#             */
+/*   Updated: 2024/01/04 14:49:28 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,14 @@ Fixed::Fixed()
 Fixed::Fixed(const Fixed &f)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	this->fixed_point_num = f.getRawBits();
+	this->fixed_point_num = f.fixed_point_num;
 }
 
 Fixed& Fixed::operator = (const Fixed &f)
 {
-	if (this != &f)  // 자기 자신 복사하지 않도록
+	if (this != &f)
 	{
 		std::cout << "Copy assignment operator called" << std::endl;
-		fixed_point_num = f.getRawBits();
 	}
 	return (*this);
 }
