@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:48:58 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/04 19:56:54 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/04 20:48:24 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@
 class Fixed
 {
 private:
-	int	fixed_point_num;
-	static const int	bit = 8;
+	int	fixedPointNum;
+	static const int	FractionalBits = 8;  // 32비트의 뒤에 8비트는 소수점 자리로 사용하겠다!
 
 public:
 	Fixed();
-	Fixed(const int n);   // constant integer parameter
-	Fixed(const float n);   // constant floating-point number
+	Fixed(const int num);
+	Fixed(const float num);
 	Fixed(const Fixed &f);
 	Fixed& operator = (const Fixed &f);
 	~Fixed();
@@ -32,7 +32,7 @@ public:
 	int		getRawBits(void) const;
 	void	setRawBits(int const raw);
 	// float	toFloat( void ) const;
-	int		toInt( void ) const;
+	// int		toInt( void ) const;
 };
 
 #endif

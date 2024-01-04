@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:49:19 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/04 19:57:09 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/04 20:49:24 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,25 @@
 Fixed::Fixed()
 {
 	std::cout << "Default constructor called" << std::endl;
-	this->fixed_point_num = 0;
+	this->fixedPointNum = 0;
 }
 
-Fixed::Fixed(const int n)  // constant integer parameter
+Fixed::Fixed(const int num)
 {
 	std::cout << "Int constructor called" << std::endl;
-	this->fixed_point_num = n;
+	this->fixedPointNum = num * 256;  // 2^8
 }
 
-Fixed::Fixed(const float n)  // constant floating-point number
+Fixed::Fixed(const float num)
 {
 	std::cout << "Int constructor called" << std::endl;
-	this->fixed_point_num = n;
+	this->fixedPointNum = num * 256;  // 2^8
 }
 
 Fixed::Fixed(const Fixed &f)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	this->fixed_point_num = f.getRawBits();
+	this->fixedPointNum = f.getRawBits();
 }
 
 Fixed& Fixed::operator = (const Fixed &f)
@@ -41,7 +41,7 @@ Fixed& Fixed::operator = (const Fixed &f)
 	if (this != &f)
 	{
 		std::cout << "Copy assignment operator called" << std::endl;
-		fixed_point_num = f.getRawBits();
+		fixedPointNum = f.getRawBits();
 	}
 	return (*this);
 }
@@ -54,16 +54,11 @@ Fixed::~Fixed()
 int Fixed::getRawBits(void) const
 {
 	std::cout << "getRawBits member function called" << std::endl;
-	return (this->fixed_point_num);
+	return (this->fixedPointNum);
 }
 
 void Fixed::setRawBits(int const raw)
 {
 	std::cout << "setRawBits member function called" << std::endl;
-	this->fixed_point_num = raw;
-}
-
-int	Fixed::toInt(void) const
-{
-	
+	this->fixedPointNum = raw;
 }
