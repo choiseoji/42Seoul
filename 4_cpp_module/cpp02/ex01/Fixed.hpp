@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:48:58 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/04 20:48:24 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/04 20:56:55 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ public:
 	Fixed(const int num);
 	Fixed(const float num);
 	Fixed(const Fixed &f);
-	Fixed& operator = (const Fixed &f);
+	Fixed& operator=(const Fixed &f);
 	~Fixed();
 
 	int		getRawBits(void) const;
