@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 16:58:14 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/03 17:27:28 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/04 14:37:05 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,15 @@ Fixed::Fixed(const Fixed &f)
 {
 	std::cout << "Copy constructor called" << std::endl;
 	this->fixed_point_num = f.fixed_point_num;
+}
+
+Fixed& Fixed::operator = (const Fixed &f)
+{
+	if (this != &f)
+	{
+		std::cout << "Copy assignment operator called" << std::endl;
+	}
+	return (*this);
 }
 
 Fixed::~Fixed()
