@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:49:19 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/05 20:34:06 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/05 20:54:43 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ std::ostream	&operator<<(std::ostream &os, const Fixed &f)
 // >
 bool Fixed::operator>(const Fixed op2)
 {
-	if (this->fixedPointNum > op2.fixedPointNum)
+	if (this->toFloat() > op2.toFloat())
 		return (true);
 	else
 		return (false);
@@ -102,7 +102,7 @@ bool Fixed::operator>(const Fixed op2)
 // <
 bool Fixed::operator<(const Fixed op2)
 {
-	if (this->fixedPointNum < op2.fixedPointNum)
+	if (this->toFloat() < op2.toFloat())
 		return (true);
 	else
 		return (false);
@@ -111,7 +111,7 @@ bool Fixed::operator<(const Fixed op2)
 // >=
 bool Fixed::operator>=(const Fixed op2)
 {
-	if (this->fixedPointNum >= op2.fixedPointNum)
+	if (this->toFloat() >= op2.toFloat())
 		return (true);
 	else
 		return (false);
@@ -120,7 +120,7 @@ bool Fixed::operator>=(const Fixed op2)
 // <=
 bool Fixed::operator<=(const Fixed op2)
 {
-	if (this->fixedPointNum <= op2.fixedPointNum)
+	if (this->toFloat() <= op2.toFloat())
 		return (true);
 	else
 		return (false);
@@ -129,7 +129,7 @@ bool Fixed::operator<=(const Fixed op2)
 // ==
 bool Fixed::operator==(const Fixed op2)
 {
-	if (this->fixedPointNum == op2.fixedPointNum)
+	if (this->toFloat() == op2.toFloat())
 		return (true);
 	else
 		return (false);
@@ -138,7 +138,7 @@ bool Fixed::operator==(const Fixed op2)
 // !=
 bool Fixed::operator!=(const Fixed op2)
 {
-	if (this->fixedPointNum != op2.fixedPointNum)
+	if (this->toFloat() != op2.toFloat())
 		return (true);
 	else
 		return (false);
@@ -147,36 +147,28 @@ bool Fixed::operator!=(const Fixed op2)
 // +
 Fixed Fixed::operator+(const Fixed op2)
 {
-	Fixed tmp;
-
-	tmp.fixedPointNum = this->fixedPointNum + op2.fixedPointNum;
+	Fixed tmp(this->toFloat() + op2.toFloat());
 	return (tmp);
 }
 
 // -
 Fixed Fixed::operator-(const Fixed op2)
 {
-	Fixed tmp;
-
-	tmp.fixedPointNum = this->fixedPointNum - op2.fixedPointNum;
+	Fixed tmp(this->toFloat() - op2.toFloat());
 	return (tmp);
 }
 
 // *
 Fixed Fixed::operator*(const Fixed op2)
 {
-	Fixed tmp;
-
-	tmp.fixedPointNum = this->fixedPointNum * op2.fixedPointNum;
+	Fixed tmp(this->toFloat() * op2.toFloat());
 	return (tmp);
 }
 
 // /
 Fixed Fixed::operator/(const Fixed op2)
 {
-	Fixed tmp;
-
-	tmp.fixedPointNum = this->fixedPointNum / op2.fixedPointNum;
+	Fixed tmp(this->toFloat() / op2.toFloat());
 	return (tmp);
 }
 
