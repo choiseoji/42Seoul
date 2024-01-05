@@ -209,7 +209,7 @@ Fixed Fixed::operator--(int x)
 // max
 Fixed Fixed::max(Fixed &a, Fixed &b)
 {
-	if (a.toFloat() > b.toFloat())
+	if (a.toFloat() >= b.toFloat())
 		return (a);
 	else
 		return (b);
@@ -218,7 +218,7 @@ Fixed Fixed::max(Fixed &a, Fixed &b)
 // const max
 Fixed Fixed::max(const Fixed &a, const Fixed &b)
 {
-	if (a.toFloat() > b.toFloat())
+	if (a.toFloat() >= b.toFloat())
 		return (a);
 	else
 		return (b);
@@ -227,7 +227,7 @@ Fixed Fixed::max(const Fixed &a, const Fixed &b)
 // min
 Fixed Fixed::min(Fixed &a, Fixed &b)
 {
-	if (a.toFloat() < b.toFloat())
+	if (a.toFloat() <= b.toFloat())
 		return (a);
 	else
 		return (b);
@@ -236,7 +236,7 @@ Fixed Fixed::min(Fixed &a, Fixed &b)
 // const min
 Fixed Fixed::min(const Fixed &a, const Fixed &b)
 {
-	if (a.toFloat() < b.toFloat())
+	if (a.toFloat() <= b.toFloat())
 		return (a);
 	else
 		return (b);
