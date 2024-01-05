@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:49:19 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/05 17:41:38 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/05 20:31:54 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Fixed::Fixed()
 Fixed::Fixed(const int num)
 {
 	std::cout << "Int constructor called" << std::endl;
-	this->fixedPointNum = num * 256;  // 2^8
+	this->fixedPointNum = num * (1 << this->FractionalBits);
 }
 
 Fixed::Fixed(const float num)
@@ -30,7 +30,7 @@ Fixed::Fixed(const float num)
 	float fixedPointNum;
 
 	std::cout << "Float constructor called" << std::endl;
-	fixedPointNum = roundf(num * 256);   // 어쩌피 int 로 저장되어서 소수점 날라가니깐 최대한 비슷하게 하려고 반올림 해준다
+	fixedPointNum = roundf(num * (1 << this->FractionalBits));
 	this->fixedPointNum = fixedPointNum;
 }
 
@@ -74,12 +74,12 @@ void Fixed::setRawBits(int const raw)
 
 float Fixed::toFloat(void) const  // converts the fixed-point value to a floating-point value
 {
-	return ((float)this->fixedPointNum / 256);
+	return ((float)this->fixedPointNum / (1 << this->FractionalBits));
 }
 
 int Fixed::toInt(void) const   //  converts the fixed-point value to an integer value.
 {
-	return (this->fixedPointNum / 256);
+	return (this->fixedPointNum / (1 << this->FractionalBits));
 }
 
 // 연산자 오버로딩
