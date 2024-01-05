@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 16:55:04 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/04 14:39:13 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/05 15:29:52 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 class Fixed
 {
 private:
-	int	fixed_point_num;
-	static const int	bit = 8;
+	int fixedPointNum;
+	static const int	FractionalBits = 8;
 
 public:
 	Fixed();
