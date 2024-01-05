@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:48:58 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/05 17:37:11 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/05 21:16:46 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,12 @@ public:
 	Fixed& operator--();
 	Fixed operator++(int x);
 	Fixed operator--(int x);
+
+	// max, min 오버로딩
+	static Fixed max(Fixed &a, Fixed &b);
+	static Fixed max(const Fixed &a, const Fixed &b);
+	static Fixed min(Fixed &a, Fixed &b);
+	static Fixed min(const Fixed &a, const Fixed &b);
 };
 
 std::ostream	&operator<<(std::ostream &os, const Fixed &f);

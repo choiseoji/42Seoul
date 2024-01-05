@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 17:34:24 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/05 20:55:03 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/05 21:13:15 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ int main( void ) {
 	std::cout << a++ << std::endl;
 	std::cout << a << std::endl;
 	std::cout << b << std::endl;
-	// std::cout << Fixed::max( a, b ) << std::endl;
+	std::cout << Fixed::max( a, b ) << std::endl;   // static 함수는 어느 클래스인지 명시해줘야 함
 	return 0;
 }

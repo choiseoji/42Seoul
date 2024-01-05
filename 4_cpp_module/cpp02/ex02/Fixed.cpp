@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:49:19 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/05 20:54:43 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/05 21:17:08 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,4 +204,40 @@ Fixed Fixed::operator--(int x)
 	x = 0;
 	this->fixedPointNum--;
 	return (tmp);
+}
+
+// max
+Fixed Fixed::max(Fixed &a, Fixed &b)
+{
+	if (a.toFloat() > b.toFloat())
+		return (a);
+	else
+		return (b);
+}
+
+// const max
+Fixed Fixed::max(const Fixed &a, const Fixed &b)
+{
+	if (a.toFloat() > b.toFloat())
+		return (a);
+	else
+		return (b);
+}
+
+// min
+Fixed Fixed::min(Fixed &a, Fixed &b)
+{
+	if (a.toFloat() < b.toFloat())
+		return (a);
+	else
+		return (b);
+}
+
+// const min
+Fixed Fixed::min(const Fixed &a, const Fixed &b)
+{
+	if (a.toFloat() < b.toFloat())
+		return (a);
+	else
+		return (b);
 }
