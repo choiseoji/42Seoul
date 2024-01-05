@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:49:19 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/05 17:40:46 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/05 20:34:06 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Fixed::Fixed()
 Fixed::Fixed(const int num)
 {
 	std::cout << "Int constructor called" << std::endl;
-	this->fixedPointNum = num * 256;
+	this->fixedPointNum = num * (1 << this->FractionalBits);
 }
 
 Fixed::Fixed(const float num)
@@ -30,7 +30,7 @@ Fixed::Fixed(const float num)
 	float fixedPointNum;
 
 	std::cout << "Float constructor called" << std::endl;
-	fixedPointNum = roundf(num * 256);
+	fixedPointNum = roundf(num * (1 << this->FractionalBits));
 	this->fixedPointNum = fixedPointNum;
 }
 
@@ -74,12 +74,12 @@ void Fixed::setRawBits(int const raw)
 
 float Fixed::toFloat(void) const
 {
-	return ((float)this->fixedPointNum / 256);
+	return ((float)this->fixedPointNum / (1 << this->FractionalBits));
 }
 
 int Fixed::toInt(void) const
 {
-	return (this->fixedPointNum / 256);
+	return (this->fixedPointNum / (1 << this->FractionalBits));
 }
 
 // 연산자 오버로딩
