@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:48:58 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/05 15:04:30 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/05 17:41:45 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,5 +34,7 @@ public:
 	float	toFloat( void ) const;
 	int		toInt( void ) const;
 };
+
+std::ostream	&operator<<(std::ostream &os, const Fixed &f);
 
 #endif

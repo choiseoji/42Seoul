@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:49:19 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/05 17:10:00 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/05 17:41:38 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,4 +80,12 @@ float Fixed::toFloat(void) const  // converts the fixed-point value to a floatin
 int Fixed::toInt(void) const   //  converts the fixed-point value to an integer value.
 {
 	return (this->fixedPointNum / 256);
+}
+
+// 연산자 오버로딩
+// <<
+std::ostream	&operator<<(std::ostream &os, const Fixed &f)
+{
+	os << f.toFloat();
+	return (os);
 }

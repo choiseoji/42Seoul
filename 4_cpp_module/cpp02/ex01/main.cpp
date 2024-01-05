@@ -6,17 +6,11 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:49:00 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/05 17:13:47 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/05 17:41:50 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Fixed.hpp"
-
-std::ostream	&operator<<(std::ostream &os, const Fixed &f)
-{
-	os << f.toFloat();
-	return (os);
-}
 
 int main( void ) {
 	Fixed a;
