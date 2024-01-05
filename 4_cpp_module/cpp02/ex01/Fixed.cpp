@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:49:19 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/05 15:05:07 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/05 17:10:00 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,8 @@ Fixed::Fixed(const float num)
 Fixed::Fixed(const Fixed &f)
 {
 	std::cout << "Copy constructor called" << std::endl;
-	this->fixedPointNum = f.getRawBits();
+
+	*this = f;
 }
 
 // 소멸자
@@ -53,7 +54,7 @@ Fixed& Fixed::operator=(const Fixed &f)
 	if (this != &f)
 	{
 		std::cout << "Copy assignment operator called" << std::endl;
-		fixedPointNum = f.getRawBits();
+		fixedPointNum = f.fixedPointNum;
 	}
 	return (*this);
 }
@@ -61,7 +62,7 @@ Fixed& Fixed::operator=(const Fixed &f)
 // 멤버 함수
 int Fixed::getRawBits(void) const
 {
-	// std::cout << "getRawBits member function called" << std::endl;
+	std::cout << "getRawBits member function called" << std::endl;
 	return (this->fixedPointNum);
 }
 
