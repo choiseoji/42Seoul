@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:49:19 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/05 21:17:08 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/10 13:38:05 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,21 +187,19 @@ Fixed& Fixed::operator--(void)
 }
 
 // postfix ++
-Fixed Fixed::operator++(int x)
+Fixed Fixed::operator++(int)
 {
 	Fixed tmp = *this;
 
-	x = 0;
 	this->fixedPointNum++;
 	return (tmp);
 }
 
 // postfix --
-Fixed Fixed::operator--(int x)
+Fixed Fixed::operator--(int)
 {
 	Fixed tmp = *this;
 
-	x = 0;
 	this->fixedPointNum--;
 	return (tmp);
 }

@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:48:58 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/05 21:16:46 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/10 13:37:30 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ public:
 
 	Fixed& operator++();
 	Fixed& operator--();
-	Fixed operator++(int x);
-	Fixed operator--(int x);
+	Fixed operator++(int);
+	Fixed operator--(int);
 
 	// max, min 오버로딩
 	static Fixed max(Fixed &a, Fixed &b);
