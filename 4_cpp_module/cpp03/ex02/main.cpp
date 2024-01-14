@@ -1,29 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.hpp                                       :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/14 14:00:42 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/14 14:00:42 by seojchoi         ###   ########.fr       */
+/*   Created: 2024/01/14 14:00:48 by seojchoi          #+#    #+#             */
+/*   Updated: 2024/01/14 14:02:42 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FRAGTRAP_HPP
-# define FRAGTRAP_HPP
-# include "ClapTrap.hpp"
+#include "FragTrap.hpp"
 
-class FragTrap : public ClapTrap
+int main(void)
 {
-public:
-    FragTrap();
-    FragTrap(std::string name);
-    FragTrap(const FragTrap &ft);
-	FragTrap& operator = (const FragTrap &ft);
-    ~FragTrap();
+	FragTrap f("FT");
 
-    void highFivesGuys(void);
-};
-
-#endif
+	f.highFivesGuys();
+	return (0);
+}
