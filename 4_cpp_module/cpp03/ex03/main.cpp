@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 15:06:08 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/14 15:11:16 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/14 16:06:44 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ int main(void)
 	DiamondTrap dia("seo");
 
 	dia.whoAmI();
-	std::cout << std::endl;
 	dia.attack("target");
 
 	return (0);
