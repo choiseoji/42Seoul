@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:45:57 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/11 21:04:25 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/14 15:51:19 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 ScavTrap::ScavTrap(void)
 {
-	this->name = name;
 	this->hitPoints = 100;
 	this->energyPoints = 50;
 	this->attackDamage = 20;
