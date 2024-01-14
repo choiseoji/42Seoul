@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:45:57 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/14 16:23:38 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/14 16:52:21 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,12 @@
 
 ScavTrap::ScavTrap(void)
 {
-	this->hitPoints = S_HP;
-	this->energyPoints = S_EP;
-	this->attackDamage = S_AD;
-
 	std::cout << "(ScavTrap) Default constructor called" << std::endl;
 }
 
 ScavTrap::ScavTrap(std::string name)
 {
 	this->name = name;
-	this->hitPoints = S_HP;
-	this->energyPoints = S_EP;
-	this->attackDamage = S_AD;
 
 	std::cout << "(ScavTrap) String constructor called" << std::endl;
 }
@@ -34,9 +27,6 @@ ScavTrap::ScavTrap(std::string name)
 ScavTrap::ScavTrap(const ScavTrap &st)
 {
 	this->name = st.name;
-	this->hitPoints = st.hitPoints;
-	this->energyPoints = st.energyPoints;
-	this->attackDamage = st.attackDamage;
 
 	std::cout << "(ScavTrap) String constructor called" << std::endl;
 }
@@ -47,9 +37,6 @@ ScavTrap& ScavTrap::operator = (const ScavTrap &st)
 	{
 		std::cout << "(ScavTrap) Copy assignment operator called" << std::endl;
 		this->name = st.name;
-		this->hitPoints = st.hitPoints;
-		this->energyPoints = st.energyPoints;
-		this->attackDamage = st.attackDamage;
 	}
 	return (*this);
 }

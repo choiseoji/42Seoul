@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 14:00:38 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/14 16:26:52 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/14 16:51:15 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,12 @@
 
 FragTrap::FragTrap(void)
 {
-    this->hitPoints = F_HP;
-	this->energyPoints = F_EP;
-	this->attackDamage = F_AD;
-
     std::cout << "(FragTrap) Default constructor called" << std::endl;
 }
 
 FragTrap::FragTrap(std::string name)
 {
     this->name = name;
-    this->hitPoints = F_HP;
-	this->energyPoints = F_EP;
-	this->attackDamage = F_AD;
 
     std::cout << "(FragTrap) String constructor called" << std::endl;
 }
@@ -34,9 +27,7 @@ FragTrap::FragTrap(std::string name)
 FragTrap::FragTrap(const FragTrap &ft)
 {
 	this->name = ft.name;
-	this->hitPoints = ft.hitPoints;
-	this->energyPoints = ft.energyPoints;
-	this->attackDamage = ft.attackDamage;
+
 	std::cout << "(FragTrap) Copy constructor called" << std::endl;
 }
 
@@ -46,9 +37,6 @@ FragTrap& FragTrap::operator = (const FragTrap &ft)
 	{
 		std::cout << "(FragTrap) Copy assignment operator called" << std::endl;
 		this->name = ft.name;
-		this->hitPoints = ft.hitPoints;
-		this->energyPoints = ft.energyPoints;
-		this->attackDamage = ft.attackDamage;
 	}
 	return (*this);
 }
