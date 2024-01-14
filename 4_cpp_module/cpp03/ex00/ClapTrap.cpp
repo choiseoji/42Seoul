@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 16:14:08 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/11 21:01:10 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/14 16:20:58 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 ClapTrap::ClapTrap(void)
 {
-	this->hitPoints = 10;
-	this->energyPoints = 10;
-	this->attackDamage = 0;
+	this->hitPoints = C_HP;
+	this->energyPoints = C_EP;
+	this->attackDamage = C_AD;
 
 	std::cout << "Default constructor called" << std::endl;
 }
@@ -24,9 +24,9 @@ ClapTrap::ClapTrap(void)
 ClapTrap::ClapTrap(std::string name)
 {
 	this->name = name;
-	this->hitPoints = 10;
-	this->energyPoints = 10;
-	this->attackDamage = 0;
+	this->hitPoints = C_HP;
+	this->energyPoints = C_EP;
+	this->attackDamage = C_AD;
 
 	std::cout << "String constructor called" << std::endl;
 }

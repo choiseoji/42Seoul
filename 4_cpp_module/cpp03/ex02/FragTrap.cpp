@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 14:00:38 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/14 14:03:00 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/14 16:26:52 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 FragTrap::FragTrap(void)
 {
-    this->hitPoints = 100;
-	this->energyPoints = 100;
-	this->attackDamage = 30;
+    this->hitPoints = F_HP;
+	this->energyPoints = F_EP;
+	this->attackDamage = F_AD;
 
     std::cout << "(FragTrap) Default constructor called" << std::endl;
 }
@@ -24,9 +24,9 @@ FragTrap::FragTrap(void)
 FragTrap::FragTrap(std::string name)
 {
     this->name = name;
-    this->hitPoints = 100;
-	this->energyPoints = 100;
-	this->attackDamage = 30;
+    this->hitPoints = F_HP;
+	this->energyPoints = F_EP;
+	this->attackDamage = F_AD;
 
     std::cout << "(FragTrap) String constructor called" << std::endl;
 }

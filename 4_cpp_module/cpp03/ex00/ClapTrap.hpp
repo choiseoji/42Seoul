@@ -6,13 +6,16 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 16:00:12 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/11 17:16:09 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/14 16:20:33 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CLAPTRAP_HPP
 # define CLAPTRAP_HPP
 # include <iostream>
+# define C_HP 10
+# define C_EP 10
+# define C_AD 0
 
 class ClapTrap {
 
