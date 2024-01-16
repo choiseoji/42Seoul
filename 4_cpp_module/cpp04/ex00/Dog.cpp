@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 18:49:03 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/14 18:50:58 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/16 21:01:11 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,27 @@
 
 Dog::Dog(void)
 {
+	this->type = "Dog";
+
 	std::cout << "(Dog) Default constructor called" << std::endl;
+}
+
+Dog::Dog(const Dog &d)
+{
+	this->type = d.type;
+
+	std::cout << "(Dog) Copy constructor called" << std::endl;
+}
+
+Dog& Dog::operator=(const Dog &d)
+{
+	if (this != &d)
+	{
+		this->type = d.type;
+
+		std::cout << "(Dog) Copy Assignment operator called" << std::endl;
+	}
+	return (*this);
 }
 
 Dog::~Dog(void)
@@ -25,4 +45,9 @@ Dog::~Dog(void)
 void Dog::makeSound(void)
 {
 	std::cout << "bow-wow!! 🐶" << std::endl;
+}
+
+std::string Dog::getType(void)
+{
+	return(this->type);
 }
