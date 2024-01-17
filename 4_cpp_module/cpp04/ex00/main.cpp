@@ -6,13 +6,15 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 18:44:24 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/16 20:43:43 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/17 20:03:57 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
 #include "Cat.hpp"
 #include "Dog.hpp"
+#include "WrongAnimal.hpp"
+#include "WrongCat.hpp"
 
 int main(void)
 {
@@ -23,8 +25,14 @@ int main(void)
 
 	std::cout << j->getType() << " " << std::endl;
 	std::cout << i->getType() << " " << std::endl;
-	i->makeSound();
 	j->makeSound();
+	i->makeSound();
 	meta->makeSound();
+
+	// Wrong
+	WrongAnimal* k = new WrongCat();
+
+	std::cout << k->getType() << " " << std::endl;
+	k->makeSound();
 	return 0;
 }
