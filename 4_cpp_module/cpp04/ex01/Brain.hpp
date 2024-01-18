@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 20:05:34 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/17 20:29:35 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/18 19:41:03 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,17 @@
 
 class Brain
 {
-public:
+private:
 	std::string ideas[100];
 
+public:
 	Brain();
 	Brain(const Brain &b);
 	Brain& operator=(const Brain &b);
 	~Brain();
 
+	const std::string& getIdea(int idx) const;
+	void setIdea(int idx, std::string idea);
 };
 
 #endif

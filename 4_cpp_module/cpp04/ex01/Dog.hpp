@@ -6,16 +6,20 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 17:06:41 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/16 20:59:55 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/18 19:42:46 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DOG_HPP
 #define DOG_HPP
 # include "Animal.hpp"
+# include "Brain.hpp"
 
 class Dog : public Animal
 {
+private:
+	Brain *dogBrain;
+
 public:
 	Dog();
 	Dog(const Dog &d);
@@ -24,6 +28,9 @@ public:
 
 	void makeSound();
 	std::string getType();
+
+	Brain* getBrain();
+	void setBrain(int idx, std::string idea);
 };
 
 #endif
