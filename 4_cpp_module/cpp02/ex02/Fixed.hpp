@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:48:58 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/10 13:37:30 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:35:33 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,17 @@ public:
 	int		toInt( void ) const;
 
 	// 연산자 오버로딩
-	bool operator>(const Fixed op2);
-	bool operator<(const Fixed op2);
-	bool operator>=(const Fixed op2);
-	bool operator<=(const Fixed op2);
-	bool operator==(const Fixed op2);
-	bool operator!=(const Fixed op2);
+	bool operator>(const Fixed op2) const;
+	bool operator<(const Fixed op2) const;
+	bool operator>=(const Fixed op2) const;
+	bool operator<=(const Fixed op2) const;
+	bool operator==(const Fixed op2) const;
+	bool operator!=(const Fixed op2) const;
 
-	Fixed operator+(const Fixed op2);
-	Fixed operator-(const Fixed op2);
-	Fixed operator*(const Fixed op2);
-	Fixed operator/(const Fixed op2);
+	Fixed operator+(const Fixed op2) const;
+	Fixed operator-(const Fixed op2) const;
+	Fixed operator*(const Fixed op2) const;
+	Fixed operator/(const Fixed op2) const;
 
 	Fixed& operator++();
 	Fixed& operator--();
@@ -53,10 +53,10 @@ public:
 	Fixed operator--(int);
 
 	// max, min 오버로딩
-	static Fixed max(Fixed &a, Fixed &b);
-	static Fixed max(const Fixed &a, const Fixed &b);
-	static Fixed min(Fixed &a, Fixed &b);
-	static Fixed min(const Fixed &a, const Fixed &b);
+	static Fixed& max(Fixed &a, Fixed &b);
+	static const Fixed& max(const Fixed &a, const Fixed &b);
+	static Fixed& min(Fixed &a, Fixed &b);
+	static const Fixed& min(const Fixed &a, const Fixed &b);
 };
 
 std::ostream	&operator<<(std::ostream &os, const Fixed &f);

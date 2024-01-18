@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/04 14:49:19 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/10 13:38:05 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/18 17:35:44 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ std::ostream	&operator<<(std::ostream &os, const Fixed &f)
 }
 
 // >
-bool Fixed::operator>(const Fixed op2)
+bool Fixed::operator>(const Fixed op2) const
 {
 	if (this->toFloat() > op2.toFloat())
 		return (true);
@@ -100,7 +100,7 @@ bool Fixed::operator>(const Fixed op2)
 }
 
 // <
-bool Fixed::operator<(const Fixed op2)
+bool Fixed::operator<(const Fixed op2) const
 {
 	if (this->toFloat() < op2.toFloat())
 		return (true);
@@ -109,7 +109,7 @@ bool Fixed::operator<(const Fixed op2)
 }
 
 // >=
-bool Fixed::operator>=(const Fixed op2)
+bool Fixed::operator>=(const Fixed op2) const
 {
 	if (this->toFloat() >= op2.toFloat())
 		return (true);
@@ -118,7 +118,7 @@ bool Fixed::operator>=(const Fixed op2)
 }
 
 // <=
-bool Fixed::operator<=(const Fixed op2)
+bool Fixed::operator<=(const Fixed op2) const
 {
 	if (this->toFloat() <= op2.toFloat())
 		return (true);
@@ -127,7 +127,7 @@ bool Fixed::operator<=(const Fixed op2)
 }
 
 // ==
-bool Fixed::operator==(const Fixed op2)
+bool Fixed::operator==(const Fixed op2) const
 {
 	if (this->toFloat() == op2.toFloat())
 		return (true);
@@ -136,7 +136,7 @@ bool Fixed::operator==(const Fixed op2)
 }
 
 // !=
-bool Fixed::operator!=(const Fixed op2)
+bool Fixed::operator!=(const Fixed op2) const
 {
 	if (this->toFloat() != op2.toFloat())
 		return (true);
@@ -145,28 +145,28 @@ bool Fixed::operator!=(const Fixed op2)
 }
 
 // +
-Fixed Fixed::operator+(const Fixed op2)
+Fixed Fixed::operator+(const Fixed op2) const
 {
 	Fixed tmp(this->toFloat() + op2.toFloat());
 	return (tmp);
 }
 
 // -
-Fixed Fixed::operator-(const Fixed op2)
+Fixed Fixed::operator-(const Fixed op2) const
 {
 	Fixed tmp(this->toFloat() - op2.toFloat());
 	return (tmp);
 }
 
 // *
-Fixed Fixed::operator*(const Fixed op2)
+Fixed Fixed::operator*(const Fixed op2) const
 {
 	Fixed tmp(this->toFloat() * op2.toFloat());
 	return (tmp);
 }
 
 // /
-Fixed Fixed::operator/(const Fixed op2)
+Fixed Fixed::operator/(const Fixed op2) const
 {
 	Fixed tmp(this->toFloat() / op2.toFloat());
 	return (tmp);
@@ -205,7 +205,7 @@ Fixed Fixed::operator--(int)
 }
 
 // max
-Fixed Fixed::max(Fixed &a, Fixed &b)
+Fixed& Fixed::max(Fixed &a, Fixed &b)
 {
 	if (a.toFloat() >= b.toFloat())
 		return (a);
@@ -214,7 +214,7 @@ Fixed Fixed::max(Fixed &a, Fixed &b)
 }
 
 // const max
-Fixed Fixed::max(const Fixed &a, const Fixed &b)
+const Fixed& Fixed::max(const Fixed &a, const Fixed &b)
 {
 	if (a.toFloat() >= b.toFloat())
 		return (a);
@@ -223,7 +223,7 @@ Fixed Fixed::max(const Fixed &a, const Fixed &b)
 }
 
 // min
-Fixed Fixed::min(Fixed &a, Fixed &b)
+Fixed& Fixed::min(Fixed &a, Fixed &b)
 {
 	if (a.toFloat() <= b.toFloat())
 		return (a);
@@ -232,7 +232,7 @@ Fixed Fixed::min(Fixed &a, Fixed &b)
 }
 
 // const min
-Fixed Fixed::min(const Fixed &a, const Fixed &b)
+const Fixed& Fixed::min(const Fixed &a, const Fixed &b)
 {
 	if (a.toFloat() <= b.toFloat())
 		return (a);
