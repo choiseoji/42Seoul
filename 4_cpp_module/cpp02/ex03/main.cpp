@@ -2,10 +2,10 @@
 
 int	main(void)
 {
-	Point a(0.16, 2.08);
-	Point b(0.34, 2.28);
-	Point c(0.52, 2.02);
-	Point p(0.20, 2.22);
+	Point a(6.2, 10);
+	Point b(2.8, 5.8);
+	Point c(9, 5.2);
+	Point p(9, 5.2);
 
 	std::cout << "a 좌표" << std::endl;
 	std::cout << "x: " << a.getX() << " y: " << a.getY() << std::endl;

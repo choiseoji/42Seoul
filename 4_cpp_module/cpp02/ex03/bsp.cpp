@@ -25,7 +25,9 @@ bool bsp( Point const a, Point const b, Point const c, Point const point)
     float size2 = get_size(a, c, point);
     float size3 = get_size(b, c, point);
 
-    if (total_size == (size1 + size2 + size3))
+    if (size1 == 0 || size2 == 0 || size3 == 0)
+        return (false);
+    else if (total_size == (size1 + size2 + size3))
         return (true);
     else
         return (false);
