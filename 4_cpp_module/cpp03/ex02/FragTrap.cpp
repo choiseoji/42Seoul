@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 14:00:38 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/14 16:26:52 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/20 15:47:18 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,5 +60,6 @@ FragTrap::~FragTrap(void)
 
 void FragTrap::highFivesGuys(void)
 {
-	std::cout << name << ": high five~" << std::endl;
+	if (checkPoint())
+		std::cout << name << ": high five~" << std::endl;
 }

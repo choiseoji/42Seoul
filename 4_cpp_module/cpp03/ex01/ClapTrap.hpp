@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 16:00:12 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/14 16:23:49 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/20 15:43:09 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,22 @@ class ClapTrap {
 protected:
 	std::string name;
 	int hitPoints;
-	int energyPoints; // attack, beRepaired 사용할 시 1 감소
+	int energyPoints;
 	int attackDamage;
 
 public:
 	ClapTrap();
 	ClapTrap(std::string name);
-	ClapTrap(const ClapTrap &ct);    // 복사 생성자
-	ClapTrap& operator = (const ClapTrap &ct);    // 복사 대입 연산자
+	ClapTrap(const ClapTrap &ct);
+	ClapTrap& operator = (const ClapTrap &ct);
 	~ClapTrap();
 
-	void attack(const std::string& target);  // 상대방의 hitPoint를 attackDamage만큼 감소
+	void attack(const std::string& target);
 	void takeDamage(unsigned int amount);
-	void beRepaired(unsigned int amount);  // amount만큼 hitPoint 증가
+	void beRepaired(unsigned int amount);
+
+	void printStat();
+	bool checkPoint();
 };
 
 #endif

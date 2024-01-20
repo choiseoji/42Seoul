@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 16:00:12 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/14 16:20:33 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/20 15:39:54 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,9 @@ public:
 	void attack(const std::string& target);  // 상대방의 hitPoint를 attackDamage만큼 감소
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);  // amount만큼 hitPoint 증가
+
+	void printStat();
+	bool checkPoint();
 };
 
 #endif

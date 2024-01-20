@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/11 19:45:57 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/14 16:23:38 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/20 15:45:06 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,23 +61,20 @@ ScavTrap::~ScavTrap(void)
 
 void	ScavTrap::guardGate(void)
 {
-	std::cout << "ScavTrap is now in Gate keeper mode" << std::endl;
+	if (checkPoint())
+		std::cout << "ScavTrap is now in Gate keeper mode" << std::endl;
 }
 
 void	ScavTrap::attack(const std::string& target)
 {
 	if (hitPoints == 0)
-		std::cout << "ScavTrap " << name << " has no hitPoints" << std::endl;
+		std::cout << "(ScavTrap) " << name << " has no hitPoints" << std::endl;
 	else if (energyPoints == 0)
-		std::cout << "ScavTrap " << name << " has no energyPoints" << std::endl;
+		std::cout << "(ScavTrap) " << name << " has no energyPoints" << std::endl;
 	else
 	{
 		this->energyPoints -= 1;
-		std::cout << "ScavTrap " << name << " attacks " << target << ", causing " << attackDamage << " points of damage!" << std::endl;
-
-		std::cout << "=======" << name << "\'s " << "stat=======" << std::endl;
-		std::cout << "hPoint: " << hitPoints << std::endl;
-		std::cout << "ePoint: " << energyPoints << std::endl;
-		std::cout << "aDamage: " << attackDamage << std::endl;
+		std::cout << "(ScavTrap) " << name << " attacks " << target << ", causing " << attackDamage << " points of damage!" << std::endl;
+		printStat();
 	}
 }

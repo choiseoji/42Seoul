@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 14:39:48 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/14 16:52:57 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/20 15:54:01 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,9 @@ DiamondTrap::~DiamondTrap(void)
 
 void DiamondTrap::whoAmI(void)
 {
-	std::cout << "ClapTrap's name: " << ClapTrap::name << std::endl;
-	std::cout << "DiamondTrap's name: " << name << std::endl;
+	if (checkPoint())
+	{
+		std::cout << "ClapTrap's name: " << ClapTrap::name << std::endl;
+		std::cout << "DiamondTrap's name: " << name << std::endl;
+	}
 }
