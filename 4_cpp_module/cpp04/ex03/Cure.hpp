@@ -1,14 +1,14 @@
-#ifndef ICE_HPP
-# define ICE_HPP
+#ifndef Cure_HPP
+# define Cure_HPP
 # include "AMateria.hpp"
 
-class Ice : virtual public AMateria
+class Cure : virtual public AMateria
 {
 public:
-    Ice();
-    Ice(const Ice &ice);
-    Ice& operator=(const Ice &ice);
-    ~Ice();
+    Cure();
+    Cure(const Cure &cure);
+    Cure& operator=(const Cure &cure);
+    ~Cure();
 
     void setType();
     std::string const & getType();

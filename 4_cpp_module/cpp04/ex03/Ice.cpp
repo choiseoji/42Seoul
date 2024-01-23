@@ -1,17 +1,18 @@
+#include "ICharacter.hpp"
 #include "Ice.hpp"
 
 Ice::Ice(void) { }
 
 Ice::Ice(const Ice &ice)
 {
-
+    this->type = ice.type;
 }
 
 Ice& Ice::operator=(const Ice &ice)
 {
     if (this != &ice)
     {
-
+        this->type = ice.type;
     }
     return (*this);
 }
@@ -30,7 +31,8 @@ std::string const & Ice::getType()
 
 AMateria* Ice::clone(void) const
 {
-    // clone
+    AMateria* ni = new Ice();
+    return (ni);
 }
 
 void Ice::use(ICharacter& target)

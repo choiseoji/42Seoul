@@ -2,10 +2,11 @@
 # define CHARACTER_HPP
 # include "ICharacter.hpp"
 
+class AMateria;
+
 class Character : public ICharacter
 {
 private:
-    int         idx;
     std::string name;
     AMateria*   inventory[4];
 
