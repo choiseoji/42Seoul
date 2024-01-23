@@ -10,7 +10,6 @@ public:
     Ice& operator=(const Ice &ice);
     ~Ice();
 
-    void setType();
     std::string const & getType();
     AMateria* clone() const;
     void use(ICharacter& target);

@@ -1,7 +1,10 @@
 #include "ICharacter.hpp"
 #include "Cure.hpp"
 
-Cure::Cure(void) { }
+Cure::Cure(void)
+{
+    this->type = "cure";
+}
 
 Cure::Cure(const Cure &cure)
 {
@@ -18,11 +21,6 @@ Cure& Cure::operator=(const Cure &cure)
 }
 
 Cure::~Cure(void) { }
-
-void Cure::setType(void)
-{
-    this->type = "cure";
-}
 
 std::string const & Cure::getType(void)
 {

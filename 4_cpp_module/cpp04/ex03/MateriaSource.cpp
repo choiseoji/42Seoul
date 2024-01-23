@@ -53,7 +53,7 @@ AMateria* MateriaSource::createMateria(std::string const & type)
     {
         if (materias[i]->getType() == type)
         {
-            return (materias[i]);    // 새로 생성해서 반환인데 이거 맞나
+            return (materias[i]->clone());    // 새로 생성해서 반환인데 이거 맞나
         }
     }
     return (0);

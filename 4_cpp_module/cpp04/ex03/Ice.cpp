@@ -1,7 +1,10 @@
 #include "ICharacter.hpp"
 #include "Ice.hpp"
 
-Ice::Ice(void) { }
+Ice::Ice(void)
+{
+    this->type = "ice";
+}
 
 Ice::Ice(const Ice &ice)
 {
@@ -18,11 +21,6 @@ Ice& Ice::operator=(const Ice &ice)
 }
 
 Ice::~Ice(void) { }
-
-void Ice::setType(void)
-{
-    this->type = "ice";
-}
 
 std::string const & Ice::getType()
 {
