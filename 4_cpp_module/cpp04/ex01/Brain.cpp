@@ -48,10 +48,19 @@ Brain::~Brain(void)
 
 const std::string& Brain::getIdea(int idx) const
 {
+	static const std::string error;
+
+	if (idx >= 100)
+	{
+		std::cout << "The index should have a value less than 100" << std::endl;
+		return (error);
+	}
 	return (this->ideas[idx]);
 }
 
 void	Brain::setIdea(int idx, std::string idea)
 {
+	if (idx >= 100)
+		std::cout << "The index should have a value less than 100" << std::endl;
 	ideas[idx] = idea;
 }

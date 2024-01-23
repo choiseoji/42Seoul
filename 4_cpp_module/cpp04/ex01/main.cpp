@@ -29,7 +29,7 @@ int main(void)
 	Dog	original;
 	Dog copy;
 
-	original.getBrain()->setIdea(101, "asdasdasd");
+	original.setBrain(101, "dfdsf");
 	// original -> idea에 초기값 설정
 	for(int i = 0; i < 3; i++)
 	{
