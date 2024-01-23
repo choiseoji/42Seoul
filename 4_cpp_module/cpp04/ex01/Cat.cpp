@@ -23,6 +23,11 @@ Cat::Cat(void)
 Cat::Cat(const Cat &c)
 {
 	this->type = c.type;
+	this->catBrain = new Brain();
+	for(int i = 0; i < 100; i++)
+	{
+		catBrain->setIdea(i, c.catBrain->getIdea(i));
+	}
 
 	std::cout << "(Cat) Copy constructor called" << std::endl;
 }
@@ -32,6 +37,11 @@ Cat& Cat::operator=(const Cat &c)
 	if (this != &c)
 	{
 		this->type = c.type;
+		this->catBrain = new Brain();
+		for(int i = 0; i < 100; i++)
+		{
+			catBrain->setIdea(i, c.catBrain->getIdea(i));
+		}
 
 		std::cout << "(Cat) Copy Assignment operator called" << std::endl;
 	}
@@ -53,4 +63,14 @@ void Cat::makeSound(void)
 std::string Cat::getType(void)
 {
 	return(this->type);
+}
+
+Brain* Cat::getBrain(void)
+{
+	return (this->catBrain);
+}
+
+void Cat::setBrain(int idx, std::string idea)
+{
+	catBrain->setIdea(idx, idea);
 }

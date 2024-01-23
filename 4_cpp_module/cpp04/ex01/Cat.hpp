@@ -28,6 +28,9 @@ public:
 
 	void makeSound();
 	std::string getType();
+
+	Brain* getBrain();
+	void setBrain(int idx, std::string idea);
 };
 
 #endif
