@@ -22,7 +22,13 @@ int main()
     me->use(0, *bob);
     me->use(1, *bob);
 
+    ICharacter* seo = new Character("seo");
+    me->use(2, *seo);    // 존재하지 않는 materia 사용
+    me->use(4, *seo);    // idx 범위 넘어간 것 사용
+    me->unequip(2);  // 존재하지 않는 materia 해제
+    me->unequip(-1);   // idx 범위 넘어간 것 해제
 
+    delete seo;
     delete bob;
     delete me;
     delete src;
