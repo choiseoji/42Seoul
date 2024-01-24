@@ -35,7 +35,11 @@ Character& Character::operator=(const Character &c)
         // deep copy
         for(int i = 0; i < 4; i++)
         {
-            inventory[i] = c.inventory[i];
+            if (inventory[i])
+            {
+                delete inventory[i];
+            }
+            inventory[i] = c.inventory[i]->clone();
         }
     }
     return (*this);
