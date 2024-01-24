@@ -14,10 +14,9 @@ public:
     AMateria();
     AMateria(const AMateria &a);
     AMateria& operator=(const AMateria &a);
-    ~AMateria();
+    virtual ~AMateria();
 
     AMateria(std::string const & type);
-    // 이거 위에 다 private 으로 해야되나..
 
     std::string const & getType() const;
     virtual AMateria* clone() const = 0;

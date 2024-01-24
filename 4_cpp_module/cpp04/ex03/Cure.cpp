@@ -29,7 +29,6 @@ std::string const & Cure::getType(void)
 
 AMateria* Cure::clone(void) const
 {
-    // clone
     AMateria* nc = new Cure();
     return (nc);
 }

@@ -20,10 +20,11 @@ Character::Character(std::string name)
 Character::Character(const Character &c)
 {
     this->name = c.name;
-    // deep copy : 이렇게 하면 되나
     for(int i = 0; i < 4; i++)
     {
-        inventory[i] = c.inventory[i];
+        if (inventory[i])
+            delete inventory[i];
+        inventory[i] = c.inventory[i]->clone();
     }
 }
 
@@ -32,13 +33,10 @@ Character& Character::operator=(const Character &c)
     if (this != &c)
     {
         this->name = c.name;
-        // deep copy
         for(int i = 0; i < 4; i++)
         {
             if (inventory[i])
-            {
                 delete inventory[i];
-            }
             inventory[i] = c.inventory[i]->clone();
         }
     }
@@ -47,7 +45,11 @@ Character& Character::operator=(const Character &c)
 
 Character::~Character(void)
 {
-
+    for(int i = 0; i < 4; i++)
+    {
+        if (inventory[i])
+            delete inventory[i];
+    }
 }
 
 std::string const & Character::getName() const
@@ -57,8 +59,6 @@ std::string const & Character::getName() const
 
 void Character::equip(AMateria* m)
 {
-    // unequip 때문에 이렇게 하면 안될듯..
-    // 배열 돌면서 비워져 있는 자리에 삽입
     for(int i = 0; i < 4; i++)
     {
         if (inventory[i] == 0)
@@ -67,20 +67,37 @@ void Character::equip(AMateria* m)
             return ;
         }
     }
+    std::cout << "There is no space to equip it" << std::endl;
 }
 
 void Character::unequip(int idx)
 {
-    // 해당 idx에 있는거 지우는 거인듯..
-    // 이건 AMateria 지우는건가
-    inventory[idx] = 0;
+    if (checkIdx(idx) && checkIsExist(idx))
+        inventory[idx] = 0;
 }
 
 void Character::use(int idx, ICharacter& target)
 {
-    // idx에 있는 AMateria 타입보고 출력문 결정해주기
-    // ice, cure 상속되어 있으니,,,그걸로 뭐 하면 될 듯
-    // Ice: "* shoots an ice bolt at <name> *"
-    // Cure: "* heals <name>’s wounds *"
-    inventory[idx]->use(target);
+    if (checkIdx(idx) && checkIsExist(idx))
+        inventory[idx]->use(target);
+}
+
+int Character::checkIdx(int idx)
+{
+    if (idx < 0 || idx > 3)
+    {
+        std::cout << "You can only have index values from 0 to 3" << std::endl;
+        return (0);
+    }
+    return (1);
+}
+
+int Character::checkIsExist(int idx)
+{
+    if (inventory[idx] == 0)
+    {
+        std::cout << "It's a non-existent Materia" << std::endl;
+        return (0);
+    }
+    return (1);
 }
