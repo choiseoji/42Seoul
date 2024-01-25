@@ -1,4 +1,5 @@
 #include "Character.hpp"
+#include "Floor.hpp"
 
 Character::Character(void)
 {
@@ -22,9 +23,10 @@ Character::Character(const Character &c)
     this->name = c.name;
     for(int i = 0; i < 4; i++)
     {
-        if (inventory[i])
-            delete inventory[i];
-        inventory[i] = c.inventory[i]->clone();
+        if (c.inventory[i])
+            inventory[i] = c.inventory[i]->clone();
+        else
+            inventory[i] = 0;
     }
 }
 
@@ -37,7 +39,10 @@ Character& Character::operator=(const Character &c)
         {
             if (inventory[i])
                 delete inventory[i];
-            inventory[i] = c.inventory[i]->clone();
+            if (c.inventory[i])
+                inventory[i] = c.inventory[i]->clone();
+            else
+                inventory[i] = 0;
         }
     }
     return (*this);
@@ -73,7 +78,10 @@ void Character::equip(AMateria* m)
 void Character::unequip(int idx)
 {
     if (checkIdx(idx) && checkIsExist(idx))
+    {
+        
         inventory[idx] = 0;
+    }
 }
 
 void Character::use(int idx, ICharacter& target)

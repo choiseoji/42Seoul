@@ -14,9 +14,10 @@ MateriaSource::MateriaSource(const MateriaSource &ms)
     this->idx = ms.idx;
     for(int i = 0; i < 4; i++)
     {
-        if (materias[i])
-            delete materias[i];
-        materias[i] = ms.materias[i]->clone();
+        if (ms.materias[i])
+            materias[i] = ms.materias[i]->clone();
+        else
+            materias[i] = 0;
     }
 }
 
@@ -29,7 +30,10 @@ MateriaSource& MateriaSource::operator=(const MateriaSource &ms)
         {
             if (materias[i])
                 delete materias[i];
-            materias[i] = ms.materias[i]->clone();
+            if (ms.materias[i])
+                materias[i] = ms.materias[i]->clone();
+            else
+                materias[i] = 0;
         }
     }
     return (*this);
@@ -50,6 +54,10 @@ void MateriaSource::learnMateria(AMateria* m)
     {
         materias[idx] = m;
         idx++;
+    }
+    else
+    {
+        delete m;
     }
 }
 

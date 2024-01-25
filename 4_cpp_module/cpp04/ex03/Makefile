@@ -1,5 +1,5 @@
 CXX=c++
-CXXFLAGS= -std=c++98 -Wall -Wextra -Werror -fsanitize=address -g
+CXXFLAGS= -std=c++98 -Wall -Wextra -Werror 
 SRC=	AMateria.cpp \
 		Character.cpp \
 		Cure.cpp \

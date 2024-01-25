@@ -2,6 +2,7 @@
 #include "MateriaSource.hpp"
 #include "Ice.hpp"
 #include "Cure.hpp"
+#include "Floor.hpp"
 
 void    check_leaks()
 {
@@ -10,6 +11,8 @@ void    check_leaks()
 
 int main()
 {
+    atexit(check_leaks);
+
     IMateriaSource* src = new MateriaSource();
     src->learnMateria(new Ice());
     src->learnMateria(new Cure());
@@ -33,12 +36,12 @@ int main()
     me->unequip(2);  // 존재하지 않는 materia 해제
     me->unequip(-1);   // idx 범위 넘어간 것 해제
 
-    me->unequip(0);  // 존재하지 않는 materia 해제
-    me->unequip(1);
-    delete seo;
+    me->unequip(0);  // unequip시 leak이 날까??
+    // floor.trash_obj();
+
     delete bob;
+    delete seo;
     delete me;
     delete src;
-    atexit(check_leaks);
     return 0;
 }
