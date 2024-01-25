@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 18:36:26 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/25 15:28:47 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/25 16:19:27 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ Cat& Cat::operator=(const Cat &c)
 	if (this != &c)
 	{
 		this->type = c.type;
+		// this->catBrain이 이미 할당되어 있으면 지워주고 재할당 해줘야 함
+		if (this->catBrain)
+			delete this->catBrain;
 		this->catBrain = new Brain();
 		for(int i = 0; i < 100; i++)
 		{

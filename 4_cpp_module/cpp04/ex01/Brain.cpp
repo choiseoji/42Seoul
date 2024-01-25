@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/17 20:25:14 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/18 19:41:27 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/25 16:02:21 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 
 Brain::Brain(void)
 {
+	for(int i = 0; i < 100; i++)
+	{
+		ideas[i] = "";
+	}
 	std::cout << "(Brain) Default constructor called" << std::endl;
 }
 
