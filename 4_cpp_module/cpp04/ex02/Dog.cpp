@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 18:49:03 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/25 16:00:43 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/25 16:30:40 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ Dog& Dog::operator=(const Dog &d)
 	if (this != &d)
 	{
 		this->type = d.type;
+		if (this->dogBrain)
+			delete dogBrain;
 		this->dogBrain = new Brain();
 		for(int i = 0; i < 100; i++)
 		{

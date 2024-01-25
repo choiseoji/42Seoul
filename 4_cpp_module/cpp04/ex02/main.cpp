@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 14:56:27 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/20 19:50:04 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/25 16:31:24 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,19 @@
 
 int main(void)
 {
-	Animal *animalArr[2];
+	Animal *animalArr[4];
 
-	animalArr[0] = new Dog();
-	animalArr[1] = new Cat();
-	// delete called on non-final 'Animal' that has virtual functions but non-virtual destructor
-	delete animalArr[0];
-	delete animalArr[1];
+	for(int i = 0; i < 4; i++)
+	{
+		if (i % 2 == 0)
+			animalArr[i] = new Dog();
+		else
+			animalArr[i] = new Cat();
+	}
+	for(int i = 0; i < 4; i++)
+	{
+		delete animalArr[i];
+	}
 
 
 	// 깊은 복사 확인

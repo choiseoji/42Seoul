@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 18:36:26 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/25 16:00:06 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/25 16:30:11 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ Cat& Cat::operator=(const Cat &c)
 	if (this != &c)
 	{
 		this->type = c.type;
+		if (catBrain)
+			delete catBrain;
 		this->catBrain = new Brain();
 		for(int i = 0; i < 100; i++)
 		{
