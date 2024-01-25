@@ -4,14 +4,9 @@
 #include "Cure.hpp"
 #include "Floor.hpp"
 
-void    check_leaks()
-{
-    system("leaks Materia");
-}
-
 int main()
 {
-    atexit(check_leaks);
+    static Floor floor;
 
     IMateriaSource* src = new MateriaSource();
     src->learnMateria(new Ice());
@@ -36,8 +31,8 @@ int main()
     me->unequip(2);  // 존재하지 않는 materia 해제
     me->unequip(-1);   // idx 범위 넘어간 것 해제
 
-    me->unequip(0);  // unequip시 leak이 날까??
-    // floor.trash_obj();
+    me->unequip(0);
+    me->unequip(1);
 
     delete bob;
     delete seo;

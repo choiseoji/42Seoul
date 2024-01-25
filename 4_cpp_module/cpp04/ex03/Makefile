@@ -5,13 +5,15 @@ SRC=	AMateria.cpp \
 		Cure.cpp \
 		Ice.cpp \
 		main.cpp \
-		MateriaSource.cpp
+		MateriaSource.cpp \
+		Floor.cpp
 OBJ=	AMateria.o \
 		Character.o \
 		Cure.o \
 		Ice.o \
 		main.o \
-		MateriaSource.o
+		MateriaSource.o \
+		Floor.o
 MAIN=Materia
 
 .PHONY: all clean fclean re

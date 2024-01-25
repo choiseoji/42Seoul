@@ -1,6 +1,8 @@
 #include "Character.hpp"
 #include "Floor.hpp"
 
+// Floor Character::floor;
+
 Character::Character(void)
 {
     for(int i = 0; i < 4; i++)
@@ -79,7 +81,7 @@ void Character::unequip(int idx)
 {
     if (checkIdx(idx) && checkIsExist(idx))
     {
-        
+        Floor::set_list(inventory[idx]);
         inventory[idx] = 0;
     }
 }

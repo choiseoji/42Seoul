@@ -1,6 +1,7 @@
 #ifndef CHARACTER_HPP
 # define CHARACTER_HPP
 # include "ICharacter.hpp"
+// # include "Floor.hpp"
 
 class AMateria;
 
@@ -9,6 +10,7 @@ class Character : public ICharacter
 private:
     std::string name;
     AMateria*   inventory[4];
+    // static Floor floor;
 
 public:
     Character();
