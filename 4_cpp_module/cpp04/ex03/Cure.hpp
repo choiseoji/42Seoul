@@ -2,7 +2,7 @@
 # define Cure_HPP
 # include "AMateria.hpp"
 
-class Cure : virtual public AMateria
+class Cure : public AMateria
 {
 public:
     Cure();

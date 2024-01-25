@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 14:56:27 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/25 16:25:13 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/25 16:33:05 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,32 +31,32 @@ int main(void)
 	}
 
 
-	// 깊은 복사 확인
-	Dog	original;
-	Dog copy;
+	// // 깊은 복사 확인
+	// Dog	original;
+	// Dog copy;
 
-	original.setBrain(-1, "dfdsf");
-	original.setBrain(101, "dfdsf");
-	// original -> idea에 초기값 설정
-	for(int i = 0; i < 3; i++)
-	{
-		original.setBrain(i, "original");
-	}
+	// original.setBrain(-1, "dfdsf");
+	// original.setBrain(101, "dfdsf");
+	// // original -> idea에 초기값 설정
+	// for(int i = 0; i < 3; i++)
+	// {
+	// 	original.setBrain(i, "original");
+	// }
 
-	copy = original;      // copy
+	// copy = original;      // copy
 
-	std::cout << std::endl << "=================" << std::endl;
-	for(int i = 0; i < 3; i++)
-	{
-		std::cout << original.getBrain()->getIdea(i) << std::endl;
-		std::cout << copy.getBrain()->getIdea(i) << std::endl;
-		copy.setBrain(i, "copy");
-	}
-	std::cout << std::endl << "=================" << std::endl;
-	for(int i = 0; i < 3; i++)
-	{
-		std::cout << original.getBrain()->getIdea(i) << std::endl;
-		std::cout << copy.getBrain()->getIdea(i) << std::endl;
-	}
-	return (0);
+	// std::cout << std::endl << "=================" << std::endl;
+	// for(int i = 0; i < 3; i++)
+	// {
+	// 	std::cout << original.getBrain()->getIdea(i) << std::endl;
+	// 	std::cout << copy.getBrain()->getIdea(i) << std::endl;
+	// 	copy.setBrain(i, "copy");
+	// }
+	// std::cout << std::endl << "=================" << std::endl;
+	// for(int i = 0; i < 3; i++)
+	// {
+	// 	std::cout << original.getBrain()->getIdea(i) << std::endl;
+	// 	std::cout << copy.getBrain()->getIdea(i) << std::endl;
+	// }
+	// return (0);
 }
