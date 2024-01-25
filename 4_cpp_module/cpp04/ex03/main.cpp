@@ -3,6 +3,11 @@
 #include "Ice.hpp"
 #include "Cure.hpp"
 
+void    check_leaks()
+{
+    system("leaks Materia");
+}
+
 int main()
 {
     IMateriaSource* src = new MateriaSource();
@@ -28,9 +33,12 @@ int main()
     me->unequip(2);  // 존재하지 않는 materia 해제
     me->unequip(-1);   // idx 범위 넘어간 것 해제
 
+    me->unequip(0);  // 존재하지 않는 materia 해제
+    me->unequip(1);
     delete seo;
     delete bob;
     delete me;
     delete src;
+    atexit(check_leaks);
     return 0;
 }

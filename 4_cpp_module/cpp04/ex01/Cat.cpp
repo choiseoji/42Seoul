@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 18:36:26 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/18 14:55:34 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/25 13:11:12 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ Cat& Cat::operator=(const Cat &c)
 Cat::~Cat(void)
 {
 	delete catBrain;
-	
+
 	std::cout << "(Cat) Destructor called" << std::endl;
 }
 

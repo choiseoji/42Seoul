@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 18:44:24 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/17 20:03:57 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/25 15:26:21 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@
 
 int main(void)
 {
-	Animal* meta = new Animal();
-	Animal* j = new Dog();
-	Animal* i = new Cat();
 	// 업 캐스팅
+	const Animal* meta = new Animal();
+	const Animal* j = new Dog();
+	const Animal* i = new Cat();
 
 	std::cout << j->getType() << " " << std::endl;
 	std::cout << i->getType() << " " << std::endl;
@@ -29,10 +29,16 @@ int main(void)
 	i->makeSound();
 	meta->makeSound();
 
+	delete j;
+	delete i;
+	delete meta;
+
 	// Wrong
 	WrongAnimal* k = new WrongCat();
 
 	std::cout << k->getType() << " " << std::endl;
 	k->makeSound();
+
+	delete k;
 	return 0;
 }
