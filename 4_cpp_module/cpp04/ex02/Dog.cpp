@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 18:49:03 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/19 20:53:44 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/25 16:00:43 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ Dog::~Dog(void)
 	std::cout << "(Dog) Destructor called" << std::endl;
 }
 
-void Dog::makeSound(void)
+void Dog::makeSound(void) const
 {
 	std::cout << "bow-wow!! 🐶" << std::endl;
 }
 
-std::string Dog::getType(void)
+std::string Dog::getType(void) const
 {
 	return(this->type);
 }
