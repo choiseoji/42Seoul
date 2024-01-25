@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 17:02:24 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/18 20:49:57 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/25 15:28:12 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ public:
 	Animal& operator=(const Animal &a);
 	virtual ~Animal();
 
-	virtual void makeSound();
-	virtual std::string getType();
+	virtual void makeSound() const;
+	virtual std::string getType() const;
 };
 
 #endif

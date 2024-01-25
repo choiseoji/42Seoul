@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 18:36:26 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/25 13:11:12 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/25 15:28:47 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,12 +55,12 @@ Cat::~Cat(void)
 	std::cout << "(Cat) Destructor called" << std::endl;
 }
 
-void Cat::makeSound(void)
+void Cat::makeSound(void) const
 {
 	std::cout << "meow meow~ 😺" << std::endl;
 }
 
-std::string Cat::getType(void)
+std::string Cat::getType(void) const
 {
 	return(this->type);
 }

@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 17:06:41 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/18 19:42:46 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/25 15:28:30 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ public:
 	Dog&  operator=(const Dog &d);
 	~Dog();
 
-	void makeSound();
-	std::string getType();
+	void makeSound() const;
+	std::string getType() const;
 
 	Brain* getBrain();
 	void setBrain(int idx, std::string idea);
