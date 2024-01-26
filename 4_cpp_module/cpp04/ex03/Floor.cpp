@@ -3,10 +3,7 @@
 int Floor::size = 0;
 AMateria **Floor::list = nullptr;
 
-Floor::Floor(void)
-{
-    size = 0;
-}
+Floor::Floor(void) { }
 
 Floor::Floor(const Floor &f)
 {
@@ -57,7 +54,7 @@ void Floor::set_list(AMateria *a)
         new_list[i] = list[i];
     }
     new_list[size] = a;
-    
+
     delete []list;
     list = new_list;
     size += 1;

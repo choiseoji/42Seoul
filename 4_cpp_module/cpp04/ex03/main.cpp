@@ -33,6 +33,7 @@ int main()
 
     me->unequip(0);
     me->unequip(1);
+    me->use(0, *seo);
 
     delete bob;
     delete seo;
