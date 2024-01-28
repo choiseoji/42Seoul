@@ -53,7 +53,7 @@ public:
 	};
 };
 
-std::ostream& operator<<(std::ostream &os, std::exception &e);
+std::ostream& operator<<(std::ostream &os, Bureaucrat &b);
 
 
 #endif

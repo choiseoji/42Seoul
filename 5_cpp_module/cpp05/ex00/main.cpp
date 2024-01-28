@@ -12,11 +12,6 @@
 
 #include "Bureaucrat.hpp"
 
-void print_info(Bureaucrat &person)
-{
-	std::cout << person.getName() << "'s grade is " << person.getGrade() << std::endl;
-}
-
 int main(void)
 {
 	Bureaucrat SEO("seo", 10);   // 제일 높은 등급
@@ -25,21 +20,21 @@ int main(void)
 	try
 	{
 		// SEO의 정보
-		print_info(SEO);
+		std::cout << SEO << std::endl;
 		// SEO등급 올리기
 		SEO.increment(9);
-		print_info(SEO);
+		std::cout << SEO << std::endl;
 
 		// JI의 정보
-		print_info(JI);
+		std::cout << JI << std::endl;
 		// JI등급 내리기
 		JI.decrement(6);
-		print_info(JI);
+		std::cout << JI << std::endl;
 
 	}
 	catch (std::exception & e)
 	{
-		std::cout << e << std::endl;
+		std::cout << e.what() << std::endl;
 	}
 	return (0);
 }
