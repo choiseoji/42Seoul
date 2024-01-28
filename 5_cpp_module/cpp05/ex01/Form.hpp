@@ -1,45 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*   Form.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 14:39:37 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/28 22:18:12 by seojchoi         ###   ########.fr       */
+/*   Created: 2024/01/28 20:38:12 by seojchoi          #+#    #+#             */
+/*   Updated: 2024/01/28 22:21:37 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUREAUCRAT_HPP
-# define BUREAUCRAT_HPP
-# include <iostream>
-# include <exception>
+#ifndef FORM_HPP
+# define FROM_HPP
+# include "Bureaucrat.hpp"
 
-class Bureaucrat
+class Form
 {
 private:
 	const std::string name;
-	int grade;
+	bool is_signed;
+	const int grade_required;
+	const int grade_execute;
 
 public:
-	Bureaucrat();
-	Bureaucrat(const Bureaucrat &b);
-	Bureaucrat(std::string name, int grade);
-	Bureaucrat& operator=(const Bureaucrat &b);
-	~Bureaucrat();
+	Form();
+	Form(const Form &f);
+	Form& operator=(const Form &f);
+	~Form();
 
 	std::string getName();
-	int getGrade();
-	void increment(int g);
-	void decrement(int g);
-	void checkGrade(int grade);
+	bool getIsSigned();
+	int getGradeRequired();
+	int getGradeExecute();
+
+	void beSigned(Bureaucrat &b);
 
 	class GradeTooHighException : public std::exception
 	{
 	public:
 		virtual const char* what(void) const throw()
 		{
-			return ("bureaucrat's grade is too high");
+			return ("Form's grade is too high");
 		}
 	};
 
@@ -48,12 +49,9 @@ public:
 	public:
 		virtual const char* what(void) const throw()
 		{
-			return ("bureaucrat's grade is too low");
+			return ("Form's grade is too low");
 		}
 	};
 };
-
-std::ostream& operator<<(std::ostream &os, std::exception &e);
-
 
 #endif
