@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #ifndef FORM_HPP
-# define FROM_HPP
+# define FORM_HPP
 # include "Bureaucrat.hpp"
 
 class Form
@@ -19,19 +19,20 @@ class Form
 private:
 	const std::string name;
 	bool is_signed;
-	const int grade_required;
-	const int grade_execute;
+	const int sign_grade;
+	const int execute_grade;
 
 public:
 	Form();
+	Form(std::string name, int sign_grade, int execute_grade);
 	Form(const Form &f);
 	Form& operator=(const Form &f);
 	~Form();
 
 	std::string getName();
 	bool getIsSigned();
-	int getGradeRequired();
-	int getGradeExecute();
+	int getSignGrade();
+	int getExecuteGrade();
 
 	void beSigned(Bureaucrat &b);
 
@@ -40,7 +41,7 @@ public:
 	public:
 		virtual const char* what(void) const throw()
 		{
-			return ("Form's grade is too high");
+			return ("form's required grade is too high");
 		}
 	};
 
@@ -49,9 +50,11 @@ public:
 	public:
 		virtual const char* what(void) const throw()
 		{
-			return ("Form's grade is too low");
+			return ("Form's required grade is too low");
 		}
 	};
 };
+
+std::ostream& operator<<(std::ostream &os, Form &f);
 
 #endif

@@ -12,12 +12,18 @@
 
 #include "Form.hpp"
 
-Form::Form(void) : name(""), grade_required(0), grade_execute(0)
+Form::Form(void) : name(""), sign_grade(0), execute_grade(0)
 {
 	this->is_signed = false;
 }
 
-Form::Form(const Form &f) : name(f.name), grade_required(f.grade_required), grade_execute(f.grade_execute)
+Form::Form(std::string name, int sign_grade, int execute_grade) 
+: name(name), sign_grade(sign_grade), execute_grade(execute_grade)
+{
+	this->is_signed = false;
+}
+
+Form::Form(const Form &f) : name(f.name), sign_grade(f.sign_grade), execute_grade(f.execute_grade)
 {
 	this->is_signed = f.is_signed;
 }
@@ -26,7 +32,7 @@ Form& Form::operator=(const Form &f)
 {
 	if (this != &f)
 	{
-		// 여기 const는 어떻게 할까?? ㅎ
+		this->is_signed = f.is_signed;
 	}
 	return (*this);
 }
@@ -43,23 +49,30 @@ bool Form::getIsSigned(void)
 	return (this->is_signed);
 }
 
-int Form::getGradeRequired(void)
+int Form::getSignGrade(void)
 {
-	return (this->grade_required);
+	return (this->sign_grade);
 }
 
-int Form::getGradeExecute(void)
+int Form::getExecuteGrade(void)
 {
-	return (this->grade_execute);
+	return (this->execute_grade);
 }
 
 void Form::beSigned(Bureaucrat &b)
 {
-	// bureaucrat의 등급이 사인할 자격이 된다면 사인해주기
-	if (b.getGrade() <= grade_required)
+	if (b.getGrade() <= sign_grade)
 	{
 		is_signed = true;
 	}
 	else
 		Form::GradeTooLowException();
+}
+
+std::ostream& operator<<(std::ostream &os, Form &f)
+{
+	os << "[FORM_INFO]" << std::endl << "name: " << f.getName() << std::endl \
+	<< "is signed: " << f.getIsSigned() << std::endl << "sign grade: " << f.getSignGrade() \
+	<< std::endl << "execute grade: " << f.getExecuteGrade();
+	return (os);
 }

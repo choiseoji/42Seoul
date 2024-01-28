@@ -12,9 +12,9 @@
 
 #include "Bureaucrat.hpp"
 
-Bureaucrat::Bureaucrat(void)
+Bureaucrat::Bureaucrat(void) : name("")
 {
-
+	this->grade = 0;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& b) : name(b.name)
@@ -32,15 +32,12 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& b)
 {
 	if (this != &b)
 	{
-
+		this->grade = b.grade;
 	}
 	return (*this);
 }
 
-Bureaucrat::~Bureaucrat(void)
-{
-
-}
+Bureaucrat::~Bureaucrat(void) { }
 
 std::string Bureaucrat::getName(void)
 {
@@ -52,16 +49,16 @@ int Bureaucrat::getGrade(void)
 	return (this->grade);
 }
 
-void Bureaucrat::increment(int g)
+void Bureaucrat::increment(int num)
 {
-	checkGrade(this->grade - g);
-	this->grade -= g;
+	checkGrade(this->grade - num);
+	this->grade -= num;
 }
 
-void Bureaucrat::decrement(int g)
+void Bureaucrat::decrement(int num)
 {
-	checkGrade(this->grade + g);
-	this->grade += g;
+	checkGrade(this->grade + num);
+	this->grade += num;
 }
 
 void Bureaucrat::checkGrade(int grade)
@@ -72,8 +69,22 @@ void Bureaucrat::checkGrade(int grade)
 		throw (Bureaucrat::GradeTooLowException());
 }
 
-std::ostream& operator<<(std::ostream &os, std::exception &e)
+void Bureaucrat::signForm(Form &f)
 {
-	os << e.what();
+	try
+	{
+		// <bureaucrat> signed <form>
+	}
+	catch(const std::exception& e)
+	{
+		// <bureaucrat> couldn’t sign <form> because <reason>
+		std::cout << e.what() << std::endl;
+	}
+	
+}
+
+std::ostream& operator<<(std::ostream &os, Bureaucrat &b)
+{
+	os << b.getName() << "'s grade is " << b.getGrade();
 	return (os);
 }
