@@ -12,7 +12,7 @@
 
 #ifndef FORM_HPP
 # define FORM_HPP
-# include "Bureaucrat.hpp"
+#include "Bureaucrat.hpp"
 
 class Form
 {
@@ -33,6 +33,7 @@ public:
 	bool getIsSigned();
 	int getSignGrade();
 	int getExecuteGrade();
+	void checkGrade(int grade);
 
 	void beSigned(Bureaucrat &b);
 
@@ -50,7 +51,16 @@ public:
 	public:
 		virtual const char* what(void) const throw()
 		{
-			return ("Form's required grade is too low");
+			return ("form's required grade is too low");
+		}
+	};
+
+	class AlreadySignedException : public std::exception
+	{
+	public:
+		virtual const char* what(void) const throw()
+		{
+			return ("it has already been signed");
 		}
 	};
 };

@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   Form.cpp                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 20:48:22 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/28 20:54:47 by seojchoi         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "Form.hpp"
 
 Form::Form(void) : name(""), sign_grade(0), execute_grade(0)
@@ -59,14 +47,22 @@ int Form::getExecuteGrade(void)
 	return (this->execute_grade);
 }
 
+void Form::checkGrade(int grade)
+{
+    if (grade < 1)
+        throw (Form::GradeTooHighException());
+    else if (grade > 150)
+        throw (Form::GradeTooLowException());
+}
+
 void Form::beSigned(Bureaucrat &b)
 {
-	if (b.getGrade() <= sign_grade)
-	{
-		is_signed = true;
-	}
-	else
-		Form::GradeTooLowException();
+    if (this->is_signed == true)
+        throw (Form::AlreadySignedException());
+    else if (b.getGrade() > sign_grade)
+        throw (Form::GradeTooLowException());   // 여기 예외 처리 tooLow가 맞는건지 잘 모르겠음
+    
+	is_signed = true;
 }
 
 std::ostream& operator<<(std::ostream &os, Form &f)

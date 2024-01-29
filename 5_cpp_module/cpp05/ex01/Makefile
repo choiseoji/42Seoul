@@ -4,7 +4,7 @@ SRC =	Bureaucrat.cpp \
 		Form.cpp \
 		main.cpp
 OBJ =	Bureaucrat.o \
-		Form.cpp \
+		Form.o \
 		main.o
 MAIN = Form
 

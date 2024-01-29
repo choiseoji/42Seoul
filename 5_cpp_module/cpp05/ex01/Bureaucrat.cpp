@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat(void) : name("")
 {
@@ -73,14 +74,15 @@ void Bureaucrat::signForm(Form &f)
 {
 	try
 	{
-		// <bureaucrat> signed <form>
+		f.beSigned(*this);
+		std::cout << name << " signed " << f.getName() << std::endl;
+		std::cout << f << std::endl;
 	}
 	catch(const std::exception& e)
 	{
-		// <bureaucrat> couldn’t sign <form> because <reason>
+		std::cout << name << " couldn't sign " << f.getName() << " because ";
 		std::cout << e.what() << std::endl;
 	}
-	
 }
 
 std::ostream& operator<<(std::ostream &os, Bureaucrat &b)
