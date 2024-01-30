@@ -5,13 +5,7 @@ AForm::AForm(void) : name(""), sign_grade(0), execute_grade(0)
 	this->is_signed = false;
 }
 
-AForm::AForm(int sign_grade, int execute_grade)
-: name(""), sign_grade(sign_grade), execute_grade(execute_grade)
-{
-	this->is_signed = false;
-}
-
-AForm::AForm(std::string name, int sign_grade, int execute_grade) 
+AForm::AForm(std::string name, int sign_grade, int execute_grade)
 : name(name), sign_grade(sign_grade), execute_grade(execute_grade)
 {
 	this->is_signed = false;
@@ -67,8 +61,8 @@ void AForm::beSigned(Bureaucrat &b)
         throw (AForm::AlreadySignedException());
     else if (b.getGrade() > sign_grade)
         throw (AForm::GradeTooLowException());   // 여기 예외 처리 tooLow가 맞는건지 잘 모르겠음
-    
-	is_signed = true;
+
+	this->is_signed = true;
 }
 
 void AForm::execute(Bureaucrat const & executor) const
@@ -78,8 +72,7 @@ void AForm::execute(Bureaucrat const & executor) const
 	else if (executor.getGrade() > execute_grade)  // 이거 맞는지 확인
 		throw(AForm::GradeTooLowException());
 
-	std::cout << executor.getName() << " executed " << this->name << std::endl;
-	executor.executeForm(*this);
+	this->beExecuted(this->name);
 }
 
 std::ostream& operator<<(std::ostream &os, AForm &f)

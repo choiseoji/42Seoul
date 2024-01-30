@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 14:42:16 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/28 20:31:03 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:52:57 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,17 @@ void Bureaucrat::signForm(AForm &f)
 void Bureaucrat::executeForm(AForm const &f) const
 {
 	// f에 해당하는 form 의 실행 함수 호출하기
+	try
+	{
+		f.execute(*this);
+		std::cout << name << " executed " << f.getName() << std::endl;
+		// std::cout << f << std::endl;   // const로 수정??
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << name << " couldn't execute " << f.getName() << " because ";
+		std::cout << e.what() << std::endl;
+	}
 }
 
 std::ostream& operator<<(std::ostream &os, Bureaucrat &b)

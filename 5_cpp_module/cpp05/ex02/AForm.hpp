@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 20:38:12 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/28 22:21:37 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/01/30 14:09:48 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ private:
 
 public:
 	AForm();
-	AForm(int sign_grade, int execute_grade);
 	AForm(std::string name, int sign_grade, int execute_grade);
 	AForm(const AForm &f);
 	AForm& operator=(const AForm &f);
@@ -38,6 +37,8 @@ public:
 	void checkGrade(int grade) const;
 	void beSigned(Bureaucrat &b) ;
 	void execute(Bureaucrat const & executor) const;
+
+	virtual void beExecuted(std::string target) const = 0;
 
 	class GradeTooHighException : public std::exception
 	{

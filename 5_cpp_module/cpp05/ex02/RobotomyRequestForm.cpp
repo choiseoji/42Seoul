@@ -1,11 +1,13 @@
 #include "RobotomyRequestForm.hpp"
 
-RobotomyRequestForm::RobotomyRequestForm(void) : AForm(72, 45) { }
+RobotomyRequestForm::RobotomyRequestForm(void) : AForm("", 72, 45) { }
 
-RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &rrf)
-{
+RobotomyRequestForm::RobotomyRequestForm(std::string name) : AForm(name, 72, 45) { }
 
-}
+// RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &rrf)
+// {
+
+// }
 
 RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm &rrf)
 {
@@ -17,3 +19,9 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm &r
 }
 
 RobotomyRequestForm::~RobotomyRequestForm(void) { }
+
+void RobotomyRequestForm::beExecuted(std::string target) const
+{
+    std::cout << "drillll~ 🔩 (drilling noises)" << std::endl;;
+    std::cout << target << " has been robotomized successfully 50% of the time" << std::endl;
+}
