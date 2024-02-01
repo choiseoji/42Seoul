@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 20:38:12 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/28 22:21:37 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/02/01 21:08:08 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ public:
 	Form& operator=(const Form &f);
 	~Form();
 
-	std::string getName();
-	bool getIsSigned();
-	int getSignGrade();
-	int getExecuteGrade();
+	std::string getName() const;
+	bool getIsSigned() const;
+	int getSignGrade() const;
+	int getExecuteGrade() const;
 	void checkGrade(int grade);
 
 	void beSigned(Bureaucrat &b);

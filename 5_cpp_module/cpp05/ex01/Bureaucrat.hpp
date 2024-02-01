@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 14:39:37 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/28 22:18:12 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/02/01 21:07:24 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ public:
 	Bureaucrat& operator=(const Bureaucrat &b);
 	~Bureaucrat();
 
-	std::string getName();
-	int getGrade();
+	std::string getName() const;
+	int getGrade() const;
 	void increment(int g);
 	void decrement(int g);
 	void checkGrade(int grade);

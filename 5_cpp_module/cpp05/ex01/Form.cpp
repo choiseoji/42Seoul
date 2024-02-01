@@ -5,9 +5,10 @@ Form::Form(void) : name(""), sign_grade(0), execute_grade(0)
 	this->is_signed = false;
 }
 
-Form::Form(std::string name, int sign_grade, int execute_grade) 
+Form::Form(std::string name, int sign_grade, int execute_grade)
 : name(name), sign_grade(sign_grade), execute_grade(execute_grade)
 {
+	checkGrade(sign_grade);
 	this->is_signed = false;
 }
 
@@ -27,22 +28,22 @@ Form& Form::operator=(const Form &f)
 
 Form::~Form() { }
 
-std::string Form::getName(void)
+std::string Form::getName(void) const
 {
 	return (this->name);
 }
 
-bool Form::getIsSigned(void)
+bool Form::getIsSigned(void) const
 {
 	return (this->is_signed);
 }
 
-int Form::getSignGrade(void)
+int Form::getSignGrade(void) const
 {
 	return (this->sign_grade);
 }
 
-int Form::getExecuteGrade(void)
+int Form::getExecuteGrade(void) const
 {
 	return (this->execute_grade);
 }
@@ -60,8 +61,8 @@ void Form::beSigned(Bureaucrat &b)
     if (this->is_signed == true)
         throw (Form::AlreadySignedException());
     else if (b.getGrade() > sign_grade)
-        throw (Form::GradeTooLowException());   // 여기 예외 처리 tooLow가 맞는건지 잘 모르겠음
-    
+        throw (Form::GradeTooLowException());
+
 	is_signed = true;
 }
 
