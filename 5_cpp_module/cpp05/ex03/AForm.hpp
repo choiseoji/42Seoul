@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 20:38:12 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/30 14:09:48 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/02/02 14:34:11 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ private:
 
 public:
 	AForm();
-	AForm(std::string name, int sign_grade, int execute_grade);
+	AForm(std::string name, bool is_signed, int sign_grade, int execute_grade);
 	AForm(const AForm &f);
 	AForm& operator=(const AForm &f);
 	virtual ~AForm();
@@ -33,6 +33,7 @@ public:
 	bool getIsSigned() const;
 	int getSignGrade() const;
 	int getExecuteGrade() const;
+	void copyArg(const AForm *f);
 
 	void checkGrade(int grade) const;
 	void beSigned(Bureaucrat &b) ;

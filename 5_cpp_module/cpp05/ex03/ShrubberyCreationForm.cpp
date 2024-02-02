@@ -1,19 +1,17 @@
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("", 145, 137) { }
+ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("", false, 145, 137) { }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string name) : AForm(name, 145, 137) { }
+ShrubberyCreationForm::ShrubberyCreationForm(std::string name) : AForm(name, false, 145, 137) { }
 
-// ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &scf)
-// {
-
-// }
+ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &scf) : AForm(scf.getName(), scf.getIsSigned(), 145, 137) { }
 
 ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm &scf)
 {
     if (this != &scf)
     {
-
+        const AForm* basePtr = &scf;
+        copyArg(basePtr);
     }
     return (*this);
 }

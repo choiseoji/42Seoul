@@ -5,11 +5,8 @@ AForm::AForm(void) : name(""), sign_grade(0), execute_grade(0)
 	this->is_signed = false;
 }
 
-AForm::AForm(std::string name, int sign_grade, int execute_grade)
-: name(name), sign_grade(sign_grade), execute_grade(execute_grade)
-{
-	this->is_signed = false;
-}
+AForm::AForm(std::string name, bool is_signed, int sign_grade, int execute_grade)
+: name(name), is_signed(is_signed), sign_grade(sign_grade), execute_grade(execute_grade) { }
 
 AForm::AForm(const AForm &f) : name(f.name), sign_grade(f.sign_grade), execute_grade(f.execute_grade)
 {
@@ -20,7 +17,7 @@ AForm& AForm::operator=(const AForm &f)
 {
 	if (this != &f)
 	{
-		this->is_signed = f.is_signed;
+		copyArg(&f);
 	}
 	return (*this);
 }
@@ -45,6 +42,14 @@ int AForm::getSignGrade(void) const
 int AForm::getExecuteGrade(void) const
 {
 	return (this->execute_grade);
+}
+
+void AForm::copyArg(const AForm *f)
+{
+	(const_cast<std::string&>(this->name)) = f->getName();
+	this->is_signed = f->getIsSigned();
+	(const_cast<int&>(this->sign_grade)) = f->getSignGrade();
+	(const_cast<int&>(this->execute_grade)) = f->getExecuteGrade();
 }
 
 void AForm::checkGrade(int grade) const

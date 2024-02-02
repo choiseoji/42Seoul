@@ -1,19 +1,17 @@
 #include "PresidentialPardonForm.hpp"
 
-PresidentialPardonForm::PresidentialPardonForm(void) : AForm("", 25, 5) { }
+PresidentialPardonForm::PresidentialPardonForm(void) : AForm("", false, 25, 5) { }
 
-PresidentialPardonForm::PresidentialPardonForm(std::string name) : AForm(name, 25, 5) { }
+PresidentialPardonForm::PresidentialPardonForm(std::string name) : AForm(name, false, 25, 5) { }
 
-// PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &ppf)
-// {
-
-// }
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &ppf) : AForm(ppf.getName(), ppf.getIsSigned(), 25, 5) { }
 
 PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPardonForm &ppf)
 {
     if (this != &ppf)
     {
-
+        const AForm* basePtr = &ppf;
+        copyArg(basePtr);
     }
     return (*this);
 }
