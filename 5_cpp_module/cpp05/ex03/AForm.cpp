@@ -60,7 +60,7 @@ void AForm::beSigned(Bureaucrat &b)
     if (this->is_signed == true)
         throw (AForm::AlreadySignedException());
     else if (b.getGrade() > sign_grade)
-        throw (AForm::GradeTooLowException());   // 여기 예외 처리 tooLow가 맞는건지 잘 모르겠음
+        throw (Bureaucrat::GradeTooLowException());
 
 	this->is_signed = true;
 }
@@ -69,8 +69,8 @@ void AForm::execute(Bureaucrat const & executor) const
 {
 	if (this->is_signed == false)
 		throw(AForm::UnSignedException());
-	else if (executor.getGrade() > execute_grade)  // 이거 맞는지 확인
-		throw(AForm::GradeTooLowException());
+	else if (executor.getGrade() > execute_grade)
+		throw(Bureaucrat::GradeTooLowException());
 
 	this->beExecuted(this->name);
 }
