@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 14:42:16 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/30 14:52:57 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/02/02 13:28:23 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,6 @@ void Bureaucrat::executeForm(AForm const &f) const
 	{
 		f.execute(*this);
 		std::cout << name << " executed " << f.getName() << std::endl;
-		// std::cout << f << std::endl;   // const로 수정??
 	}
 	catch(const std::exception& e)
 	{
