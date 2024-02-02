@@ -24,7 +24,7 @@ private:
 
 public:
 	AForm();
-	AForm(std::string name, int sign_grade, int execute_grade);
+	AForm(std::string name, bool is_signed, int sign_grade, int execute_grade);
 	AForm(const AForm &f);
 	AForm& operator=(const AForm &f);
 	virtual ~AForm();

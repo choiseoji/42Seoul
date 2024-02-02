@@ -5,11 +5,8 @@ AForm::AForm(void) : name(""), sign_grade(0), execute_grade(0)
 	this->is_signed = false;
 }
 
-AForm::AForm(std::string name, int sign_grade, int execute_grade)
-: name(name), sign_grade(sign_grade), execute_grade(execute_grade)
-{
-	this->is_signed = false;
-}
+AForm::AForm(std::string name, bool is_signed, int sign_grade, int execute_grade)
+: name(name), is_signed(is_signed), sign_grade(sign_grade), execute_grade(execute_grade) { }
 
 AForm::AForm(const AForm &f) : name(f.name), sign_grade(f.sign_grade), execute_grade(f.execute_grade)
 {
@@ -60,7 +57,7 @@ void AForm::beSigned(Bureaucrat &b)
     if (this->is_signed == true)
         throw (AForm::AlreadySignedException());
     else if (b.getGrade() > sign_grade)
-        throw (AForm::GradeTooLowException());   // 여기 예외 처리 tooLow가 맞는건지 잘 모르겠음
+        throw (Bureaucrat::GradeTooLowException());
 
 	this->is_signed = true;
 }
@@ -69,8 +66,8 @@ void AForm::execute(Bureaucrat const & executor) const
 {
 	if (this->is_signed == false)
 		throw(AForm::UnSignedException());
-	else if (executor.getGrade() > execute_grade)  // 이거 맞는지 확인
-		throw(AForm::GradeTooLowException());
+	else if (executor.getGrade() > execute_grade)
+		throw(Bureaucrat::GradeTooLowException());
 
 	this->beExecuted(this->name);
 }
