@@ -21,7 +21,7 @@ Form& Form::operator=(const Form &f)
 {
 	if (this != &f)
 	{
-		this->is_signed = f.is_signed;
+		copyArg(&f);
 	}
 	return (*this);
 }
@@ -46,6 +46,14 @@ int Form::getSignGrade(void) const
 int Form::getExecuteGrade(void) const
 {
 	return (this->execute_grade);
+}
+
+void Form::copyArg(const Form *f)
+{
+	(const_cast<std::string&>(this->name)) = f->getName();
+	this->is_signed = f->getIsSigned();
+	(const_cast<int&>(this->sign_grade)) = f->getSignGrade();
+	(const_cast<int&>(this->execute_grade)) = f->getExecuteGrade();
 }
 
 void Form::checkGrade(int grade)

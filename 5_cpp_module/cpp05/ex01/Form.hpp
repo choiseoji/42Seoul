@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 20:38:12 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/02/01 21:08:08 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/02/02 14:38:37 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,9 @@ public:
 	bool getIsSigned() const;
 	int getSignGrade() const;
 	int getExecuteGrade() const;
-	void checkGrade(int grade);
+	void copyArg(const Form *f);
 
+	void checkGrade(int grade);
 	void beSigned(Bureaucrat &b);
 
 	class GradeTooHighException : public std::exception
