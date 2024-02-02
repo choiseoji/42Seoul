@@ -11,8 +11,8 @@ int main(void)
 	AForm *form;
 
 	form = someRandomIntern.makeForm("shrubbery creation", "shu");
-	bureaucrat.signForm(*form);   // sign ok
-	bureaucrat.executeForm(*form);   // execute no
+	bureaucrat.signForm(*form);
+	bureaucrat.executeForm(*form);
 
 	std::cout << std::endl << "========================" << std::endl << std::endl;
 

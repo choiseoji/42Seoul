@@ -2,13 +2,16 @@
 
 Intern::Intern(void) { }
 
-// Intern::Intern(const Intern &i) { }
+Intern::Intern(const Intern &i)
+{
+	(void)i;
+}
 
 Intern& Intern::operator=(const Intern &i)
 {
 	if (this != &i)
 	{
-
+		;
 	}
 	return (*this);
 }
