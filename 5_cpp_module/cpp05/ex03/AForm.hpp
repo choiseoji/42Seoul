@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 20:38:12 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/02/02 14:34:11 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/02/02 21:01:34 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,15 @@ public:
 		virtual const char* what(void) const throw()
 		{
 			return ("This is an unsigned form");
+		}
+	};
+
+	class WrongFormName : public std::exception
+	{
+	public:
+		virtual const char* what(void) const throw()
+		{
+			return ("This kind of form does not exist");
 		}
 	};
 };

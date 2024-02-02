@@ -32,7 +32,7 @@ AForm* Intern::makeForm(std::string name, std::string target)
 	switch(idx)
 	{
 		default:
-			// 에러 메시지 ??
+			throw (AForm::WrongFormName());
 		case 0:
 			form = new ShrubberyCreationForm(target);
 			break ;
