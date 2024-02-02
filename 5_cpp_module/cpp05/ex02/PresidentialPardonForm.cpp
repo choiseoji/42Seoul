@@ -10,7 +10,8 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPard
 {
     if (this != &ppf)
     {
-        //
+        const AForm* basePtr = &ppf;
+        copyArg(basePtr);
     }
     return (*this);
 }

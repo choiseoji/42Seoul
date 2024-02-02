@@ -10,7 +10,8 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 {
     if (this != &scf)
     {
-        //
+        const AForm* basePtr = &scf;
+        copyArg(basePtr);
     }
     return (*this);
 }

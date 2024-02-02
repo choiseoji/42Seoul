@@ -10,7 +10,8 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm &r
 {
     if (this != &rrf)
     {
-        //
+        const AForm* basePtr = &rrf;
+        copyArg(basePtr);
     }
     return (*this);
 }
