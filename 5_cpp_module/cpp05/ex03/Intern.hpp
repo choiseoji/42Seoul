@@ -14,15 +14,6 @@ public:
 	~Intern();
 
 	AForm* makeForm(std::string name, std::string target);
-
-	// class WrongFormName : public std::exception
-	// {
-	// public:
-	// 	virtual const char* what(void) const throw()
-	// 	{
-	// 		return ("This kind of form does not exist");
-	// 	}
-	// };
 };
 
 #endif
