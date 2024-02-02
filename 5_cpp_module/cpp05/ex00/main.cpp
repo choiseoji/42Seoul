@@ -6,7 +6,7 @@
 /*   By: seojchoi <seojchoi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/28 15:27:42 by seojchoi          #+#    #+#             */
-/*   Updated: 2024/01/28 20:35:22 by seojchoi         ###   ########.fr       */
+/*   Updated: 2024/02/02 15:02:30 by seojchoi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 
 int main(void)
 {
-	Bureaucrat SEO("seo", 10);   // 제일 높은 등급
-	Bureaucrat JI("ji", 145);
 
 	try
 	{
+		Bureaucrat SEO("seo", 10);   // 제일 높은 등급
+		Bureaucrat JI("ji", 151);
+
 		// SEO의 정보
 		std::cout << SEO << std::endl;
 		// SEO등급 올리기

@@ -14,10 +14,10 @@ int main(void)
 
     B.signForm(b);
 
-    // Bureaucrat C("C", 151);
-    // Form c("third_forn", 1, 1);
+    Bureaucrat C("C", 151);
+    Form c("third_form", 1, 1);
 
-    // C.signForm(c);   // 예외의 경우 이상한 에러 남....고쳐보기
+    C.signForm(c);   // 예외의 경우 이상한 에러 남....고쳐보기
 
     return (0);
 }
