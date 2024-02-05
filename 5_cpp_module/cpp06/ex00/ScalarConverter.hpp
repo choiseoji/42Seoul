@@ -3,6 +3,7 @@
 # include <iostream>
 # include <string>
 # include <iomanip>
+# include <float.h>
 
 # define ERROR -1
 # define CHAR 0

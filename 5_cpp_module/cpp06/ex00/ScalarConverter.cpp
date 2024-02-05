@@ -25,7 +25,6 @@ int getType(std::string n)
 	int i;
 	bool dot;
 	char *ptr;
-	int num;
 
 	i = 0;
 	dot = false;
@@ -35,11 +34,11 @@ int getType(std::string n)
 			dot = true;
 		i++;
 	}
-	num = strtod(n.c_str(), &ptr);
+	strtod(n.c_str(), &ptr);
 
-	if (i != 1 &&*ptr && n[i - 1] != 'f')
-		return (ERROR);
-	else if (dot == true && n[i - 1] == 'f')
+	// if (i != 1 && *ptr && n[i - 1] != 'f')
+	// 	return (ERROR);
+	if (dot == true && n[i - 1] == 'f')
 		return (FLOAT);
 	else if (dot == true)
 		return (DOUBLE);
@@ -51,22 +50,56 @@ int getType(std::string n)
 
 void baseChar(std::string n)
 {
+	char num;
 
+	num = n[0];
+	std::cout << "char: " << num << std::endl;
+	std::cout << "int: " << static_cast<int>(num) << std::endl;
+	std::cout << "float: "  << std::fixed << std::setprecision(1) << static_cast<float>(num) << 'f' << std::endl;
+	std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(num) << std::endl;
 }
 
-void baseInt(std::string n)
-{
+// void baseInt(std::string n)
+// {
 
-}
+// }
 
-void baseFloat(std::string n)
-{
+// void baseFloat(std::string n)
+// {
 
-}
+// }
 
 void baseDouble(std::string n)
 {
-	
+	double num;
+
+	num = strtod(n.c_str(), NULL);
+
+	// char
+	if (std::isnan(num) || std::isinf(num))
+		std::cout << "char: impossible" << std::endl;
+	else if (!std::isprint(static_cast<char>(num)))
+		std::cout << "char: Non displayable" << std::endl;
+	else
+		std::cout << "char: " << static_cast<char>(num) << std::endl;
+
+	// int
+	if (num > 2147483647 || num < -2147483648
+		|| std::isnan(num) || std::isinf(num))
+		std::cout << "int: impossible" << std::endl;
+	else
+		std::cout << "int: " << static_cast<int>(num) << std::endl;
+
+	// float, double 은 범위 체크만 해주면 됨
+	if (num > FLT_MAX || num < FLT_MIN)
+		std::cout << "float: impossible" << std::endl;
+	else
+		std::cout << "float: "  << std::fixed << std::setprecision(1) << static_cast<float>(num) << 'f' << std::endl;
+
+	if (num > DBL_MAX || num < DBL_MIN)
+		std::cout << "double: impossible" << std::endl;
+	else
+		std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(num) << std::endl;
 }
 
 void ScalarConverter::convert(std::string n)
@@ -74,20 +107,21 @@ void ScalarConverter::convert(std::string n)
 	int type;
 
 	type = getType(n);
+	type = 3;   // double로 하려고 임의로 바꾸기
 	switch(type)
 	{
-		default:
-			std::cout << "invalid_input" << std::endl;
-			break ;
+		// default:
+		// 	std::cout << "invalid_input" << std::endl;
+		// 	break ;
 		case CHAR:
 			baseChar(n);
 			break ;
-		case INT:
-			baseInt(n);
-			break ;
-		case FLOAT:
-			baseFloat(n);
-			break ;
+		// case INT:
+		// 	baseInt(n);
+		// 	break ;
+		// case FLOAT:
+		// 	baseFloat(n);
+		// 	break ;
 		case DOUBLE:
 			baseDouble(n);
 			break ;
