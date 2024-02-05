@@ -23,4 +23,11 @@ public:
 	static void convert(std::string num);
 };
 
+int isChar(std::string n);
+
+void toChar(std::string n);
+void toInt(std::string n);
+void toFloat(std::string n);
+void toDouble(std::string n);
+
 #endif
