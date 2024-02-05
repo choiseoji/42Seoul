@@ -91,12 +91,15 @@ void baseDouble(std::string n)
 		std::cout << "int: " << static_cast<int>(num) << std::endl;
 
 	// float, double 은 범위 체크만 해주면 됨
-	if (num > FLT_MAX || num < FLT_MIN)
+	errno = 0;
+	strtof(n.c_str(), NULL);
+	if (errno == ERANGE)
 		std::cout << "float: impossible" << std::endl;
 	else
 		std::cout << "float: "  << std::fixed << std::setprecision(1) << static_cast<float>(num) << 'f' << std::endl;
 
-	if (num > DBL_MAX || num < DBL_MIN)
+	errno = 0;
+	if (errno == ERANGE)
 		std::cout << "double: impossible" << std::endl;
 	else
 		std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(num) << std::endl;

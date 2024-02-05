@@ -4,6 +4,7 @@
 # include <string>
 # include <iomanip>
 # include <float.h>
+# include <errno.h>
 
 # define ERROR -1
 # define CHAR 0
