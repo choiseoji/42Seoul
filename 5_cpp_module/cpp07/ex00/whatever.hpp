@@ -2,15 +2,6 @@
 # define WHATEVER_HPP
 # include <iostream>
 
-class Whatever
-{
-public:
-    Whatever();
-    Whatever(const Whatever &w);
-    Whatever& operator=(const Whatever &w);
-    ~Whatever();
-};
-
 template <typename T>
 void swap(T &a, T &b)
 {
