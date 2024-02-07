@@ -2,19 +2,9 @@
 
 ScalarConverter::ScalarConverter() { }
 
-ScalarConverter::ScalarConverter(const ScalarConverter &s)
-{
-	(void)s;
-}
+ScalarConverter::ScalarConverter(const ScalarConverter &s) { (void)s; }
 
-ScalarConverter& ScalarConverter::operator=(const ScalarConverter &s)
-{
-	if (this != &s)
-	{
-
-	}
-	return (*this);
-}
+ScalarConverter& ScalarConverter::operator=(const ScalarConverter &s) { (void)s; }
 
 ScalarConverter::~ScalarConverter() { }
 
@@ -217,9 +207,6 @@ void ScalarConverter::convert(std::string n)
 	type = getType(n);
 	switch(type)
 	{
-		// default:
-		// 	std::cout << "invalid_input" << std::endl;
-		// 	break ;
 		case CHAR:
 			baseChar(n);
 			break ;

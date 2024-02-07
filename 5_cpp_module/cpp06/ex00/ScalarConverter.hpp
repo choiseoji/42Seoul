@@ -1,12 +1,11 @@
-#ifndef SCALARCONVERTER
-# define SCALARCONVERTER
+#ifndef SCALARCONVERTER_HPP
+# define SCALARCONVERTER_HPP
 # include <iostream>
 # include <string>
 # include <iomanip>
 # include <float.h>
 # include <errno.h>
 
-# define ERROR -1
 # define CHAR 0
 # define INT 1
 # define FLOAT 2
