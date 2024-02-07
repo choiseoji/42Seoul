@@ -57,6 +57,13 @@ public:
         return (arr[idx]);
     }
 
+    const T& operator[](const int idx) const
+    {
+        if (idx < 0 || idx > arr_size)
+            throw (outOfBound());
+        return (arr[idx]);
+    }
+
     int size(void) const
     {
         return (this->arr_size);
