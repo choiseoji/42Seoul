@@ -2,19 +2,9 @@
 
 Serializer::Serializer(void) { }
 
-Serializer::Serializer(const Serializer &s)
-{
-    (void)s;
-}
+Serializer::Serializer(const Serializer &s) { (void)s; }
 
-Serializer& Serializer::operator=(const Serializer &s)
-{
-    if (this != &s)
-    {
-        
-    }
-    return (*this);
-}
+Serializer& Serializer::operator=(const Serializer &s) { (void)s; }
 
 Serializer::~Serializer(void) { }
 
