@@ -53,6 +53,23 @@ public:
         }
         delete arr;
     }
+
+    T operator[](int idx)
+    {
+        if (idx < 0 || idx > size)
+            throw (outOfBound());
+        return (arr[idx]);
+    }
+
+    int size(void) const
+    {
+        return (this->size);
+    }
+
+    class outOfBound : public std::exception
+    {
+
+    };
 };
 
 #endif
