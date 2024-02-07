@@ -4,7 +4,11 @@ Serializer::Serializer(void) { }
 
 Serializer::Serializer(const Serializer &s) { (void)s; }
 
-Serializer& Serializer::operator=(const Serializer &s) { (void)s; }
+Serializer& Serializer::operator=(const Serializer &s)
+{
+    (void)s;
+    return (*this);
+}
 
 Serializer::~Serializer(void) { }
 

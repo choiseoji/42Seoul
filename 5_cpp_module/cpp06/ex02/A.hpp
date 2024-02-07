@@ -4,8 +4,6 @@
 
 class A : public Base
 {
-public:
-
 };
 
 #endif

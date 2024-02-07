@@ -4,7 +4,11 @@ ScalarConverter::ScalarConverter() { }
 
 ScalarConverter::ScalarConverter(const ScalarConverter &s) { (void)s; }
 
-ScalarConverter& ScalarConverter::operator=(const ScalarConverter &s) { (void)s; }
+ScalarConverter& ScalarConverter::operator=(const ScalarConverter &s)
+{ 
+	(void)s;
+	return (*this); 
+}
 
 ScalarConverter::~ScalarConverter() { }
 
@@ -26,9 +30,9 @@ int getType(std::string n)
 	}
 	strtod(n.c_str(), &ptr);
 
-	if (n == "+inff" || n == "-inff" || (dot == true && n[i - 1] == 'f'))
+	if (n == "inff" || n == "+inff" || n == "-inff" || (dot == true && n[i - 1] == 'f'))
 		return (FLOAT);
-	else if (n == "nan" || n == "+inf" || n == "-inf" || dot == true)
+	else if (n == "nan" || n == "inf" ||  n == "+inf" || n == "-inf" || dot == true)
 		return (DOUBLE);
 	else if (i == 1 && std::isalpha(n[i - 1]))
 		return (CHAR);

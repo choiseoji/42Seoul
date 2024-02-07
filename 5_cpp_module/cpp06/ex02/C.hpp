@@ -4,8 +4,6 @@
 
 class C : public Base
 {
-public:
-
 };
 
 #endif
