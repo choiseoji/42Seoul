@@ -2,7 +2,7 @@
 
 RobotomyRequestForm::RobotomyRequestForm(void) : AForm("", false, 72, 45) { }
 
-RobotomyRequestForm::RobotomyRequestForm(std::string name) : AForm(name, false, 72, 45) { }
+RobotomyRequestForm::RobotomyRequestForm(std::string target) : AForm(target, false, 72, 45) { }
 
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm &rrf) : AForm(rrf.getName(), rrf.getIsSigned(), 72, 45) { }
 

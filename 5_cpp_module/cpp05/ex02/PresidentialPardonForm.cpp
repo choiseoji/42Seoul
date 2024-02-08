@@ -2,7 +2,7 @@
 
 PresidentialPardonForm::PresidentialPardonForm(void) : AForm("", false, 25, 5) { }
 
-PresidentialPardonForm::PresidentialPardonForm(std::string name) : AForm(name, false, 25, 5) { }
+PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm(target, false, 25, 5) { }
 
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &ppf) : AForm(ppf.getName(), ppf.getIsSigned(), 25, 5) { }
 

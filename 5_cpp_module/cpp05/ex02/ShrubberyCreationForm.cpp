@@ -2,7 +2,7 @@
 
 ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("", false, 145, 137) { }
 
-ShrubberyCreationForm::ShrubberyCreationForm(std::string name) : AForm(name, false, 145, 137) { }
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target) : AForm(target, false, 145, 137) { }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &scf) : AForm(scf.getName(), scf.getIsSigned(), 145, 137) { }
 
