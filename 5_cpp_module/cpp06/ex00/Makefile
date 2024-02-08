@@ -4,7 +4,7 @@ SRC=	main.cpp \
 		ScalarConverter.cpp
 OBJ=	main.o \
 		ScalarConverter.o
-MAIN=ScalarConverter
+MAIN=convert
 
 .PHONY: all clean fclean re
 

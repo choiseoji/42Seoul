@@ -1,10 +1,15 @@
 #include "ScalarConverter.hpp"
 
-int main(void)
+int input_error(void)
 {
-	std::string n;
+	std::cout << "You need to provide one input value" << std::endl;
+	return (0);
+}
 
-	std::cin >> n;
-	ScalarConverter::convert(n);
+int main(int ac, char **av)
+{
+	if (ac != 2)
+		return (input_error());
+	ScalarConverter::convert(av[1]);
 	return (0);
 }
