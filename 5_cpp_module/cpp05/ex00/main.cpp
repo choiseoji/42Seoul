@@ -23,13 +23,19 @@ int main(void)
 		// SEO의 정보
 		std::cout << SEO << std::endl;
 		// SEO등급 올리기
-		SEO.increment(9);
+		for(int i = 0; i < 9; i++)
+		{
+			SEO.increment();
+		}
 		std::cout << SEO << std::endl;
 
 		// JI의 정보
 		std::cout << JI << std::endl;
 		// JI등급 내리기
-		JI.decrement(6);
+		for(int i = 0; i < 5; i++)
+		{
+			JI.decrement();
+		}
 		std::cout << JI << std::endl;
 
 	}
