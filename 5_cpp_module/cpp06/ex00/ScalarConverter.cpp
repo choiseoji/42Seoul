@@ -46,8 +46,8 @@ void baseChar(std::string n)
 	{
 		std::cout << "char: " << static_cast<char>(n[0]) << std::endl;
 		std::cout << "int: " << static_cast<int>(n[0]) << std::endl;
-		std::cout << "float: " << static_cast<float>(n[0]) << std::endl;
-		std::cout << "double: " << static_cast<double>(n[0]) << std::endl;
+		std::cout << "float: "  << std::fixed << std::setprecision(1) << static_cast<float>(n[0]) << 'f' << std::endl;
+		std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(n[0]) << std::endl;
 	}
 	else
 	{
