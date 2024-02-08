@@ -49,16 +49,16 @@ int Bureaucrat::getGrade(void) const
 	return (this->grade);
 }
 
-void Bureaucrat::increment(int num)
+void Bureaucrat::increment()
 {
-	checkGrade(this->grade - num);
-	this->grade -= num;
+	checkGrade(this->grade - 1);
+	this->grade -= 1;
 }
 
-void Bureaucrat::decrement(int num)
+void Bureaucrat::decrement()
 {
-	checkGrade(this->grade + num);
-	this->grade += num;
+	checkGrade(this->grade + 1);
+	this->grade += 1;
 }
 
 void Bureaucrat::checkGrade(int grade)
