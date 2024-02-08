@@ -20,6 +20,18 @@ RobotomyRequestForm::~RobotomyRequestForm(void) { }
 
 void RobotomyRequestForm::beExecuted(std::string target) const
 {
-    std::cout << "drillll~ 🔩 (drilling noises)" << std::endl;;
-    std::cout << target << " has been robotomized successfully 50% of the time" << std::endl;
+    int random_num;
+
+    std::cout << "drillll~ 🔩 (drilling noises)" << std::endl;
+    srand(time(0));
+    random_num = rand() % 2;
+    switch(random_num)
+    {
+        case 0:
+            std::cout << target <<  " robotomized success!!" << std::endl;
+            break ;
+        case 1:
+            std::cout << target << " robotomized fail!!" << std::endl;
+            break ;
+    }
 }
