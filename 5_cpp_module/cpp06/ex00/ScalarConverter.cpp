@@ -121,13 +121,28 @@ bool isFloat(std::string n)
 	return (false);
 }
 
+int is_nan(double num)
+{
+	if (num == num)
+		return (false);
+	else
+		return (true);
+}
+
+int is_inf(double num)      // is_inf 어캐 구현할지 생각해보기
+{
+
+}
+
+//////////////////////////////////////////////////////////
+
 void toChar(std::string n)
 {
 	double	num;
 	char	*ptr;
 
 	num = strtod(n.c_str(), &ptr);
-	if (*ptr || std::isnan(num) || std::isinf(num))
+	if (*ptr || is_nan(num) || std::isinf(num))
 		std::cout << "char: impossible" << std::endl;
 	else if (!std::isprint(static_cast<char>(num)))
 		std::cout << "char: Non displayable" << std::endl;
@@ -151,7 +166,7 @@ void toInt(std::string n)
 
 	num = strtod(n.c_str(), &ptr);
 	if (*ptr || num > 2147483647 || num < -2147483648
-		|| std::isnan(num) || std::isinf(num))
+		|| is_nan(num) || std::isinf(num))
 		std::cout << "int: impossible" << std::endl;
 	else
 		std::cout << "int: " << static_cast<int>(num) << std::endl;
