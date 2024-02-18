@@ -1,24 +1,45 @@
 #include "ScalarConverter.hpp"
 
-ScalarConverter::ScalarConverter() { }
+ScalarConverter::ScalarConverter(void) { }
 
-ScalarConverter::ScalarConverter(const ScalarConverter &s) { (void)s; }
+ScalarConverter::ScalarConverter(const ScalarConverter &sc) { (void)sc; }
 
-ScalarConverter& ScalarConverter::operator=(const ScalarConverter &s)
-{ 
-	(void)s;
-	return (*this); 
+ScalarConverter& ScalarConverter::operator=(const ScalarConverter &sc)
+{
+    (void)sc;
+	return (*this);
 }
 
-ScalarConverter::~ScalarConverter() { }
+ScalarConverter::~ScalarConverter(void) { }
 
-///////////////////////////////////////////////////////////
+void printImpossible(void)
+{
+    std::cout << "char: impossible" << std::endl;
+    std::cout << "int: impossible" << std::endl;
+    std::cout << "float: impossible" << std::endl;
+    std::cout << "double: impossible" << std::endl;
+}
+
+int is_nan(double num)
+{
+    if (num != num)
+        return (true);
+    else
+        return (false);
+}
+
+int is_inf(double num)
+{
+    if (num != 0 && (num * 2 == num))
+        return (true);
+    else
+        return (false);
+}
 
 int getType(std::string n)
 {
-	int i;
+    int i;
 	bool dot;
-	char *ptr;
 
 	i = 0;
 	dot = false;
@@ -28,9 +49,8 @@ int getType(std::string n)
 			dot = true;
 		i++;
 	}
-	strtod(n.c_str(), &ptr);
 
-	if (n == "inff" || n == "+inff" || n == "-inff" || (dot == true && n[i - 1] == 'f'))
+	if (n == "nanf" || n == "inff" || n == "+inff" || n == "-inff" || (dot == true && n[i - 1] == 'f'))
 		return (FLOAT);
 	else if (n == "nan" || n == "inf" ||  n == "+inf" || n == "-inf" || dot == true)
 		return (DOUBLE);
@@ -40,203 +60,140 @@ int getType(std::string n)
 		return (INT);
 }
 
-void baseChar(std::string n)
+void isChar(std::string n)
 {
-	if (isChar(n))
-	{
-		std::cout << "char: " << static_cast<char>(n[0]) << std::endl;
-		std::cout << "int: " << static_cast<int>(n[0]) << std::endl;
-		std::cout << "float: "  << std::fixed << std::setprecision(1) << static_cast<float>(n[0]) << 'f' << std::endl;
-		std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(n[0]) << std::endl;
-	}
+    if (!std::isalpha(n[0]))
+        printImpossible();
+    else
+    {
+        char    char_num;
+        double  num;
+        char    *ptr;
+
+        num = strtod(n.c_str(), &ptr);
+        char_num = static_cast<char>(n[0]);
+        if (!std::isprint(char_num))
+            std::cout << "char: Non displayable" << std::endl;
+        else
+            std::cout << "char: " << char_num << std::endl;
+        
+        if (num > 2147483647 || num < -2147483648 || is_nan(num) || is_inf(num))
+            std::cout << "int: impossible" << std::endl;
+        else
+		    std::cout << "int: " << static_cast<int>(char_num) << std::endl;
+
+        std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(char_num) << 'f' << std::endl;
+        std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(char_num) << std::endl;
+    }
+}
+
+void isInt(std::string n)
+{
+    double  num;
+    char	*ptr;
+
+    num = strtod(n.c_str(), &ptr);
+    if (*ptr || num > 2147483647 || num < -2147483648
+		|| is_nan(num) || is_inf(num))
+        printImpossible();
 	else
-	{
-		std::cout << "char: impossible" << std::endl;
-		std::cout << "int: impossible" << std::endl;
-		std::cout << "float: impossible" << std::endl;
-		std::cout << "double: impossible" << std::endl;
-	}
+    {
+        int int_num;
+
+        int_num = static_cast<int>(num);
+        if (is_nan(num) || is_inf(num))
+		    std::cout << "char: impossible" << std::endl;
+        else if (!std::isprint(static_cast<char>(int_num)))
+            std::cout << "char: Non displayable" << std::endl;
+        else
+            std::cout << "char: " << static_cast<char>(int_num) << std::endl;
+		std::cout << "int: " << int_num << std::endl;
+        std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(int_num) << 'f' << std::endl;
+        std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(int_num) << std::endl;
+    }
 }
 
-void baseInt(std::string n)
+void isFloat(std::string n)
 {
-	toChar(n);
-	toInt(n);
-	toFloat(n);
-	toDouble(n);
+    char    *ptr;
+    double  num;
+
+    errno = 0;
+    n = n.substr(0, n.size() - 1);
+    num = strtof(n.c_str(), &ptr);
+    if (*ptr || (errno == ERANGE))
+        printImpossible();
+    else
+    {
+        float float_num;
+
+        float_num = static_cast<float>(num);
+        if (is_nan(num) || is_inf(num))
+		    std::cout << "char: impossible" << std::endl;
+        else if (!std::isprint(static_cast<char>(float_num)))
+            std::cout << "char: Non displayable" << std::endl;
+        else
+            std::cout << "char: " << static_cast<char>(float_num) << std::endl;
+
+        if (float_num > 2147483647 || float_num < -2147483648 || is_nan(float_num) || is_inf(float_num))
+            std::cout << "int: impossible" << std::endl;
+        else
+		    std::cout << "int: " << static_cast<int>(float_num) << std::endl;
+
+        std::cout << "float: " << std::fixed << std::setprecision(1) << float_num << 'f' << std::endl;
+        std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(float_num) << std::endl;
+    }
 }
 
-void baseFloat(std::string n)
+void isDouble(std::string n)
 {
-	int size;
-	std::string new_n;
+    char    *ptr;
+    double  double_num;
 
-	size = n.length();
-	new_n = n.substr(0, size - 1);
+    errno = 0;
+    double_num = strtod(n.c_str(), &ptr);
+    if (*ptr || (errno == ERANGE))
+        printImpossible();
+    else
+    {
+        if (is_nan(double_num) || is_inf(double_num))
+		    std::cout << "char: impossible" << std::endl;
+        else if (!std::isprint(static_cast<char>(double_num)))
+            std::cout << "char: Non displayable" << std::endl;
+        else
+            std::cout << "char: " << static_cast<char>(double_num) << std::endl;
 
-	toChar(new_n);
-	toInt(new_n);
-	toFloat(new_n);
-	toDouble(new_n);
+        if (double_num > 2147483647 || double_num < -2147483648 || is_nan(double_num) || is_inf(double_num))
+            std::cout << "int: impossible" << std::endl;
+        else
+		    std::cout << "int: " << static_cast<int>(double_num) << std::endl;
+
+        std::cout << "float: " << std::fixed << std::setprecision(1) << static_cast<float>(double_num) << 'f' << std::endl;
+        std::cout << "double: " << std::fixed << std::setprecision(1) << double_num << std::endl;
+    }
 }
 
-void baseDouble(std::string n)
+void ScalarConverter::convert(std::string num)
 {
-	toChar(n);
-	toInt(n);
-	toFloat(n);
-	toDouble(n);
-}
+    int type;
 
-//////////////////////////////////////////////////////////
+    type = getType(num);
+    switch (type)
+    {
+        case CHAR:
+            isChar(num);
+            break ;
 
-int isChar(std::string n)
-{
-	int	i;
+        case INT:
+            isInt(num);
+            break ;
 
-	i = 0;
-	while (n[i])
-		i++;
-	
-	if (i == 1 && std::isalpha(n[0]))
-		return (i);
-	return (0);
-}
+        case FLOAT:
+            isFloat(num);
+            break ;
 
-bool isFloat(std::string n)
-{
-	int i;
-	int dot;
-
-	i = 0;
-	dot = 0;
-	while (n[i])
-	{
-		if (n[i] == '.')
-			dot = 1;
-		i++;
-	}
-	if (dot && n[i - 1] == 'f')
-		return (true);
-	return (false);
-}
-
-int is_nan(double num)
-{
-	if (num == num)
-		return (false);
-	else
-		return (true);
-}
-
-int is_inf(double num)      // is_inf 어캐 구현할지 생각해보기
-{
-
-}
-
-//////////////////////////////////////////////////////////
-
-void toChar(std::string n)
-{
-	double	num;
-	char	*ptr;
-
-	num = strtod(n.c_str(), &ptr);
-	if (*ptr || is_nan(num) || std::isinf(num))
-		std::cout << "char: impossible" << std::endl;
-	else if (!std::isprint(static_cast<char>(num)))
-		std::cout << "char: Non displayable" << std::endl;
-	else
-		std::cout << "char: " << static_cast<char>(num) << std::endl;
-}
-
-void toInt(std::string n)
-{
-	double	num;
-	char	*ptr;
-	int		i;
-
-	if (isChar(n))
-	{
-		std::cout << "int: " << static_cast<int>(n[0]) << std::endl;
-		return ;
-	}
-	i = isFloat(n);
-	n = n.substr(0, i - 1);
-
-	num = strtod(n.c_str(), &ptr);
-	if (*ptr || num > 2147483647 || num < -2147483648
-		|| is_nan(num) || std::isinf(num))
-		std::cout << "int: impossible" << std::endl;
-	else
-		std::cout << "int: " << static_cast<int>(num) << std::endl;
-}
-
-void toFloat(std::string n)
-{
-	float	num;
-	char	*ptr;
-	int		i;
-
-	if (isChar(n))
-	{
-		std::cout << "float: "  << std::fixed << std::setprecision(1) << static_cast<float>(n[0]) << 'f' << std::endl;
-		return ;
-	}
-	
-	i = isFloat(n);
-	n = n.substr(0, i - 1);
-
-	errno = 0;
-	num = strtof(n.c_str(), &ptr);
-	if (*ptr || (errno == ERANGE))
-		std::cout << "float: impossible" << std::endl;
-	else
-		std::cout << "float: "  << std::fixed << std::setprecision(1) << static_cast<float>(num) << 'f' << std::endl;
-}
-
-void toDouble(std::string n)
-{
-	double	num;
-	char	*ptr;
-	int		i;
-
-	if (isChar(n))
-	{
-		std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(n[0]) << std::endl;
-		return ;
-	}
-	i = isFloat(n);
-	n = n.substr(0, i - 1);
-
-	errno = 0;
-	num = strtod(n.c_str(), &ptr);
-	if (*ptr || (errno == ERANGE))
-		std::cout << "double: impossible" << std::endl;
-	else
-		std::cout << "double: " << std::fixed << std::setprecision(1) << static_cast<double>(num) << std::endl;
-}
-
-//////////////////////////////////////////////////////////
-
-void ScalarConverter::convert(std::string n)
-{
-	int type;
-
-	type = getType(n);
-	switch(type)
-	{
-		case CHAR:
-			baseChar(n);
-			break ;
-		case INT:
-			baseInt(n);
-			break ;
-		case FLOAT:
-			baseFloat(n);
-			break ;
-		case DOUBLE:
-			baseDouble(n);
-			break ;
-	}
+        case DOUBLE:
+            isDouble(num);
+            break ;
+    }
 }
