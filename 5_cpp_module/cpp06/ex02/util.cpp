@@ -7,7 +7,7 @@ Base * generate(void)
 {
     int random_num;
 
-    srand(time(0));    // seed 초기화
+    srand(time(0));
     random_num = rand() % 3;
     switch (random_num)
     {
@@ -38,10 +38,24 @@ void identify(Base* p)
 
 void identify(Base& p)
 {
-    if (dynamic_cast<A*>(&p))
+    try {
+        (void)dynamic_cast<A&>(p);
         std::cout << "it is A type" << std::endl;
-    else if (dynamic_cast<B*>(&p))
+    } catch (std::bad_cast& ex){
+        ;
+    }
+
+    try {
+        (void)dynamic_cast<B&>(p);
         std::cout << "it is B type" << std::endl;
-    else if (dynamic_cast<C*>(&p))
+    } catch (std::bad_cast& ex){
+        ;
+    }
+
+    try {
+        (void)dynamic_cast<C&>(p);
         std::cout << "it is C type" << std::endl;
+    } catch (std::bad_cast& ex){
+        ;
+    }
 }
