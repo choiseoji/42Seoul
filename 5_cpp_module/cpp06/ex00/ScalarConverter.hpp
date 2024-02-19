@@ -8,9 +8,9 @@
 # define DOUBLE 3
 
 class ScalarConverter {
-
-public:
+    private:
     ScalarConverter();
+public:
     ScalarConverter(const ScalarConverter &sc);
     ScalarConverter& operator=(const ScalarConverter &sc);
     ~ScalarConverter();
