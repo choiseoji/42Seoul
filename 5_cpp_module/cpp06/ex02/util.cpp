@@ -7,14 +7,13 @@ Base * generate(void)
 {
     int random_num;
 
-    srand(time(0));
     random_num = rand() % 3;
     switch (random_num)
     {
         case 0:
             std::cout << "create A type" << std::endl;
             return (new A());
-        
+
         case 1:
             std::cout << "create B type" << std::endl;
             return (new B());
