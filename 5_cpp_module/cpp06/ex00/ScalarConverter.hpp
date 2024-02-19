@@ -8,13 +8,13 @@
 # define DOUBLE 3
 
 class ScalarConverter {
-    private:
+private:
     ScalarConverter();
-public:
     ScalarConverter(const ScalarConverter &sc);
     ScalarConverter& operator=(const ScalarConverter &sc);
     ~ScalarConverter();
 
+public:
     static void convert(std::string num);
 };
 
