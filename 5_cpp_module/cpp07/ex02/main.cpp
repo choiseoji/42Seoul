@@ -1,14 +1,8 @@
 #include "Array.hpp"
+#include "Array.tpp"
 
-void lk(void)
-{
-    system("leaks arr");
-}
-
-// try-catch 문 써야함!
 int main(void)
 {
-    atexit(lk);
     Array<int> arr(3);
 
     for(int i = 0; i < 3; i++)
