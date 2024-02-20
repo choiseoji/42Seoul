@@ -20,6 +20,17 @@ void printImpossible(void)
     std::cout << "double: impossible" << std::endl;
 }
 
+int is_print(char num)
+{
+    int n;
+
+    n = static_cast<int>(num);
+    if (n >= 32 && n <= 127)
+        return (true);
+    else
+        return (false);
+}
+
 int is_nan(double num)
 {
     if (num != num)
@@ -72,11 +83,11 @@ void isChar(std::string n)
 
         num = strtod(n.c_str(), &ptr);
         char_num = static_cast<char>(n[0]);
-        if (!std::isprint(char_num))
+        if (!is_print(char_num))
             std::cout << "char: Non displayable" << std::endl;
         else
             std::cout << "char: " << char_num << std::endl;
-        
+
         if (num > 2147483647 || num < -2147483648 || is_nan(num) || is_inf(num))
             std::cout << "int: impossible" << std::endl;
         else
@@ -103,7 +114,7 @@ void isInt(std::string n)
         int_num = static_cast<int>(num);
         if (is_nan(num) || is_inf(num))
 		    std::cout << "char: impossible" << std::endl;
-        else if (!std::isprint(static_cast<char>(int_num)))
+        else if (!is_print(static_cast<char>(int_num)))
             std::cout << "char: Non displayable" << std::endl;
         else
             std::cout << "char: " << static_cast<char>(int_num) << std::endl;
@@ -130,7 +141,7 @@ void isFloat(std::string n)
         float_num = static_cast<float>(num);
         if (is_nan(num) || is_inf(num))
 		    std::cout << "char: impossible" << std::endl;
-        else if (!std::isprint(static_cast<char>(float_num)))
+        else if (!is_print(static_cast<char>(float_num)))
             std::cout << "char: Non displayable" << std::endl;
         else
             std::cout << "char: " << static_cast<char>(float_num) << std::endl;
@@ -158,7 +169,7 @@ void isDouble(std::string n)
     {
         if (is_nan(double_num) || is_inf(double_num))
 		    std::cout << "char: impossible" << std::endl;
-        else if (!std::isprint(static_cast<char>(double_num)))
+        else if (!is_print(static_cast<char>(double_num)))
             std::cout << "char: Non displayable" << std::endl;
         else
             std::cout << "char: " << static_cast<char>(double_num) << std::endl;
