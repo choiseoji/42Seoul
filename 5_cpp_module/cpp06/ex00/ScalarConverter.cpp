@@ -112,7 +112,7 @@ void isInt(std::string n)
         int int_num;
 
         int_num = static_cast<int>(num);
-        if (is_nan(num) || is_inf(num))
+        if (is_nan(num) || is_inf(num) || num > CHAR_MAX || num < CHAR_MIN)
 		    std::cout << "char: impossible" << std::endl;
         else if (!is_print(static_cast<char>(int_num)))
             std::cout << "char: Non displayable" << std::endl;
@@ -139,7 +139,7 @@ void isFloat(std::string n)
         float float_num;
 
         float_num = static_cast<float>(num);
-        if (is_nan(num) || is_inf(num))
+        if (is_nan(num) || is_inf(num) || num > CHAR_MAX || num < CHAR_MIN)
 		    std::cout << "char: impossible" << std::endl;
         else if (!is_print(static_cast<char>(float_num)))
             std::cout << "char: Non displayable" << std::endl;
@@ -167,7 +167,7 @@ void isDouble(std::string n)
         printImpossible();
     else
     {
-        if (is_nan(double_num) || is_inf(double_num))
+        if (is_nan(double_num) || is_inf(double_num) || double_num > CHAR_MAX || double_num < CHAR_MIN)
 		    std::cout << "char: impossible" << std::endl;
         else if (!is_print(static_cast<char>(double_num)))
             std::cout << "char: Non displayable" << std::endl;
