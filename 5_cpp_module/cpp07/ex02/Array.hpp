@@ -52,7 +52,7 @@ public:
 
     T& operator[](int idx)
     {
-        if (idx < 0 || idx > arr_size)
+        if (idx < 0 || idx > arr_size)     // =
             throw (outOfBound());
         return (arr[idx]);
     }

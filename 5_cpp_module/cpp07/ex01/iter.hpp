@@ -3,7 +3,7 @@
 # include <iostream>
 
 template <typename T>
-void printValue(T value)
+void printValue(T const value)
 {
     std::cout << value << " ";
 }
@@ -12,11 +12,11 @@ void printValue(T value)
 // 2. the length of the array
 // 3. a function that will be call on every element of the array
 template <typename T>
-void iter(T *ptr, int size, void (*func_ptr)(T))
+void iter(T *ptr, size_t size, void (*func_ptr)(const T))
 {
-    for(int i = 0; i < size; i++)
+    for(size_t i = 0; i < size; i++)
     {
-       (*func_ptr)(*(ptr + i));
+        func_ptr(ptr[i]);
     }
 }
 
