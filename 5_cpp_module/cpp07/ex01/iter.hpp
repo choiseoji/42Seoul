@@ -20,4 +20,13 @@ void iter(T *ptr, size_t size, void (*func_ptr)(const T&))
     }
 }
 
+template <typename T>
+void iter(T *ptr, size_t size, void (*func_ptr)(T&))
+{
+    for(size_t i = 0; i < size; i++)
+    {
+        func_ptr(ptr[i]);
+    }
+}
+
 #endif
