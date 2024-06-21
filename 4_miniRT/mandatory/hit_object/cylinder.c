@@ -13,7 +13,7 @@
 #include "../miniRT.h"
 #define SIDE 1
 #define TOP 2
-#define BASE 3
+#define BASE 3 
 
 int	set_cylinder_rec(t_hit_record *rec, t_ray ray, t_cylinder *cy, int type)
 {
