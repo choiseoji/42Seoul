@@ -23,21 +23,40 @@ BitcoinExchange::~BitcoinExchange()
 // data.csv 파일을 파싱해서 날짜 부분과 데이터 부분을 각각 key, value로 해서 map에 저장해둔다.
 void BitcoinExchange::parsingCSV(void)
 {
-    std::string     line;
+    std::string     data;
     std::ifstream   file("data.csv");
 
     if (file.is_open())
     {
         while (file)
         {
-            getline(file, line);
+            getline(file, data);
 
-            std::istringstream line_stream(line);
-            std::string key;
+            std::string year;
+            std::string month;
+            std::string day;
             std::string value;
 
-            getline(line_stream, key, ',');
-            getline(line_stream, value);
+            std::istringstream data_stream(data);
+            getline(data_stream, year, '-');
+            getline(data_stream, month, '-');
+            getline(data_stream, day, ',');
+            getline(data_stream, value);
+
+            int fyear = strtod(year.c_str(), NULL);
+            int fmonth = strtod(month.c_str(), NULL);
+            int fday = strtod(day.c_str(), NULL);
+            float fvalue = strtof(value.c_str(), NULL);
+
+            std::vector<float> m;
+
+            m = csv_data[fyear];
+            // vector에 해당 month가 없을 때만 넣어주기
+            if (std::find(m.begin(), m.end(), fmonth) == m.end())
+            {
+                csv_data[fyear].push_back(fmonth);
+            }
+            v[fmonth].push_back({fday, fvalue});
         }
     }
     else
@@ -82,8 +101,7 @@ void BitcoinExchange::parsingInFile(std::string file_name)
             else
             {
                 std::cout << year + "-" + month + "-" + day + "=>" + value + " = ";
-                // mulData();
-                std::cout << std::endl;
+                // std::cout << fvalue * findNearestDate(fyear, fmonth, fday) << std::endl;
             }
         }
     }
@@ -129,3 +147,9 @@ int BitcoinExchange::checkData(float fyear, float fmonth, float fday, float fval
     
     return (NOT_ERROR);
 }
+
+// csv파일에서 가장 가까운 날짜 찾기
+// float BitcoinExchange::findNearestDate(float fyear, float fmonth, float fday)
+// {
+
+// }
