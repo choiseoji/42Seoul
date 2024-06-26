@@ -9,18 +9,35 @@
 class RPN
 {
 private:
+    int result;
     int operand_size;
     std::stack<int> st;
-    std::vector<std::string> argu;
 
 public:
     RPN();
-    // RPN(const RPN &rpn);
-    // RPN& operator=(const RPN &rpn);
+    RPN(const RPN &rpn);
+    RPN& operator=(const RPN &rpn);
     ~RPN();
 
-    void parsing(std::string str);
-    void calculate();
+    // calculate
+    int getOperand();
+    void calAdd();
+    void calSub();
+    void calDiv();
+    void calMul();
+    void isOperand(std::string op);
+
+    // error check
+    int checkValidOp(std::string op);
+    void checkError();
+
+    // main func
+    void calculate(std::string str);
+
+    // getter, setter
+    int getResult();
+    void setResult(int res);
+
 
 };
 

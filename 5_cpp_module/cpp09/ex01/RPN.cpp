@@ -2,7 +2,26 @@
 
 RPN::RPN()
 {
+    result = 0;
+    operand_size = 0;
+}
 
+RPN::RPN(const RPN &rpn)
+{
+    this->result = rpn.result;
+    this->operand_size = rpn.operand_size;
+    this->st = rpn.st;
+}
+
+RPN& RPN::operator=(const RPN &rpn)
+{
+    if (this != &rpn)
+    {
+        this->result = rpn.result;
+        this->operand_size = rpn.operand_size;
+        this->st = rpn.st;
+    }
+    return (*this);
 }
 
 RPN::~RPN()
@@ -10,87 +29,115 @@ RPN::~RPN()
     
 }
 
-// RPN::RPN(const RPN &rpn)
-// {
+int RPN::getResult(void)
+{
+    return (result);
+}
 
-// }
+void RPN::setResult(int res)
+{
+    result = res;
+}
 
-// RPN& RPN::operator=(const RPN &rpn)
-// {
+int RPN::getOperand(void)
+{
+    int operand;
 
-// }
+    operand = st.top();
+    st.pop();
 
-void RPN::parsing(std::string str)
+    return (operand);
+}
+
+void RPN::calAdd(void)
+{
+    int operand1, operand2;
+
+    operand2 = getOperand();
+    operand1 = getOperand();
+    st.push(operand1 + operand2);
+}
+
+void RPN::calSub()
+{
+    int operand1, operand2;
+
+    operand2 = getOperand();
+    operand1 = getOperand();
+    st.push(operand1 - operand2);
+}
+
+void RPN::calDiv()
+{
+    int operand1, operand2;
+
+    operand2 = getOperand();
+    operand1 = getOperand();
+    st.push(operand1 / operand2);
+}
+
+void RPN::calMul()
+{
+    int operand1, operand2;
+
+    operand2 = getOperand();
+    operand1 = getOperand();
+    st.push(operand1 * operand2);
+}
+
+int RPN::checkValidOp(std::string op)
+{
+    // operand 유효성 검사
+    int num;
+    char *ptr;
+
+    num = strtod(op.c_str(), &ptr);
+    if (*ptr)
+        throw std::runtime_error("Error: invalid argument");
+    return (num);
+}
+
+void RPN::isOperand(std::string op)
+{
+    int num;
+
+    num = checkValidOp(op);
+    st.push(num);
+    operand_size++;
+}
+
+void RPN::checkError(void)
+{
+    // 연산이 안되는 경우 -> stack에 2개 이상의 원소가 있을 때 연산이 다 안된 것임
+    if (st.size() != 1)
+        throw std::runtime_error("Error: can't calculate");
+    
+    // operand 개수가 10개보다 많은 경우
+     if (operand_size > 10)
+        throw std::runtime_error("Error: too many operand");
+}
+
+// 1. 피연산자는 stack에 삽입
+// 2. 연산자 나오면 stack에 있는 원소 2개 빼서 연산
+void RPN::calculate(std::string str)
 {
     std::string argument;
     std::istringstream str_stream(str);
 
     while (getline(str_stream, argument, ' '))
     {
-        argu.push_back(argument);
-
-        if (!(argument == "+" || argument == "-"
-                || argument == "/" || argument == "*"))
-            operand_size++;
-    }
-
-    if (operand_size >= 10)
-        throw std::runtime_error("Error: Too many operand");
-}
-
-// 1. 피연산자는 stack에 삽입
-// 2. 연산자 나오면 stack에 있는 원소 2개 빼서 연산
-void RPN::calculate(void)
-{
-    int operand1, operand2;
-    int num;
-
-    for(size_t i = 0; i < argu.size(); i++)
-    {
-        if (argu[i] == "+")
-        {
-            operand2 = st.top();
-            st.pop();
-            operand1 = st.top();
-            st.pop();
-
-            st.push(operand1 + operand2);
-        }
-        else if (argu[i] == "-")
-        {
-            operand2 = st.top();
-            st.pop();
-            operand1 = st.top();
-            st.pop();
-
-            st.push(operand1 - operand2);
-        }
-        else if (argu[i] == "/")
-        {
-            operand2 = st.top();
-            st.pop();
-            operand1 = st.top();
-            st.pop();
-
-            st.push(operand1 / operand2);
-        }
-        else if (argu[i] == "*")
-        {
-            operand2 = st.top();
-            st.pop();
-            operand1 = st.top();
-            st.pop();
-
-            st.push(operand1 * operand2);
-        }
+        if (argument == "+")
+            calAdd();
+        else if (argument == "-")
+            calSub();
+        else if (argument == "/")
+            calDiv();
+        else if (argument == "*")
+            calMul();
         else   // 피연산자
-        {
-            num = strtod(argu[i].c_str(), NULL);
-            st.push(num);
-        }
+            isOperand(argument);
     }
 
-    if (st.size() != 1)
-        throw std::runtime_error("Error: can't calculate");
-    std::cout << st.top() << std::endl;
+    checkError();
+    setResult(st.top());
 }

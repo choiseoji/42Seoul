@@ -2,20 +2,19 @@
 
 int main(int ac, char **av)
 {
-
-    if (ac > 2)
-        return (0);  // 에러 문구 추가하기
-
     try
     {
+        if (ac > 2)
+            throw std::runtime_error("Error: too many input");
+        
         RPN rpn;
 
-        rpn.parsing(av[1]);
-        rpn.calculate();
+        rpn.calculate(av[1]);
+        std::cout << rpn.getResult() << std::endl;
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << std::endl;
+        std::cout << e.what() << std::endl;
     }
     return (0);
 }
