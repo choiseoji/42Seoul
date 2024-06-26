@@ -90,5 +90,7 @@ void RPN::calculate(void)
         }
     }
 
+    if (st.size() != 1)
+        throw std::runtime_error("Error: can't calculate");
     std::cout << st.top() << std::endl;
 }
