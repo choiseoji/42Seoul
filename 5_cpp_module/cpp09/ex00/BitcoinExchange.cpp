@@ -5,29 +5,23 @@ BitcoinExchange::BitcoinExchange()
 
 }
 
-// BitcoinExchange::BitcoinExchange(const BitcoinExchange &bc)
-// {
+BitcoinExchange::BitcoinExchange(const BitcoinExchange &bc)
+{
+    this->csv_data = bc.csv_data;
+}
 
-// }
-
-// BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange &bc)
-// {
-
-// }
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange &bc)
+{
+    if (this != &bc)
+    {
+        this->csv_data = bc.csv_data;
+    }
+    return (*this);
+}
 
 BitcoinExchange::~BitcoinExchange()
 {
 
-}
-
-bool compare(const std::pair<std::string, std::string>& a, const std::pair<std::string, std::string>& b)
-{
-    return a.first <= b.first;
-}
-
-bool compareL(const std::pair<std::string, std::string>& a, std::string b)
-{
-    return a.first <= b;
 }
 
 // data.csv 파일을 파싱해서 날짜 부분과 데이터 부분을 각각 key, value로 해서 map에 저장해둔다.
@@ -49,7 +43,7 @@ void BitcoinExchange::parsingCSV(void)
             getline(data_stream, key, ',');
             getline(data_stream, value);
 
-            csv_data.push_back(std::make_pair(key, value));
+            csv_data[key] = value;
         }
     }
     else
@@ -146,16 +140,11 @@ int BitcoinExchange::checkData(float fyear, float fmonth, float fday, float fval
 // csv파일에서 가장 가까운 날짜 찾기
 float BitcoinExchange::findNearestDate(std::string date)
 {
-    int idx;
-    float fvalue;
-    std::vector<std::pair<std::string, std::string> >::iterator it;
-    it = std::lower_bound(csv_data.begin(), csv_data.end(), date, compareL);
-    
-    idx = it - csv_data.begin();
+    float res;
+    std::string value;
+    std::map<std::string, std::string>::iterator it;
 
-    if (date != csv_data[idx].first)
-        idx--;
-    fvalue = strtof(csv_data[idx].second.c_str(), NULL);
-
-    return (fvalue);
+    it = csv_data.lower_bound(date);
+    res = strtod(it->second.c_str(), NULL);
+    return (res);
 }

@@ -4,7 +4,7 @@
 # include <fstream>
 # include <sstream>
 # include <string>
-# include <vector>
+# include <map>
 # include <algorithm>
 
 enum Error{
@@ -17,19 +17,18 @@ enum Error{
 class BitcoinExchange
 {
 private:
-    std::vector<std::pair<std::string, std::string> > csv_data;
+    std::map<std::string, std::string> csv_data;
 
 public:
     BitcoinExchange();
-    // BitcoinExchange(const BitcoinExchange &bc);
-    // BitcoinExchange& operator=(const BitcoinExchange &bc);
+    BitcoinExchange(const BitcoinExchange &bc);
+    BitcoinExchange& operator=(const BitcoinExchange &bc);
     ~BitcoinExchange();
 
     void parsingCSV();
     void parsingInFile(std::string file_name);
     int  checkData(float fyear, float fmonth, float fday, float fvalue);
-    // float findNearestDate(float fyear, float fmonth, float fday);
-    float findNearestDate(std::string date);
+    float findNearestDate(std::string data);
 };
 
 #endif

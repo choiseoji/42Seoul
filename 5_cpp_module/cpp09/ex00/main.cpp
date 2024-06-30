@@ -2,7 +2,7 @@
 
 int main(int ac, char **av)
 {
-    // .csv파이 내용 파싱
+    // .csv파일 내용 파싱
     BitcoinExchange bc;
     std::string file_name;
 
