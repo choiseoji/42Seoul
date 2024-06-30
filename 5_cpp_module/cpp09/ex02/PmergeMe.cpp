@@ -2,11 +2,12 @@
 
 PmergeMe::PmergeMe()
 {
-    
+    this->size = 1;
 }
 
 PmergeMe::PmergeMe(const PmergeMe &pm)
 {
+    this->size = pm.size;
     this->nums = pm.nums;
 }
 
@@ -14,6 +15,7 @@ PmergeMe& PmergeMe::operator=(const PmergeMe &pm)
 {
     if (this != &pm)
     {
+        this->size = pm.size;
         this->nums = pm.nums;
     }
     return (*this);

@@ -6,6 +6,7 @@
 class PmergeMe
 {
 private:
+    int size;
     std::vector<int> nums;
 
 public:
