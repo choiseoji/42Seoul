@@ -35,7 +35,7 @@ void PmergeMe::setNum(int ac, char *av[])
     }
 }
 
-void PmergeMe::fillVec(int size, std::vector<std::deque<int> > &a, std::vector<std::deque<int> > &b, int flag)
+void PmergeMe::fillVec(int size, std::vector<std::vector<int> > &a, std::vector<std::vector<int> > &b, int flag)
 {
     int idx;
     size_t start_idx;
@@ -45,8 +45,8 @@ void PmergeMe::fillVec(int size, std::vector<std::deque<int> > &a, std::vector<s
     while (start_idx < nums.size())
     {
         int cnt;
-        std::deque<int> av;
-        std::deque<int> bv;
+        std::vector<int> av;
+        std::vector<int> bv;
 
         cnt = 0;
         while (cnt < size)  // 여기 범위 오류 처리 해주기
@@ -71,7 +71,7 @@ void PmergeMe::fillVec(int size, std::vector<std::deque<int> > &a, std::vector<s
     }
 }
 
-void PmergeMe::makeVec(std::vector<std::deque<int> > &a, std::vector<std::deque<int> > &b)
+void PmergeMe::makeVec(std::vector<std::vector<int> > &a, std::vector<std::vector<int> > &b)
 {
     int idx = 0;
 
@@ -90,7 +90,7 @@ void PmergeMe::makeVec(std::vector<std::deque<int> > &a, std::vector<std::deque<
     }
 }
 
-void PmergeMe::makeVec2(std::vector<std::deque<int> > &a)
+void PmergeMe::makeVec2(std::vector<std::vector<int> > &a)
 {
     int idx = 0;
 
@@ -104,7 +104,7 @@ void PmergeMe::makeVec2(std::vector<std::deque<int> > &a)
     }
 }
 
-int PmergeMe::binarySearch(std::vector<std::deque<int> > &a, int n, int low, int high)
+int PmergeMe::binarySearch(std::vector<std::vector<int> > &a, int n, int low, int high)
 {
     int mid;
 
@@ -123,8 +123,8 @@ int PmergeMe::binarySearch(std::vector<std::deque<int> > &a, int n, int low, int
 void PmergeMe::insertB(int size)
 {
     int idx;
-    std::vector<std::deque<int> > a;
-    std::vector<std::deque<int> > b;
+    std::vector<std::vector<int> > a;
+    std::vector<std::vector<int> > b;
 
     fillVec(size, a, b, 0);
 
@@ -139,8 +139,8 @@ void PmergeMe::insertB(int size)
 
 void PmergeMe::makePair(int size)
 {
-    std::vector<std::deque<int> > a;
-    std::vector<std::deque<int> > b;
+    std::vector<std::vector<int> > a;
+    std::vector<std::vector<int> > b;
 
     fillVec(size, a, b, 1);
     makeVec(a, b);
