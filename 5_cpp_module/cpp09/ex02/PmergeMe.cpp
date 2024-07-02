@@ -90,7 +90,7 @@ void PmergeMe::makeVec(std::vector<std::vector<int> > &a, std::vector<std::vecto
     }
 }
 
-void PmergeMe::makeVec2(std::vector<std::vector<int> > &a)
+void PmergeMe::makeVec(std::vector<std::vector<int> > &a)
 {
     int idx = 0;
 
@@ -134,7 +134,7 @@ void PmergeMe::insertB(int size)
         idx = binarySearch(a, b[i][0], 0, a.size() - 1);
         a.insert(a.begin() + idx, b[i]);
     }
-    makeVec2(a);
+    makeVec(a);
 }
 
 void PmergeMe::makePair(int size)

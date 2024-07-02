@@ -19,11 +19,11 @@ public:
 
     // solve
     void solve();
-
+    
     void makePair(int size);
 
     void makeVec(std::vector<std::vector<int> > &a, std::vector<std::vector<int> > &b);
-    void makeVec2(std::vector<std::vector<int> > &a);
+    void makeVec(std::vector<std::vector<int> > &a);
     
     void fillVec(int size, std::vector<std::vector<int> > &a, std::vector<std::vector<int> > &, int flag);
     
