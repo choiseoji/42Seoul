@@ -19,7 +19,7 @@ public:
 
     // solve
     void solve();
-    
+
     void makePair(int size);
 
     void makeVec(std::vector<std::vector<int> > &a, std::vector<std::vector<int> > &b);

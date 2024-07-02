@@ -42,7 +42,7 @@ void PmergeMe::fillVec(int size, std::vector<std::vector<int> > &a, std::vector<
 
     idx = 0;
     start_idx = 0;
-    while (start_idx < nums.size())
+    while (start_idx + (2 * size) < nums.size())
     {
         int cnt;
         std::vector<int> av;
@@ -133,6 +133,15 @@ void PmergeMe::insertB(int size)
     {
         idx = binarySearch(a, b[i][0], 0, a.size() - 1);
         a.insert(a.begin() + idx, b[i]);
+    }
+
+    if (size == 1 && (nums.size() % 2 == 1))
+    {
+        std::vector<int> tmp;
+
+        idx = binarySearch(a, nums[nums.size() - 1], 0, a.size() - 1);
+        tmp.push_back(nums[nums.size() - 1]);
+        a.insert(a.begin() + idx, tmp);
     }
     makeVec(a);
 }
