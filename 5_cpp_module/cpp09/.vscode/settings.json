@@ -61,13 +61,13 @@
         "typeinfo": "cpp",
         "unordered_map": "cpp",
         "variant": "cpp",
-        "vector": "cpp",
         "__nullptr": "cpp",
         "__string": "cpp",
         "chrono": "cpp",
         "compare": "cpp",
         "concepts": "cpp",
         "algorithm": "cpp",
-        "list": "cpp"
+        "list": "cpp",
+        "deque": "cpp"
     }
 }

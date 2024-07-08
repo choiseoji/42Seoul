@@ -68,15 +68,15 @@ void PmergeMe::sortA(int size)
     }
 }
 
-void PmergeMe::makeVec(std::vector<std::vector<int> > &a)
+void PmergeMe::makeNums(std::vector<std::vector<int> > &mainchain)
 {
     int idx = 0;
 
-    for(size_t i = 0; i < a.size(); i++)
+    for(size_t i = 0; i < mainchain.size(); i++)
     {
-        for(size_t j = 0; j < a[i].size(); j++)
+        for(size_t j = 0; j < mainchain[i].size(); j++)
         {
-            nums[idx] = a[i][j];
+            nums[idx] = mainchain[i][j];
             idx++;
         }
     }
@@ -97,53 +97,58 @@ int PmergeMe::binarySearch(std::vector<std::vector<int> > &a, int n, int low, in
     return (low);
 }
 
-void PmergeMe::fillVec(std::vector<std::vector<int> > &a, std::vector<std::vector<int> > &b, int size)
+void PmergeMe::divNums(std::vector<std::vector<int> > &mainchain, std::vector<std::vector<int> > &pending, int size)
 {
-    size_t  start_idx_A;
-    size_t  start_idx_B;
+    size_t  start_idx_M;
+    size_t  start_idx_P;
+    std::vector<int> element_of_mainchain;
+    std::vector<int> element_of_pending;
 
-    start_idx_A = 0;
-    start_idx_B = start_idx_A + size;
-    while (start_idx_B + size <= nums.size())
+    start_idx_M = 0;
+    start_idx_P = start_idx_M + size;
+    while (start_idx_P + size <= nums.size())
     {
-        std::vector<int> tmpA;
-        std::vector<int> tmpB;
+        element_of_mainchain.insert(element_of_mainchain.begin(), 
+            nums.begin() + start_idx_M, nums.begin() + start_idx_M + size);
+        element_of_pending.insert(element_of_pending.begin(), 
+            nums.begin() + start_idx_P, nums.begin() + start_idx_P + size);
 
-        tmpA.insert(tmpA.begin(), nums.begin() + start_idx_A, nums.begin() + start_idx_A + size);
-        tmpB.insert(tmpB.begin(), nums.begin() + start_idx_B, nums.begin() + start_idx_B + size);
-        a.push_back(tmpA);
-        b.push_back(tmpB);
-        start_idx_A += (2 * size);
-        start_idx_B += (2 * size);
+        mainchain.push_back(element_of_mainchain);
+        pending.push_back(element_of_pending);
+
+        start_idx_M += (2 * size);
+        start_idx_P += (2 * size);
+        element_of_mainchain.clear();
+        element_of_pending.clear();
     }
 
-    // 남은 애들 다 b에 넣어줘야함
+    // size 하나만큼 수가 남으면 pending에 넣어주기
+    if (start_idx_M + size <= nums.size())
+    {
+        element_of_pending.insert(element_of_pending.begin(), nums.begin() + start_idx_M, nums.begin() + start_idx_M + size);
+        pending.push_back(element_of_pending);
+    }
 }
 
+/**
+ * 1. mainchain과 pending으로 나누어주기
+ * 2. mainchain에 pending 삽입하여 정렬
+ */
 void PmergeMe::insertB(int size)
 {
-    int idx;
-    std::vector<std::vector<int> > a;
-    std::vector<std::vector<int> > b;
+    std::vector<std::vector<int> > mainchain;
+    std::vector<std::vector<int> > pending;
 
-    fillVec(a, b, size);
+    divNums(mainchain, pending, size);
 
-    // b 들어갈 위치 찾기 -> 여기에 야콥스탈 적용하기
-    for(size_t i = 0; i < b.size(); i++)
+    // b 들어갈 위치 찾기 -> 여기에 Jacobsthal 수열 적용하기
+    for(size_t i = 0; i < pending.size(); i++)
     {
-        idx = binarySearch(a, b[i][0], 0, a.size() - 1);
-        a.insert(a.begin() + idx, b[i]);
+        int idx = binarySearch(mainchain, pending[i][0], 0, mainchain.size() - 1);
+        mainchain.insert(mainchain.begin() + idx, pending[i]);
     }
 
-    if (size == 1 && (nums.size() % 2 == 1))
-    {
-        std::vector<int> tmp;
-
-        idx = binarySearch(a, nums[nums.size() - 1], 0, a.size() - 1);
-        tmp.push_back(nums[nums.size() - 1]);
-        a.insert(a.begin() + idx, tmp);
-    }
-    makeVec(a);
+    makeNums(mainchain);
 }
 
 void PmergeMe::recursive(int size)
