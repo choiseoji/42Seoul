@@ -2,9 +2,15 @@
 
 int main(int ac, char *av[])
 {
-    PmergeMe pm;
+    try
+    {
+        PmergeMe pm;
 
-    pm.solve(ac, av);
-
+        pm.solve(ac, av);
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
     return (0);
 }

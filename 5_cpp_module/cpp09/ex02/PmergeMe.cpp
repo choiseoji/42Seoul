@@ -56,14 +56,35 @@ void PmergeMe::timePrint(clock_t start, clock_t end, std::string container)
         << std::fixed << std::setprecision(6) << timeSpend << " us\n";
 }
 
+/**
+ * error check
+ * 1. 인자가 없는 경우
+ * 2. positive integer가 아닌 경우
+ * 3. dup num인 경우
+ */
 void PmergeMe::setNum(int ac, char *av[])
 {
-    int num;
+    int    inum;
+    double dnum;
+    std::vector<int>::iterator it;
 
+    // 1.인자가 없는 경우
+    if (ac < 2)
+        throw std::runtime_error("Error: no argument");
+    
     for(int i = 1; i < ac; i++)
     {
-        num = strtod(av[i], NULL);
-        nums.push_back(num);
+        // 2. positive integer가 아닌 경우
+        dnum = strtod(av[i], NULL);
+        if (dnum > 2147483647 || dnum < 0)
+            throw std::runtime_error("Error: not positive integer");
+
+        // 3. dup num인 경우
+        inum = static_cast<int>(dnum);
+        it = find(nums.begin(), nums.end(), inum);
+        if (it != nums.end())
+            throw std::runtime_error("Error: dup num");
+        nums.push_back(inum);
     }
 }
 
