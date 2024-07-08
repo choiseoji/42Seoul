@@ -6,9 +6,10 @@ int main(int ac, char *av[])
 
     pm.setNum(ac, av);
 
-    pm.numsPrint("BEFORE: ");
+    pm.numsPrint("Before: ");
     pm.recursive(1);
-    pm.numsPrint("AFTER: ");
+    pm.numsPrint("After: ");
+    pm.timePrint();
 
     return (0);
 }

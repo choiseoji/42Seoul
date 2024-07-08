@@ -28,6 +28,16 @@ void PmergeMe::numsPrint(std::string str)
     std::cout << "\n";
 }
 
+void PmergeMe::timePrint()
+{
+    std::cout << "Time to process a range of " << nums.size() << " elements with std::vector : ";
+
+    std::cout << std::endl;
+    std::cout << "Time to process a range of " << nums.size() << " elements with std::deque : ";
+
+    std::cout << std::endl;
+}
+
 void PmergeMe::setNum(int ac, char *av[])
 {
     int num;
