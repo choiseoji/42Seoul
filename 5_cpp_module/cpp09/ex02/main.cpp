@@ -5,7 +5,7 @@ int main(int ac, char *av[])
     PmergeMe pm;
 
     pm.setNum(ac, av);
-    pm.solve();
+    pm.recursive(1);
 
     return (0);
 }

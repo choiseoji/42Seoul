@@ -1,9 +1,6 @@
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe()
-{
-
-}
+PmergeMe::PmergeMe() { }
 
 PmergeMe::PmergeMe(const PmergeMe &pm)
 {
@@ -19,9 +16,16 @@ PmergeMe& PmergeMe::operator=(const PmergeMe &pm)
     return (*this);
 }
 
-PmergeMe::~PmergeMe()
+PmergeMe::~PmergeMe() { }
+
+void PmergeMe::numsPrint(std::string str)
 {
-    
+    std::cout << str;
+    for(size_t i = 0; i < nums.size(); i++)
+    {
+        std::cout << nums[i] << " ";
+    }
+    std::cout << "\n";
 }
 
 void PmergeMe::setNum(int ac, char *av[])
@@ -35,58 +39,32 @@ void PmergeMe::setNum(int ac, char *av[])
     }
 }
 
-void PmergeMe::fillVec(int size, std::vector<std::vector<int> > &a, std::vector<std::vector<int> > &b, int flag)
+void PmergeMe::swapVec(int idx1, int idx2, int size)
 {
-    int idx;
-    size_t start_idx;
+    std::vector<int> big;
+    std::vector<int> small;
 
-    idx = 0;
-    start_idx = 0;
-    while (start_idx + (2 * size) < nums.size())
-    {
-        int cnt;
-        std::vector<int> av;
-        std::vector<int> bv;
-
-        cnt = 0;
-        while (cnt < size)  // 여기 범위 오류 처리 해주기
-        {
-            av.push_back(nums[idx]);
-            idx++;
-            cnt++;
-        }
-
-        cnt = 0;
-        while (cnt < size)  // 여기 범위 오류 처리 해주기
-        {
-            bv.push_back(nums[idx]);
-            idx++;
-            cnt++;
-        }
-        if (flag == 1 && av[0] < bv[0])
-            av.swap(bv);
-        a.push_back(av);
-        b.push_back(bv);
-        start_idx += (2 * size);
-    }
+    big.insert(big.begin(), nums.begin() + idx2, nums.begin() + idx2 + size);
+    small.insert(small.begin(), nums.begin() + idx1, nums.begin() + idx1 + size);
+    nums.erase(nums.begin() + idx1, nums.begin() + idx2 + size);
+    nums.insert(nums.begin() + idx1, big.begin(), big.begin() + size);
+    nums.insert(nums.begin() + idx2, small.begin(), small.begin() + size);
 }
 
-void PmergeMe::makeVec(std::vector<std::vector<int> > &a, std::vector<std::vector<int> > &b)
+// pair로 묶어 A, B 구간을 나누는데 항상 A에 더 큰 숫자를 넣도록 한다.
+void PmergeMe::sortA(int size)
 {
-    int idx = 0;
+    size_t  start_idx_A;
+    size_t  start_idx_B;
 
-    for(size_t i = 0; i < a.size(); i++)
+    start_idx_A = 0;
+    start_idx_B = start_idx_A + size;
+    while (start_idx_B + size <= nums.size())
     {
-        for(size_t j = 0; j < a[i].size(); j++)
-        {
-            nums[idx] = a[i][j];
-            idx++;
-        }
-        for(size_t j = 0; j < b[i].size(); j++)
-        {
-            nums[idx] = b[i][j];
-            idx++;
-        }
+        if (nums[start_idx_A] < nums[start_idx_B])
+            swapVec(start_idx_A, start_idx_B, size);
+        start_idx_A += (2 * size);
+        start_idx_B += (2 * size);
     }
 }
 
@@ -119,16 +97,38 @@ int PmergeMe::binarySearch(std::vector<std::vector<int> > &a, int n, int low, in
     return (low);
 }
 
-// 일단 야콥스탈 수열 사용하지 않고 해보기 (B 순서대로 삽입)
+void PmergeMe::fillVec(std::vector<std::vector<int> > &a, std::vector<std::vector<int> > &b, int size)
+{
+    size_t  start_idx_A;
+    size_t  start_idx_B;
+
+    start_idx_A = 0;
+    start_idx_B = start_idx_A + size;
+    while (start_idx_B + size <= nums.size())
+    {
+        std::vector<int> tmpA;
+        std::vector<int> tmpB;
+
+        tmpA.insert(tmpA.begin(), nums.begin() + start_idx_A, nums.begin() + start_idx_A + size);
+        tmpB.insert(tmpB.begin(), nums.begin() + start_idx_B, nums.begin() + start_idx_B + size);
+        a.push_back(tmpA);
+        b.push_back(tmpB);
+        start_idx_A += (2 * size);
+        start_idx_B += (2 * size);
+    }
+
+    // 남은 애들 다 b에 넣어줘야함
+}
+
 void PmergeMe::insertB(int size)
 {
     int idx;
     std::vector<std::vector<int> > a;
     std::vector<std::vector<int> > b;
 
-    fillVec(size, a, b, 0);
+    fillVec(a, b, size);
 
-    // b 들어갈 위치 찾기
+    // b 들어갈 위치 찾기 -> 여기에 야콥스탈 적용하기
     for(size_t i = 0; i < b.size(); i++)
     {
         idx = binarySearch(a, b[i][0], 0, a.size() - 1);
@@ -146,38 +146,12 @@ void PmergeMe::insertB(int size)
     makeVec(a);
 }
 
-void PmergeMe::makePair(int size)
-{
-    std::vector<std::vector<int> > a;
-    std::vector<std::vector<int> > b;
-
-    fillVec(size, a, b, 1);
-    makeVec(a, b);
-}
-
 void PmergeMe::recursive(int size)
 {
     if (size * 2 > (int)nums.size())
         return ;
 
-    makePair(size);
+    sortA(size);
     recursive(size * 2);
     insertB(size);
-}
-
-void PmergeMe::solve()
-{
-    nums_print("BEFORE: ");
-    recursive(1);
-    nums_print("AFTER: ");
-}
-
-void PmergeMe::nums_print(std::string str)
-{
-    std::cout << str;
-    for(size_t i = 0; i < nums.size(); i++)
-    {
-        std::cout << nums[i] << " ";
-    }
-    std::cout << "\n";
 }

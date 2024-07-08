@@ -2,6 +2,7 @@
 # define PMERGEME_HPP
 # include <iostream>
 # include <vector>
+# include <deque>
 
 class PmergeMe
 {
@@ -14,25 +15,16 @@ public:
     PmergeMe& operator=(const PmergeMe &pm);
     ~PmergeMe();
 
-    // parsing
+    void numsPrint(std::string str);
     void setNum(int ac, char *av[]);
-
-    // solve
-    void solve();
-
-    void makePair(int size);
-
-    void makeVec(std::vector<std::vector<int> > &a, std::vector<std::vector<int> > &b);
-    void makeVec(std::vector<std::vector<int> > &a);
-    
-    void fillVec(int size, std::vector<std::vector<int> > &a, std::vector<std::vector<int> > &, int flag);
-    
+    void swapVec(int idx1, int idx2, int size);
     void recursive(int size);
-    void insertB(int size);
+    void sortA(int size);
+    void makeVec(std::vector<std::vector<int> > &a);
     int binarySearch(std::vector<std::vector<int> > &a, int n, int low, int high);
+    void fillVec(std::vector<std::vector<int> > &a, std::vector<std::vector<int> > &b, int size);
+    void insertB(int size);
 
-    // print
-    void nums_print(std::string str);
 };
 
 #endif
