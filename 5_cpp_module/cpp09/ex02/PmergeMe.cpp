@@ -28,14 +28,32 @@ void PmergeMe::numsPrint(std::string str)
     std::cout << "\n";
 }
 
-void PmergeMe::timePrint()
+void PmergeMe::solve(int ac, char *av[])
 {
-    std::cout << "Time to process a range of " << nums.size() << " elements with std::vector : ";
+    clock_t start, end;
 
-    std::cout << std::endl;
-    std::cout << "Time to process a range of " << nums.size() << " elements with std::deque : ";
+    setNum(ac, av);
 
-    std::cout << std::endl;
+    // vector solve
+    numsPrint("Before: ");
+    start = clock();
+
+    recursive(1);
+
+    end = clock();
+    numsPrint("After: ");
+    timePrint(start, end, "vector");
+
+    // deque
+}
+
+void PmergeMe::timePrint(clock_t start, clock_t end, std::string container)
+{
+    double timeSpend;
+
+    timeSpend = static_cast<double>((end - start)) / CLOCKS_PER_SEC;
+    std::cout << "Time to process a range of " << nums.size() << " elements with std::"<< container<<" : "
+        << std::fixed << std::setprecision(6) << timeSpend << " us\n";
 }
 
 void PmergeMe::setNum(int ac, char *av[])

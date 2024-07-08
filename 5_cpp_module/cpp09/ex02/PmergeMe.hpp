@@ -3,6 +3,8 @@
 # include <iostream>
 # include <vector>
 # include <deque>
+# include <time.h>
+# include <iomanip>
 
 class PmergeMe
 {
@@ -15,9 +17,10 @@ public:
     PmergeMe& operator=(const PmergeMe &pm);
     ~PmergeMe();
 
+    void solve(int ac, char *av[]);
     void setNum(int ac, char *av[]);
     void numsPrint(std::string str);
-    void timePrint();
+    void timePrint(clock_t start, clock_t end, std::string container);
 
     // vector
     void sortA(int size);
