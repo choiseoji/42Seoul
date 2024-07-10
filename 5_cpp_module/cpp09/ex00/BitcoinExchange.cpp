@@ -124,8 +124,17 @@ int BitcoinExchange::checkData(float fyear, float fmonth, float fday, float fval
     }
     else if (fmonth == 2)
     {
-        if (fday < 0 || fday > 28)
-            return (DATE_ERROR);
+        int iyear = static_cast<int>(fyear);
+        if (iyear % 4 == 0 && !(iyear % 100 == 0 && iyear % 400 != 0))  // 윤년
+        {
+            if (fday < 0 || fday > 29)
+                return (DATE_ERROR);
+        }
+        else
+        {
+            if (fday < 0 || fday > 28)
+                return (DATE_ERROR);
+        }
     }
 
     // value check
