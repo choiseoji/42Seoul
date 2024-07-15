@@ -33,6 +33,7 @@ void PmergeMe::solve(int ac, char *av[])
     clock_t start, end;
 
     setNum(ac, av);
+    makeJacobsthalNums();
 
     // vector solve
     numsPrint("Before: ");
@@ -85,6 +86,24 @@ void PmergeMe::setNum(int ac, char *av[])
         if (it != nums.end())
             throw std::runtime_error("Error: dup num");
         nums.push_back(inum);
+    }
+}
+
+void PmergeMe::makeJacobsthalNums(void)
+{
+    jacobsthal_nums.push_back(1);
+    jacobsthal_nums.push_back(3);
+
+    int num = 0;
+    int p1 = 0;
+    int p2 = 1;
+
+    while (num <= static_cast<int> (nums.size()))
+    {
+        num = jacobsthal_nums[p2] + 2 * jacobsthal_nums[p1];
+        jacobsthal_nums.push_back(num);
+        p1 ++;
+        p2 ++;
     }
 }
 
@@ -190,11 +209,30 @@ void PmergeMe::insertB(int size)
 
     divNums(mainchain, pending, size);
 
-    // b 들어갈 위치 찾기 -> 여기에 Jacobsthal 수열 적용하기
-    for(size_t i = 0; i < pending.size(); i++)
+    int cnt = 0;
+    int n = 0;
+    int st, ed;
+
+    mainchain.insert(mainchain.begin(), pending[0]);
+    cnt++;
+    while (cnt < static_cast<int> (pending.size()))
     {
-        int idx = binarySearch(mainchain, pending[i][0], 0, mainchain.size() - 1);
-        mainchain.insert(mainchain.begin() + idx, pending[i]);
+        st = jacobsthal_nums[n];
+        if (st > static_cast<int> (pending.size() - 1))
+            st = pending.size() - 1;
+        if (n == 0)
+            ed = 0;
+        else
+            ed = jacobsthal_nums[n - 1];
+
+        while (st > ed)
+        {
+            int idx = binarySearch(mainchain, pending[st][0], 0, mainchain.size() - 1);
+            mainchain.insert(mainchain.begin() + idx, pending[st]);
+            cnt++;
+            st--;
+        }
+        n++;
     }
 
     makeNums(mainchain);
