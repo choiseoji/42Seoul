@@ -9,7 +9,9 @@
 class PmergeMe
 {
 private:
-    std::vector<int> nums;
+    std::vector<int> nums_vec;
+    std::deque<int> nums_deq;
+
     std::vector<int> jacobsthal_nums;
 
 public:
@@ -20,20 +22,30 @@ public:
 
     void solve(int ac, char *av[]);
     void setNum(int ac, char *av[]);
-    void numsPrint(std::string str);
     void timePrint(clock_t start, clock_t end, std::string container);
+    void makeJacobsthalNums();
 
     // vector
-    void sortA(int size);
-    void recursive(int size);
-    void insertB(int size);
+    void sortMainChainVec(int size);
+    void recursiveVec(int size);
+    void insertPendingElementsVec(int size);
 
-    void makeJacobsthalNums();
+    void numsPrintVec(std::string str);
     void swapVec(int idx1, int idx2, int size);
-    void divNums(std::vector<std::vector<int> > &a, std::vector<std::vector<int> > &b, int size);
-    int binarySearch(std::vector<std::vector<int> > &a, int n, int low, int high);
-    void makeNums(std::vector<std::vector<int> > &mainchain);
+    void divNumsVec(std::vector<std::vector<int> > &a, std::vector<std::vector<int> > &b, int size);
+    int binarySearchVec(std::vector<std::vector<int> > &a, int n, int low, int high);
+    void makeNumsVec(std::vector<std::vector<int> > &mainchain);
+    
     // deque
+    void sortMainChainDeq(int size);
+    void recursiveDeq(int size);
+    void insertPendingElementsDeq(int size);
+
+    void numsPrintDeq(std::string str);
+    void swapDeq(int idx1, int idx2, int size);
+    void divNumsDeq(std::deque<std::deque<int> > &a, std::deque<std::deque<int> > &b, int size);
+    int binarySearchDeq(std::deque<std::deque<int> > &a, int n, int low, int high);
+    void makeNumsDeq(std::deque<std::deque<int> > &mainchain);
 
 };
 

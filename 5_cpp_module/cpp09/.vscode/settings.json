@@ -69,6 +69,7 @@
         "algorithm": "cpp",
         "list": "cpp",
         "deque": "cpp",
-        "functional": "cpp"
+        "functional": "cpp",
+        "filesystem": "cpp"
     }
 }
