@@ -103,7 +103,7 @@ void BitcoinExchange::parsingInFile(std::string file_name)
 int BitcoinExchange::checkData(float fyear, float fmonth, float fday, float fvalue)
 {
     // year check
-    if (fyear < 0)
+    if (fyear < 1)
         return (DATE_ERROR);
 
     // month check
@@ -114,12 +114,12 @@ int BitcoinExchange::checkData(float fyear, float fmonth, float fday, float fval
     if (fmonth == 1 || fmonth == 3 || fmonth == 5 || fmonth == 7 || fmonth == 8
     || fmonth == 10 || fmonth == 12)
     {
-        if (fday < 0 || fday > 31)
+        if (fday < 1 || fday > 31)
             return (DATE_ERROR);
     }
     else if (fmonth == 4 || fmonth == 6 || fmonth == 9 || fmonth == 11)
     {
-        if (fday < 0 || fday > 30)
+        if (fday < 1 || fday > 30)
             return (DATE_ERROR);
     }
     else if (fmonth == 2)
@@ -127,12 +127,12 @@ int BitcoinExchange::checkData(float fyear, float fmonth, float fday, float fval
         int iyear = static_cast<int>(fyear);
         if (iyear % 4 == 0 && !(iyear % 100 == 0 && iyear % 400 != 0))  // 윤년
         {
-            if (fday < 0 || fday > 29)
+            if (fday < 1 || fday > 29)
                 return (DATE_ERROR);
         }
         else
         {
-            if (fday < 0 || fday > 28)
+            if (fday < 1 || fday > 28)
                 return (DATE_ERROR);
         }
     }
