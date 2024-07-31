@@ -86,11 +86,14 @@ void BitcoinExchange::parsingInFile(std::string file_name)
             else if (flag == NEGATIVE_ERROR)
                 std::cout << "Error: not a positive number." << std::endl;
             else if (flag == LARGE_NUM_ERROR)
-                std::cout << "Error: too large a number." << std::endl;
+                std::cout << "Error: too large number." << std::endl;
             else
             {
-                std::cout << year + "-" + month + "-" + day + "=>" + value + " = ";
-                std::cout << fvalue * findNearestDate(date) << std::endl;
+                float res = findNearestDate(date, flag);
+                if (flag == NO_DATA)
+                    std::cout << "Error: data does not exist" << std::endl;
+                else
+                    std::cout << year + "-" + month + "-" + day + "=>" + value + " = " << fvalue * res << std::endl;
             }
         }
     }
@@ -147,13 +150,22 @@ int BitcoinExchange::checkData(float fyear, float fmonth, float fday, float fval
 }
 
 // csv파일에서 가장 가까운 날짜 찾기
-float BitcoinExchange::findNearestDate(std::string date)
+float BitcoinExchange::findNearestDate(std::string date, int &flag)
 {
     float res;
     std::string value;
     std::map<std::string, std::string>::iterator it;
 
     it = csv_data.lower_bound(date);
-    res = strtod(it->second.c_str(), NULL);
+
+    if (it->first == date)
+        res = strtod(it->second.c_str(), NULL);
+    else
+    {
+        if (it->first == "2009-01-02")
+            flag = NO_DATA;
+        it--;
+        res = strtod(it->second.c_str(), NULL);
+    }
     return (res);
 }

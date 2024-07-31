@@ -11,6 +11,7 @@ enum Error{
     DATE_ERROR,
     NEGATIVE_ERROR,
     LARGE_NUM_ERROR,
+    NO_DATA,
     NOT_ERROR
 };
 
@@ -28,7 +29,7 @@ public:
     void parsingCSV();
     void parsingInFile(std::string file_name);
     int  checkData(float fyear, float fmonth, float fday, float fvalue);
-    float findNearestDate(std::string data);
+    float findNearestDate(std::string data, int &flag);
 };
 
 #endif
