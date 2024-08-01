@@ -40,6 +40,8 @@ int RPN::getOperand(void)
 {
     int operand;
 
+    if (st.empty())
+        throw std::runtime_error("Error: can't calculate");
     operand = st.top();
     st.pop();
 
