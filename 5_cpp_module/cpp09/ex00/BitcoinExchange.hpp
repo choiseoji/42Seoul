@@ -28,7 +28,7 @@ public:
 
     void parsingCSV();
     void parsingInFile(std::string file_name);
-    int  checkData(float fyear, float fmonth, float fday, float fvalue);
+    int  checkData(std::string year, std::string month, std::string day, std::string value);
     float findNearestDate(std::string data, int &flag);
 };
 

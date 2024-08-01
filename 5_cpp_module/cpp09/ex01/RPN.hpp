@@ -10,7 +10,6 @@ class RPN
 {
 private:
     int result;
-    int operand_size;
     std::stack<int> st;
 
 public:
@@ -29,7 +28,6 @@ public:
 
     // error check
     int checkValidOp(std::string op);
-    void checkError();
 
     // main func
     void calculate(std::string str);
@@ -37,8 +35,6 @@ public:
     // getter, setter
     int getResult();
     void setResult(int res);
-
-
 };
 
 #endif

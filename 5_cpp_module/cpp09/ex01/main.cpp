@@ -4,8 +4,8 @@ int main(int ac, char **av)
 {
     try
     {
-        if (ac > 2)
-            throw std::runtime_error("Error: too many input");
+        if (ac != 2)
+            throw std::runtime_error("Error: invalid input");
         
         RPN rpn;
 

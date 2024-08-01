@@ -75,12 +75,10 @@ void BitcoinExchange::parsingInFile(std::string file_name)
             getline(data_stream, day, '|');
             getline(data_stream, value);
 
-            float fyear = strtof(year.c_str(), NULL);
-            float fmonth = strtof(month.c_str(), NULL);
-            float fday = strtof(day.c_str(), NULL);
-            float fvalue = strtof(value.c_str(), NULL);
+            std::istringstream day_stream(day);
+            getline(day_stream, day, ' ');
 
-            flag = checkData(fyear, fmonth, fday, fvalue);
+            flag = checkData(year, month, day, value);
             if (flag == DATE_ERROR)
                 std::cout << "Error: bad input => "+ year + "-" + month + "-" + day << std::endl;
             else if (flag == NEGATIVE_ERROR)
@@ -93,7 +91,10 @@ void BitcoinExchange::parsingInFile(std::string file_name)
                 if (flag == NO_DATA)
                     std::cout << "Error: data does not exist" << std::endl;
                 else
+                {
+                    float fvalue = strtof(value.c_str(), NULL);
                     std::cout << year + "-" + month + "-" + day + "=>" + value + " = " << fvalue * res << std::endl;
+                }
             }
         }
     }
@@ -103,17 +104,24 @@ void BitcoinExchange::parsingInFile(std::string file_name)
 
 // format: "date | value" -> "Year-Month-Day" in date
 // A valid value must be either a float or a positive integer, between 0 and 1000
-int BitcoinExchange::checkData(float fyear, float fmonth, float fday, float fvalue)
+int BitcoinExchange::checkData(std::string year, std::string month, std::string day, std::string value)
 {
+    char *ptr;
+
     // year check
-    if (fyear < 1)
+    float fyear = strtof(year.c_str(), &ptr);
+    if (*ptr || fyear < 1)
         return (DATE_ERROR);
 
     // month check
-    if (fmonth < 1 || fmonth > 12)
+    float fmonth = strtof(month.c_str(), &ptr);
+    if (*ptr || fmonth < 1 || fmonth > 12)
         return (DATE_ERROR);
 
     // day check
+    float fday = strtof(day.c_str(), &ptr);
+    if (*ptr)
+        return (DATE_ERROR);
     if (fmonth == 1 || fmonth == 3 || fmonth == 5 || fmonth == 7 || fmonth == 8
     || fmonth == 10 || fmonth == 12)
     {
@@ -141,6 +149,9 @@ int BitcoinExchange::checkData(float fyear, float fmonth, float fday, float fval
     }
 
     // value check
+    float fvalue = strtof(value.c_str(), &ptr);
+    if (*ptr)
+        return (DATE_ERROR);
     if (fvalue < 0)
         return (NEGATIVE_ERROR);
     else if (fvalue > 1000)

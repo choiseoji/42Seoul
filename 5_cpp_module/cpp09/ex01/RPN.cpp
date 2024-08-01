@@ -3,13 +3,11 @@
 RPN::RPN()
 {
     result = 0;
-    operand_size = 0;
 }
 
 RPN::RPN(const RPN &rpn)
 {
     this->result = rpn.result;
-    this->operand_size = rpn.operand_size;
     this->st = rpn.st;
 }
 
@@ -18,7 +16,6 @@ RPN& RPN::operator=(const RPN &rpn)
     if (this != &rpn)
     {
         this->result = rpn.result;
-        this->operand_size = rpn.operand_size;
         this->st = rpn.st;
     }
     return (*this);
@@ -73,6 +70,8 @@ void RPN::calDiv()
 
     operand2 = getOperand();
     operand1 = getOperand();
+    if (operand2 == 0)
+        throw std::runtime_error("Error: you can't divide it by 0");
     st.push(operand1 / operand2);
 }
 
@@ -94,6 +93,9 @@ int RPN::checkValidOp(std::string op)
     num = strtod(op.c_str(), &ptr);
     if (*ptr)
         throw std::runtime_error("Error: invalid argument");
+
+    if (num < 0 || num > 9)
+        throw std::runtime_error("Error: input must be decimal number");
     return (num);
 }
 
@@ -103,18 +105,6 @@ void RPN::isOperand(std::string op)
 
     num = checkValidOp(op);
     st.push(num);
-    operand_size++;
-}
-
-void RPN::checkError(void)
-{
-    // 연산이 안되는 경우 -> stack에 2개 이상의 원소가 있을 때 연산이 다 안된 것임
-    if (st.size() != 1)
-        throw std::runtime_error("Error: can't calculate");
-    
-    // operand 개수가 10개보다 많은 경우
-     if (operand_size > 10)
-        throw std::runtime_error("Error: too many operand");
 }
 
 // 1. 피연산자는 stack에 삽입
@@ -138,6 +128,8 @@ void RPN::calculate(std::string str)
             isOperand(argument);
     }
 
-    checkError();
+    // 연산이 안되는 경우 -> stack에 2개 이상의 원소가 있을 때 연산이 다 안된 것임
+    if (st.size() != 1)
+        throw std::runtime_error("Error: can't calculate");
     setResult(st.top());
 }
