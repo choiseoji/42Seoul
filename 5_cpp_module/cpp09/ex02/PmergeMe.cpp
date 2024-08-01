@@ -83,8 +83,9 @@ void PmergeMe::timePrint(clock_t start, clock_t end, std::string container)
  */
 void PmergeMe::setNum(int ac, char *av[])
 {
-    int    inum;
-    double dnum;
+    int     inum;
+    double  dnum;
+    char    *ptr;
     std::vector<int>::iterator itV;
 
     // 1.인자가 없는 경우
@@ -94,8 +95,8 @@ void PmergeMe::setNum(int ac, char *av[])
     for(int i = 1; i < ac; i++)
     {
         // 2. positive integer가 아닌 경우
-        dnum = strtod(av[i], NULL);
-        if (dnum > 2147483647 || dnum < 0)
+        dnum = strtod(av[i], &ptr);
+        if (*ptr || dnum > 2147483647 || dnum < 1)
             throw std::runtime_error("Error: not positive integer");
 
         // 3. dup num인 경우
