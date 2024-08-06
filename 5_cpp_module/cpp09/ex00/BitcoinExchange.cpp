@@ -152,9 +152,9 @@ int BitcoinExchange::checkData(std::string year, std::string month, std::string 
     float fvalue = strtof(value.c_str(), &ptr);
     if (*ptr)
         return (DATE_ERROR);
-    if (fvalue < 0)
+    if (fvalue <= 0)
         return (NEGATIVE_ERROR);
-    else if (fvalue > 1000)
+    else if (fvalue >= 1000)
         return (LARGE_NUM_ERROR);
     
     return (NOT_ERROR);
