@@ -79,7 +79,6 @@ void PmergeMe::timePrint(clock_t start, clock_t end, std::string container)
  * error check
  * 1. 인자가 없는 경우
  * 2. positive integer가 아닌 경우
- * 3. dup num인 경우
  */
 void PmergeMe::setNum(int ac, char *av[])
 {
@@ -99,11 +98,7 @@ void PmergeMe::setNum(int ac, char *av[])
         if (*ptr || dnum > 2147483647 || dnum < 1)
             throw std::runtime_error("Error: not positive integer");
 
-        // 3. dup num인 경우
         inum = static_cast<int>(dnum);
-        itV = find(nums_vec.begin(), nums_vec.end(), inum);
-        if (itV != nums_vec.end())
-            throw std::runtime_error("Error: dup num");
         nums_vec.push_back(inum);
         nums_deq.push_back(inum);
     }
@@ -181,6 +176,8 @@ int PmergeMe::binarySearchVec(std::vector<std::vector<int> > &a, int n, int low,
             return (binarySearchVec(a, n, low, mid - 1));
         else if (a[mid][0] < n)
             return (binarySearchVec(a, n, mid + 1, high));
+        else if (a[mid][0] == n)
+            return (mid);
     }
     return (low);
 }
@@ -257,6 +254,7 @@ void PmergeMe::insertPendingElementsVec(int size)
     }
 
     makeNumsVec(mainchain);
+
 }
 
 void PmergeMe::recursiveVec(int size)
@@ -325,6 +323,8 @@ int PmergeMe::binarySearchDeq(std::deque<std::deque<int> > &a, int n, int low, i
             return (binarySearchDeq(a, n, low, mid - 1));
         else if (a[mid][0] < n)
             return (binarySearchDeq(a, n, mid + 1, high));
+        else if (a[mid][0] == n)
+            return (mid);
     }
     return (low);
 }
