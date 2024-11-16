@@ -9,6 +9,14 @@ RUN apt-get update -y && \
     mkdir -p /run/mysqld && \
     chown -R mysql:mysql /run/mysqld
 
+# ENV MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+# ENV MYSQL_USER=${MYSQL_USER}
+# ENV MYSQL_PASSWORD=${MYSQL_PASSWORD}
+# COPY ./tools/init.sh /docker-entrypoint-initdb.d/init.sh
+
+# # 실행 권한 추가
+# RUN chmod +x /docker-entrypoint-initdb.d/init.sh
+
 # MariaDB가 사용하는 3306 포트를 개방
 EXPOSE 3306
 

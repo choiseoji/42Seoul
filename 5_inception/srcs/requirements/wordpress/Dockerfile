@@ -5,5 +5,9 @@ FROM debian:bullseye
 RUN apt-get update -y && \
     apt-get upgrade -y && \
 
+# wordpress가 사용하는 9000 포트를 개방
+EXPOSE 9000
+
 # wordpress 서버 실행
 CMD []
+

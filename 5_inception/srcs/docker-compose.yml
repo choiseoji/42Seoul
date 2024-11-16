@@ -6,14 +6,12 @@ services:
     build:
       context: ./requirements/mariadb
       dockerfile: Dockerfile
-    environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
-      MYSQL_USER: ${MYSQL_USER}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
-    # volumes:
-    #   - mariadb_data: /var/lib/mysql
+    env_file:
+      - .env
     networks:
       - network
+    # volumes:
+    #   - mariadb_data: /var/lib/mysql
 
   nginx:
     container_name: nginx
