@@ -10,5 +10,5 @@ FLUSH PRIVILEGES;
 EOF
 
 mysql -u root < user.sql
-
+mysql mariadb stop
 mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
