@@ -25,7 +25,8 @@ COPY ./tools/wp-config.php /var/www/html/wp-config.php
 COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 
 RUN mkdir -p /run/php && \
-    chown -R www-data:www-data /run/php
+    chown -R www-data:www-data /run/php && \
+    chown www-data:www-data /var/www/html/wp-config.php
 
 EXPOSE 9000
 
