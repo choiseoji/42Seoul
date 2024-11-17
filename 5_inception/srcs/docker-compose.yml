@@ -23,6 +23,16 @@ services:
     networks:
       - network
 
+  wordpress:
+    container_name: wordpress
+    build:
+      context: ./requirements/wordpress
+      dockerfile: Dockerfile
+    env_file:
+      - .env
+    networks:
+      - network
+
 # volumes:
 #   mariadb_data:
 
