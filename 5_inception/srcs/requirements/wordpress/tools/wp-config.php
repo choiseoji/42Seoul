@@ -18,18 +18,23 @@
  * @package WordPress
  */
 
+$db_name = getenv('WORDPRESS_DB_NAME');
+$db_user = getenv('WORDPRESS_DB_USER');
+$db_password = getenv('WORDPRESS_DB_PASSWORD');
+$db_host = getenv('WORDPRESS_DB_HOST');
+
 // ** Database settings - You can get this info from your web host ** //
 /** The name of the database for WordPress */
-define( 'DB_NAME', 'wordpress' );
+define( 'DB_NAME', $db_name );
 
 /** Database username */
-define( 'DB_USER', "$MYSQL_USER" );
+define( 'DB_USER', $db_user );
 
 /** Database password */
-define( 'DB_PASSWORD', "$MYSQL_PASSWORD" );
+define( 'DB_PASSWORD', $db_password );
 
 /** Database hostname */
-define( 'DB_HOST', 'mariadb:3306' );
+define( 'DB_HOST', $db_host);
 
 /** Database charset to use in creating database tables. */
 define( 'DB_CHARSET', 'utf8' );
@@ -85,7 +90,7 @@ $table_prefix = 'wp_';
  *
  * @link https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/
  */
-define( 'WP_DEBUG', false );
+define( 'WP_DEBUG', true );
 
 /* Add any custom values between this line and the "stop editing" line. */
 

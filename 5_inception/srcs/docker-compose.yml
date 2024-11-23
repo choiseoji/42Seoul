@@ -6,12 +6,16 @@ services:
     build:
       context: ./requirements/mariadb
       dockerfile: Dockerfile
+    expose:
+      - "3306"
     env_file:
       - .env
     networks:
       - network
 
   nginx:
+    depends_on:
+      - wordpress
     container_name: nginx
     build:
       context: ./requirements/nginx
@@ -21,13 +25,17 @@ services:
     networks:
       - network
     volumes:
-      - wordpress_data:/var/www/html:ro
+      - wordpress_data:/var/www/html
 
   wordpress:
+    depends_on:
+      - mariadb
     container_name: wordpress
     build:
       context: ./requirements/wordpress
       dockerfile: Dockerfile
+    expose:
+      - "9000"
     env_file:
       - .env
     networks:
