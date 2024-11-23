@@ -1,6 +1,11 @@
-#!/bin/bash
+# #!/bin/bash
 
-service mariadb start
+# if [ ! -d "/var/lib/mysql/mysql" ]; then
+    # mkdir -p /run/mysqld
+    # chown -R mysql:mysql /run/mysqld
+
+    # service mariadb start
+mysqld_safe
 
 cat <<EOF > user.sql
 CREATE DATABASE IF NOT EXISTS wordpress;
@@ -10,5 +15,10 @@ FLUSH PRIVILEGES;
 EOF
 
 mysql -u root < user.sql
-mysql mariadb stop
-mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+rm -rf user.sql
+
+# else
+#     chown -R mysql:mysql /var/lib/mysql
+# fi
+
+mysqld
