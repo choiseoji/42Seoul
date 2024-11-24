@@ -12,6 +12,8 @@ services:
       - .env
     networks:
       - network
+    volumes:
+      - maridadb_data:/var/lib/mysql
 
   nginx:
     depends_on:
@@ -44,7 +46,18 @@ services:
       - wordpress_data:/var/www/html
 
 volumes:
-  wordpress_data: {}
+  wordpress_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${DATA_PATH}/wordpress
+  maridadb_data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ${DATA_PATH}/mysql
 
 networks:
   network:
