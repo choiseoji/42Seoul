@@ -21,13 +21,9 @@ RUN wget https://wordpress.org/latest.tar.gz && \
     chown -R www-data:www-data /var/www/html && \
     rm -r /wordpress latest.tar.gz
 
-COPY ./tools/wp-config.php /var/www/html/wp-config.php
 COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 
-RUN mkdir -p /run/php && \
-    chown -R www-data:www-data /run/php && \
-    chown www-data:www-data /var/www/html/wp-config.php
+COPY ./tools/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-EXPOSE 9000
-
-CMD ["php-fpm7.4", "-F"]
+CMD ["/entrypoint.sh"]
