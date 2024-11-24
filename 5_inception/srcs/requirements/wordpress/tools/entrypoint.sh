@@ -29,8 +29,6 @@ if [ ! -f /usr/local/bin/wp ]; then
 		--allow-root
 
 	wp user create ${WP_ROOT_NAME} ${WP_ROOT_EMAIL} --user_pass=${WP_ROOT_PASSWORD} --allow-root
-
-	wp theme install zakra --activate
 fi
 
 chmod -R 777 /var/www

@@ -13,7 +13,7 @@ services:
     networks:
       - network
     volumes:
-      - maridadb_data:/var/lib/mysql
+      - mariadb_data:/var/lib/mysql
 
   nginx:
     depends_on:
@@ -52,7 +52,7 @@ volumes:
       type: none
       o: bind
       device: ${DATA_PATH}/wordpress
-  maridadb_data:
+  mariadb_data:
     driver: local
     driver_opts:
       type: none
