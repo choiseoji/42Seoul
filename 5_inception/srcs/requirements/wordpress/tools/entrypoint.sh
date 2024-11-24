@@ -28,7 +28,7 @@ if [ ! -f /usr/local/bin/wp ]; then
 		--skip-email \
 		--allow-root
 
-	wp user create ${WP_ROOT_NAME} ${WP_ROOT_EMAIL} --user_pass=${WP_ROOT_PASSWORD} --allow-root
+	wp user create ${WORDPRESS_DB_USER} --skip-email --user_pass=${WORDPRESS_DB_PASSWORD} --role=author --allow-root
 fi
 
 chmod -R 777 /var/www
