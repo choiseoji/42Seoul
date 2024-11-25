@@ -11,7 +11,7 @@ down:
 re: clean all
 
 clean: down
-	rm -rf /home/seojchoi/data/mysql/*
-	rm -rf /home/seojchoi/data/wordpress/*
-	docker volume remove srcs_maridadb_data
+	rm -rf ${DATA_PATH}/mysql/*
+	rm -rf ${DATA_PATH}/wordpress/*
+	docker volume remove srcs_mariadb_data
 	docker volume remove srcs_wordpress_data

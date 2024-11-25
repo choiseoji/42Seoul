@@ -13,10 +13,10 @@ if [ ! -f /usr/local/bin/wp ]; then
 
 	wp config create \
 		--skip-check \
-		--dbname=${WORDPRESS_DB_NAME} \
+		--dbname=${WP_DB_NAME} \
 		--dbuser=${MYSQL_USER} \
 		--dbpass=${MYSQL_ROOT_PASSWORD} \
-		--dbhost=${WORDPRESS_DB_HOST} \
+		--dbhost=${WP_DB_HOST} \
 		--allow-root
 
 	wp core install \
@@ -28,7 +28,7 @@ if [ ! -f /usr/local/bin/wp ]; then
 		--skip-email \
 		--allow-root
 
-	wp user create ${WORDPRESS_DB_USER} --skip-email --user_pass=${WORDPRESS_DB_PASSWORD} --role=author --allow-root
+	wp user create ${WP_ADMIN_NAME} ${WP_ADMIN_EMAIL} --user_pass=${WP_ADMIN_PASSWORD} --role=author --allow-root
 fi
 
 chmod -R 777 /var/www
