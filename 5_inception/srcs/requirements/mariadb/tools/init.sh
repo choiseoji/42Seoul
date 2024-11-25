@@ -3,8 +3,14 @@
 service mariadb start
 
 cat <<EOF > /user.sql
-CREATE DATABASE IF NOT EXISTS wordpress;
+
+-- 데이터베이스 생성
+CREATE DATABASE IF NOT EXISTS '$WP_DB_NAME';
+
+-- 유저 생성 및 암호화 방식 확인
 CREATE USER IF NOT EXISTS '$MYSQL_USER'@'%' IDENTIFIED BY '$MYSQL_PASSWORD';
+
+-- 권한 부여
 GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_USER'@'%' WITH GRANT OPTION;
 FLUSH PRIVILEGES;
 EOF
