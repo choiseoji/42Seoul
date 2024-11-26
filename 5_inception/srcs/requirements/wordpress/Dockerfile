@@ -11,7 +11,6 @@ RUN apt-get update -y && \
     php-mysql \
     php-mbstring \
     php-xml \
-    sendmail \
     vim
 
 RUN wget https://wordpress.org/latest.tar.gz && \
