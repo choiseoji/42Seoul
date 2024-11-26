@@ -6,9 +6,11 @@ RUN apt-get update -y && \
     # mkdir -p /run/mysqld && \
     # chown -R mysql:mysql /run/mysqld
 
+RUN apt-get update && apt-get install -y dumb-init
+
 EXPOSE 3306
 
 COPY ./tools/init.sh /init.sh
 COPY ./conf/50-server.cnf /etc/mysql/mariadb.conf.d/50-server.cnf
 RUN chmod +x /init.sh
-CMD ["/init.sh"]
+CMD ["dumb-init", "/init.sh"]

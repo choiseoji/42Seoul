@@ -13,6 +13,8 @@ RUN apt-get update -y && \
     php-xml \
     vim
 
+RUN apt-get update && apt-get install -y dumb-init
+
 RUN wget https://wordpress.org/latest.tar.gz && \
     tar -xvf latest.tar.gz && \
     mkdir -p /var/www/html/ && \
@@ -25,4 +27,4 @@ COPY ./conf/www.conf /etc/php/7.4/fpm/pool.d/www.conf
 COPY ./tools/entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
-CMD ["/entrypoint.sh"]
+CMD ["dumb-init", "/entrypoint.sh"]
