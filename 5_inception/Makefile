@@ -1,6 +1,7 @@
 .PHONY: all down
 
 DOCKER_COMPOSE_PATH = ./srcs/docker-compose.yml
+DATA_PATH = /Users/seoji/data
 
 all:
 	docker compose -f ${DOCKER_COMPOSE_PATH} up -d --build
