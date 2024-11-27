@@ -6,6 +6,16 @@ services:
     build:
       context: ./requirements/mariadb
       dockerfile: Dockerfile
+    privileged: true
+    healthcheck:
+      interval: 5s
+      test:
+        [
+          "CMD-SHELL",
+          "mariadb-admin ping -h localhost -u root -p${MYSQL_ROOT_PASSWORD} || exit 1",
+        ]
+      timeout: 10s
+      retries: 3
     expose:
       - "3306"
     env_file:
@@ -35,7 +45,8 @@ services:
 
   wordpress:
     depends_on:
-      - mariadb
+      mariadb:
+        condition: service_healthy
     container_name: wordpress
     build:
       context: ./requirements/wordpress
